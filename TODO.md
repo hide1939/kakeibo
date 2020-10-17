@@ -5,6 +5,7 @@
 - Laravelをインストールする
     - コンテナ内のアプリのディレクトリ構成を調整(volumesのところ)
     - Laravelの画面が表示できる
+    - 現在のPRをマージ+新たなブランチを切る
 - phpunitで簡単なテストが動かせる
 - phpcsの導入(phpcbf)
 - larastan(静的解析ツール)の導入
