@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  app:
+    container_name: app
+    build: ./docker
+    ports:
+      - 8000:80
+    volumes:
+      - ./kakeibo:/var/www/kakeibo
+
+  db:
+    container_name: db
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: root
