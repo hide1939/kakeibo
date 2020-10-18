@@ -4,8 +4,10 @@ services:
   app:
     container_name: app
     build: ./docker
+    ports:
+      - 8000:80
     volumes:
-      - ./kakeibo:/var/www/html/kakeibo
+      - ./kakeibo:/var/www/kakeibo
 
   db:
     container_name: db
