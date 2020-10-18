@@ -6,3 +6,5 @@ RUN apt-get update && apt-get install -y \
     zip \
     unzip \
     git
+
+WORKDIR /var/www
