@@ -10,6 +10,10 @@
 - phpcsの導入(phpcbf)
 - larastan(静的解析ツール)の導入
 - dev環境のみでデバッグツールを導入
+- Reactのセットアップ
+    - https://readouble.com/laravel/7.x/ja/frontend.html?header=React%25E3%2581%25AE%25E4%25BD%25BF%25E7%2594%25A8
+    - https://liginc.co.jp/375726
+    - https://reffect.co.jp/laravel/laravel6-react-router
 
 ## 開発の開始
 - 裏側のロジックから作る

@@ -5,7 +5,7 @@ services:
     container_name: app
     build: ./docker
     volumes:
-      - .:/var/www/html
+      - ./kakeibo:/var/www/html/kakeibo
 
   db:
     container_name: db
