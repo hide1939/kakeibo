@@ -7,4 +7,6 @@ RUN apt-get update && apt-get install -y \
     unzip \
     git
 
+COPY ./apache/000-default.conf /etc/apache2/sites-enabled/000-default.conf
+
 WORKDIR /var/www
