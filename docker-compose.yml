@@ -12,5 +12,15 @@ services:
   db:
     container_name: db
     image: mysql:5.7
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+
+  db-test:
+    container_name: db-test
+    image: mysql:5.7
+    ports:
+      - 3000:3306
     environment:
       MYSQL_ROOT_PASSWORD: root
