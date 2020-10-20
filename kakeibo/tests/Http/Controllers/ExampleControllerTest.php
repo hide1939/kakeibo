@@ -4,7 +4,7 @@ namespace Tests\Http\Controllers;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
-use App\User;
+use App\Models\User;
 
 class ExampleControllerTest extends TestCase
 {
