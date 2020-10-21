@@ -12,7 +12,8 @@
     - [x]テスト用dbのマイグレーションを行う
     - [x]簡単なデータベースを用いたテストが動く
     - [x]テストを動かすのに最低限必要な設定以外は削除
-    - テストのカバレッジについて勉強してphpunitに導入する
+    - テストのカバレッジについて勉強してphpunitに導入する(xdebug)
+        - コマンド(vendor/bin/phpunit --coverage-html reports/)
     - phpunit.xmlの中身を理解
     - その他テストの仕組みを軽く学ぶ
 - phpcsの導入(phpcbf)
