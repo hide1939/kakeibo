@@ -1,19 +1,14 @@
 <?xml version="1.0"?>
-<ruleset name="PSR12/Laravel">
-    <description>PSR12 compliant rules and settings for Laravel</description>
-
-    <arg name="extensions" value="php" />
-
-    <!-- 適用コーディング規約の指定 -->
-    <rule ref="PSR12" />
+<ruleset name="Custom Standard">
+    <rule ref="PSR2">
+        <!-- 1行にコーディングする文字数の制約を外す -->
+        <exclude name="Generic.Files.LineLength"/>
+    </rule>
 
     <!-- 出力に色を適用 -->
     <arg name="colors" />
 
-    <!-- １行にコーディングする文字数の制約を外す -->
-    <exclude name="Generic.Files.LineLength"/>
-
-    <!-- オプション p:進捗表示  s:エラー表示時にルールを表示 -->
+    <!-- オプション p:進捗表示 s:エラー表示時にルールを表示 -->
     <arg value="ps" />
 
     <!-- tests/はメソッド名のキャメルケースチェック制約を除外する -->
@@ -21,17 +16,7 @@
         <exclude-pattern>*/tests/*</exclude-pattern>
     </rule>
 
-    <!-- 除外ディレクトリ -->
-    <exclude-pattern>/bootstrap/</exclude-pattern>
-    <exclude-pattern>/config/</exclude-pattern>
-    <exclude-pattern>/database/</exclude-pattern>
-    <exclude-pattern>/node_modules/</exclude-pattern>
-    <exclude-pattern>/public/</exclude-pattern>
-    <exclude-pattern>/resources/</exclude-pattern>
-    <exclude-pattern>/routes/</exclude-pattern>
-    <exclude-pattern>/storage/</exclude-pattern>
+    <!-- vendor/は検査対象から除外 -->
     <exclude-pattern>/vendor/</exclude-pattern>
-    <exclude-pattern>/server.php</exclude-pattern>
-    <exclude-pattern>/app/Console/Kernel.php</exclude-pattern>
-    <exclude-pattern>/tests/CreatesApplication.php</exclude-pattern>
+
 </ruleset>
