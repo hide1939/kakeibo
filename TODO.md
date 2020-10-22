@@ -17,7 +17,7 @@
     - [x]phpunit.xmlの中身を理解
 - [x]phpcsの導入(phpcbf)
     - [x]phpcs.xmlを定義
-- larastan(静的解析ツール)の導入
+- [x]larastan(静的解析ツール)の導入
 - dev環境のみでデバッグツールを導入
 - セッション管理に使うRedisを導入する
     - docker-composeに追加
