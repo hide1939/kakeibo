@@ -18,7 +18,7 @@
 - [x]phpcsの導入(phpcbf)
     - [x]phpcs.xmlを定義
 - [x]larastan(静的解析ツール)の導入
-- dev環境のみでデバッグツールを導入
+- [x]dev環境のみでデバッグツールを導入
 - セッション管理に使うRedisを導入する
     - docker-composeに追加
     - Laravel側でsession driverの切り替え
