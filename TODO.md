@@ -12,13 +12,13 @@
     - [x]テスト用dbのマイグレーションを行う
     - [x]簡単なデータベースを用いたテストが動く
     - [x]テストを動かすのに最低限必要な設定以外は削除
-    - テストのカバレッジについて勉強してphpunitに導入する(xdebug)
-        - コマンド(vendor/bin/phpunit --coverage-html reports/)
-    - phpunit.xmlの中身を理解
-    - その他テストの仕組みを軽く学ぶ
-- phpcsの導入(phpcbf)
-- larastan(静的解析ツール)の導入
-- dev環境のみでデバッグツールを導入
+    - [x]テストのカバレッジについて勉強してphpunitに導入する(xdebug)
+        - [x]コマンド(vendor/bin/phpunit --coverage-html reports/)
+    - [x]phpunit.xmlの中身を理解
+- [x]phpcsの導入(phpcbf)
+    - [x]phpcs.xmlを定義
+- [x]larastan(静的解析ツール)の導入
+- [x]dev環境のみでデバッグツールを導入
 - セッション管理に使うRedisを導入する
     - docker-composeに追加
     - Laravel側でsession driverの切り替え
@@ -29,11 +29,10 @@
 
 ## 開発の開始
 - Reactの勉強をする(Progateを一周する)
-- 裏側のロジックから作る
+- 必要な機能と開発手順を洗い出し
 - auth機能をインストール
     - 認証機能は基本的にはそのまま使う
     - view等の画面表示の部分だけ独自に整える
-- Reactが絡んでくるviewとかのフロント側は後回し
 
 ## デプロイする
 - AWSの学習
@@ -51,3 +50,4 @@
 ## 動作確認
 - 本番環境で画面が映る
 - バグ、不自然な動作が無いか確認
+- 監視ツール(NewRelic)の導入
