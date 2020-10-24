@@ -13,5 +13,3 @@ RUN apt-get update && apt-get install -y \
 && docker-php-ext-install pdo_mysql
 
 COPY ./apache/000-default.conf /etc/apache2/sites-enabled/000-default.conf
-
-WORKDIR /var/www

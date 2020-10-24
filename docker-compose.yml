@@ -8,6 +8,7 @@ services:
       - 8000:80
     volumes:
       - ./kakeibo:/var/www/kakeibo
+    working_dir: /var/www/kakeibo
 
   db:
     container_name: db
