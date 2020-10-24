@@ -19,17 +19,19 @@
     - [x]phpcs.xmlを定義
 - [x]larastan(静的解析ツール)の導入
 - [x]dev環境のみでデバッグツールを導入
-- セッション管理に使うRedisを導入する
-    - docker-composeに追加
-    - Laravel側でsession driverの切り替え
+- [x]セッション管理に使うRedisを導入する
+    - [x]docker-composeに追加
+    - [x]Laravel側でsession driverの切り替え
+    - 資料(ライブラリ(predis)・ツール(medis))(https://qiita.com/minato-naka/items/8b31d28823cabaa9487a#redis%E3%82%B3%E3%83%B3%E3%83%86%E3%83%8A%E4%BD%9C%E6%88%90)
+
+## 開発の開始
+- Reactの勉強をする(Progateを一周する)
 - Reactのセットアップ
     - https://readouble.com/laravel/7.x/ja/frontend.html?header=React%25E3%2581%25AE%25E4%25BD%25BF%25E7%2594%25A8
     - https://liginc.co.jp/375726
     - https://reffect.co.jp/laravel/laravel6-react-router
-
-## 開発の開始
-- Reactの勉強をする(Progateを一周する)
 - 必要な機能と開発手順を洗い出し
+    - 
 - auth機能をインストール
     - 認証機能は基本的にはそのまま使う
     - view等の画面表示の部分だけ独自に整える
