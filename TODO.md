@@ -30,11 +30,11 @@
     - https://readouble.com/laravel/7.x/ja/frontend.html?header=React%25E3%2581%25AE%25E4%25BD%25BF%25E7%2594%25A8
     - https://liginc.co.jp/375726
     - https://reffect.co.jp/laravel/laravel6-react-router
-- 必要な機能と開発手順を洗い出し
-    - 
 - auth機能をインストール
     - 認証機能は基本的にはそのまま使う
     - view等の画面表示の部分だけ独自に整える
+- 必要な機能と開発手順を洗い出し
+    - なるべく細かく
 
 ## デプロイする
 - AWSの学習
