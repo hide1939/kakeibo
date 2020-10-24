@@ -8,6 +8,7 @@ services:
       - 8000:80
     volumes:
       - ./kakeibo:/var/www/kakeibo
+    working_dir: /var/www/kakeibo
 
   db:
     container_name: db
@@ -30,3 +31,9 @@ services:
       MYSQL_DATABASE: test-database
       MYSQL_USER: test-user
       MYSQL_PASSWORD: test-pass
+
+  redis:
+    container_name: redis
+    image: redis:latest
+    ports:
+      - 6379:6379
