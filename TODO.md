@@ -25,6 +25,11 @@
     - 資料(ライブラリ(predis)・ツール(medis))(https://qiita.com/minato-naka/items/8b31d28823cabaa9487a#redis%E3%82%B3%E3%83%B3%E3%83%86%E3%83%8A%E4%BD%9C%E6%88%90)
 
 ## 開発の開始
+- [x]Ajaxの基礎を勉強する
+- Laravel x Ajaxを実装する方法を調べる
+    - 【Laravel】ajaxを使った検索機能の実装(https://qiita.com/hot-and-cool/items/c2e9e651f0e53dd14303)
+- [x]React x Ajaxを実装する方法を調べる
+- [x]Laravel x React x Ajaxで機能を実装する方法を調べる
 - Reactの勉強をする(Progateを一周する)
 - Reactのセットアップ
     - https://readouble.com/laravel/7.x/ja/frontend.html?header=React%25E3%2581%25AE%25E4%25BD%25BF%25E7%2594%25A8
@@ -35,6 +40,7 @@
     - view等の画面表示の部分だけ独自に整える
 - 必要な機能と開発手順を洗い出し
     - なるべく細かく
+    -
 
 ## デプロイする
 - AWSの学習
