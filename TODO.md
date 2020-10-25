@@ -35,7 +35,7 @@
 - Reactの勉強をする
     - 日本一わかりやすいReact入門【基礎編】(https://www.youtube.com/watch?v=Otrc2zAlJyM&list=PLX8Rsrpnn3IWKz6H5ZEPWBY8AKWwb9qq7)
     - 日本一わかりやすいReact入門【実践編】(https://www.youtube.com/watch?v=MzJkWO73S70&list=PLX8Rsrpnn3IVOk48awq_nKW0aFP0MGpnn)
-    - Progate(React)
+    - Progate(https://prog-8.com/languages/react)
 - Reactのセットアップ
     - https://readouble.com/laravel/7.x/ja/frontend.html?header=React%25E3%2581%25AE%25E4%25BD%25BF%25E7%2594%25A8
     - https://liginc.co.jp/375726
