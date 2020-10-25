@@ -32,8 +32,6 @@
 - [x]Laravel x React x Ajaxで機能を実装する方法を調べる
 - JavaScriptを学ぶ
     - 分かりすぎて怖いJavaScript入門(https://www.youtube.com/watch?v=EXxIVEC72mU&list=PLX8Rsrpnn3IVvcPCZTixO7Pf5lAGoyNOA)
-    - JavaScript講座(https://www.youtube.com/watch?v=pnsieVYy72M&list=PLwM1-TnN_NN7-zdRV8YsGUB82VVhfYiWW)
-    - モダンJavaScript講座(https://www.youtube.com/watch?v=De9PH3EAz7c&list=PLwM1-TnN_NN4SV6DEs4OtfA51Up6XzTfB)
 - Reactの勉強をする
     - 日本一わかりやすいReact入門【基礎編】(https://www.youtube.com/watch?v=Otrc2zAlJyM&list=PLX8Rsrpnn3IWKz6H5ZEPWBY8AKWwb9qq7)
     - 日本一わかりやすいReact入門【実践編】(https://www.youtube.com/watch?v=MzJkWO73S70&list=PLX8Rsrpnn3IVOk48awq_nKW0aFP0MGpnn)
