@@ -30,7 +30,7 @@
     - 【Laravel】ajaxを使った検索機能の実装(https://qiita.com/hot-and-cool/items/c2e9e651f0e53dd14303)
 - [x]React x Ajaxを実装する方法を調べる
 - [x]Laravel x React x Ajaxで機能を実装する方法を調べる
-- JavaScriptを学ぶ
+- []JavaScriptを学ぶ
     - 分かりすぎて怖いJavaScript入門(https://www.youtube.com/watch?v=EXxIVEC72mU&list=PLX8Rsrpnn3IVvcPCZTixO7Pf5lAGoyNOA)
 - Reactの勉強をする
     - 日本一わかりやすいReact入門【基礎編】(https://www.youtube.com/watch?v=Otrc2zAlJyM&list=PLX8Rsrpnn3IWKz6H5ZEPWBY8AKWwb9qq7)
