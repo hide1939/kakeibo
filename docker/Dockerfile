@@ -11,12 +11,15 @@ COPY --from=node /usr/local/lib/node_modules /usr/local/lib/node_modules
 COPY ./php/php.ini /usr/local/etc/php/php.ini
 
 COPY ./apache/000-default.conf /etc/apache2/sites-enabled/000-default.conf
+COPY ./apache/apache2.conf /etc/apache2/apache2.conf
 
 RUN apt-get update && apt-get install -y \
     git \
     unzip \
     vim \
     zip \
+&& git clone https://github.com/phpredis/phpredis.git /usr/src/php/ext/redis \
 && pecl install xdebug \
 && docker-php-ext-enable xdebug \
-&& docker-php-ext-install pdo_mysql
+&& docker-php-ext-install pdo_mysql redis \
+&& a2enmod rewrite
