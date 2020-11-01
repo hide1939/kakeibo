@@ -1,8 +1,16 @@
+FROM node:14.15.0-buster as node
 FROM php:7.3-apache
 
+# composer install
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
+# node npm install
+COPY --from=node /usr/local/bin/ /usr/local/bin/
+COPY --from=node /usr/local/lib/node_modules /usr/local/lib/node_modules
+
 COPY ./php/php.ini /usr/local/etc/php/php.ini
+
+COPY ./apache/000-default.conf /etc/apache2/sites-enabled/000-default.conf
 
 RUN apt-get update && apt-get install -y \
     git \
@@ -12,5 +20,3 @@ RUN apt-get update && apt-get install -y \
 && pecl install xdebug \
 && docker-php-ext-enable xdebug \
 && docker-php-ext-install pdo_mysql
-
-COPY ./apache/000-default.conf /etc/apache2/sites-enabled/000-default.conf
