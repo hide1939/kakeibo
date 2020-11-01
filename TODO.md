@@ -42,19 +42,34 @@
     - https://liginc.co.jp/375726
     - https://reffect.co.jp/laravel/laravel6-react-router
 - 画像アップロード機能を作成する
-    - cropper.js(画像加工用jsライブラリ)が動作する環境を作る
-        - Dockerに必要なライブラリをインストール
-            - npm/node.jsなど
-        - cropper.jsをインストール
-        - その他必要な設定(Laravel Mixなど)
+    - Babelを使用するため、Laravel Mixが動作する環境を作る
+        - 資料(https://qiita.com/ntm718/items/fed0e1060557a4e28ef3)
+        - 資料(https://blog.kozakana.net/2018/11/node_multistaging_build/)
+        - 資料(https://tech.actindi.net/2019/06/20/084247)
+        - [x]Dockerに必要なライブラリをインストール
+            - [x]npmとnode.js
+        - [x]npm -v / node -vで確認
+        - [x]npm installでLaravel Mix自体をインストール
+        - [x]npm run devにより、resources/js/app.jsに書いた内容がpublic/js以下にコンパイルされて出力される
+            - 本番環境に上げる時にはnpm run productionを実行
+                - 圧縮してコンパイルしてくれる
+        - [x]テンプレートでresources/js/app.jsを読み込んで、コンソールに出力されるか確認
+            - [x]viewが表示できない
+                - この記事(https://qiita.com/ponsuke0531/items/cc07807d92ecad60a82f)
+                - rewrite_modを有効に(https://web.just4fun.biz/?Apache/a2enmod%E3%81%A8a2dismod%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E3%81%AE%E5%8B%95%E4%BD%9C%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6)
+                - https://qiita.com/u-akihiro/items/c7a5bb38c34858d00c2a
+                - https://note.com/anchor_cable/n/n2d61fd8a4d59
+        - [x]cropper.js(画像トリミング用jsライブラリ)をインストール
         - 画像投稿画面を作る 
             - フロント側
                 - とりあえずシンプルに
                 - 画像がpostできたらいい
     - 裏側のロジックを作る
         - usecaseで画像アップロードとDBにパスを保存する処理
-        - 開発ではローカルディクスを利用
-    - 画像がローカルディスクにアップロードできる＋DBにパスが保存できる+保存した画像が表示できる
+        - 開発ではs3の代わりにローカルディクスを利用
+    - 画像がローカルディスクにアップロードできる
+    - DBにパスが保存できる
+    - 保存した画像が表示できる
 - auth機能をインストール
     - 認証機能は基本的にはそのまま使う
     - view等の画面表示の部分だけ独自に整える
