@@ -19,3 +19,4 @@ Route::get('/', function () {
 });
 
 Route::get('/profile_image', [ProfileImageController::class, 'edit']);
+Route::post('/profile_image', [ProfileImageController::class, 'store']);
