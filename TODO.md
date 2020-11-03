@@ -42,6 +42,7 @@
     - https://liginc.co.jp/375726
     - https://reffect.co.jp/laravel/laravel6-react-router
 - 画像アップロード機能を作成する
+    - 資料(https://reffect.co.jp/laravel/how_to_upload_file_in_laravel)
     - Babelを使用するため、Laravel Mixが動作する環境を作る
         - 資料(https://qiita.com/ntm718/items/fed0e1060557a4e28ef3)
         - 資料(https://blog.kozakana.net/2018/11/node_multistaging_build/)
@@ -65,14 +66,28 @@
                 - [x]Formファサードの導入
                     - [x]composer require laravelcollective/html
                 - [x]とりあえずシンプルに
-                - 画像がpostできたらいい
-                - デザイン綺麗にするのは後回し
+                - [x]画像がpostできたらいい
+                - [x]デザイン綺麗にするのは後回し
     - 裏側のロジックを作る
-        - usecaseで画像アップロードとDBにパスを保存する処理
-        - 開発ではs3の代わりにローカルディクスを利用
+        - [x]usecaseで画像アップロードとDBにパスを保存する処理
+            - [x]ストレージとDB
+        - [x]controllerで保存処理
+        - usecaseで画像を削除する処理
+            - ストレージから画像を削除DBからは論理削除
+        - controllerで画像削除処理
+        - 開発ではs3の代わりにローカルディクス(public)を利用
+            - [x]envにpublicを設定
+            - [x]localとpublicの違い(https://www.ritolab.com/entry/7)
+        - シンボリックリンクを張る
+            - php artisan storage:link
+        - FormRequestクラスを作る(バリデーション)
+        - [x]userモデルにimage_pathカラムを追加
     - 画像がローカルディスクにアップロードできる
     - DBにパスが保存できる
-    - 保存した画像が表示できる
+    - 保存した画像が表示できる 
+        - edit画面に表示
+        - 登録していないときはデフォルトの画像、登録しているときはその画像を表示
+        - DBからパスを取得 -> ストレージから画像を取り出す
 - auth機能をインストール
     - 認証機能は基本的にはそのまま使う
     - view等の画面表示の部分だけ独自に整える
@@ -86,6 +101,7 @@
         - テストを書く→実装する
 - 定期支出登録画面を作る
     - 
+- sass/scss等でデザインを整える <- デプロイ後でOK
 
 ## デプロイする
 - 途中でもいいのである程度のところでデプロイする
