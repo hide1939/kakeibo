@@ -43,11 +43,13 @@ return [
 
     'disks' => [
 
+        // 非公開用のファイルストレージ
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app'),
         ],
 
+        // 一般公開用のファイルストレージ
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
