@@ -13,13 +13,13 @@ class ProfileImageUseCaseTest extends TestCase
 {
     use DatabaseTransactions;
 
-    private $service;
+    private $usecase;
 
     public function setUp(): void
     {
         parent::setUp();
         Storage::fake();
-        $this->service = new ProfileImageUseCase;
+        $this->usecase = new ProfileImageUseCase;
     }
 
     /** @test */
@@ -27,7 +27,7 @@ class ProfileImageUseCaseTest extends TestCase
     {   
         $user = User::factory()->create();
 
-        $this->service->store(UploadedFile::fake()->image('test.jpg'), $user->id);
+        $this->usecase->store(UploadedFile::fake()->image('test.jpg'), $user->id);
         $this->assertNotNull(User::find($user->id)->profile_image_path);
     }
 
@@ -36,8 +36,34 @@ class ProfileImageUseCaseTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $this->service->store(UploadedFile::fake()->image('test.jpg'), $user->id);
+        $this->usecase->store(UploadedFile::fake()->image('test.jpg'), $user->id);
 
         Storage::disk()->assertExists('/profile_image/' . User::find($user->id)->profile_image_path);
+        // $this->assertFileExists('/profile_image/' . User::find($user->id)->profile_image_path);
+    }
+
+    /** @test */
+    public function deleteはDBのプロフィール画像のパスを削除する()
+    {
+        $user = User::factory()->imagepath()->create();
+
+        $this->usecase->delete($user->id);
+
+        $this->assertNull(User::find($user->id)->profile_image_path);
+    }
+
+    /** @test */
+    public function deleteはストレージのプロフィール画像を削除できる()
+    {
+        $user = User::factory()->imagepath()->create();
+        Storage::putFileAs(
+            'profile_image', 
+            UploadedFile::fake()->image('test.jpg'), 
+            $user->profile_image_path
+        );
+
+        $this->usecase->delete($user->id);
+
+        $this->assertFileDoesNotExist('/profile_image/' . User::find($user->id)->profile_image_path);
     }
 }
