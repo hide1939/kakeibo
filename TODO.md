@@ -73,6 +73,8 @@
             - [x]ストレージとDB
         - [x]controllerで保存処理
         - usecaseで画像を削除する処理(テストも)
+            - [x]userのファクトリにprofile_image_path追加
+                - [x]実際の生成ロジックをそのまま入れてやる
             - ストレージから画像を削除DBからは論理削除
         - controllerで画像削除処理
         - 開発ではs3の代わりにローカルディクス(public)を利用
