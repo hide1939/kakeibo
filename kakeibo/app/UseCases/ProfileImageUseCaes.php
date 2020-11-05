@@ -4,7 +4,6 @@ namespace App\UseCases;
 
 use App\Models\User;
 use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -18,7 +17,7 @@ class ProfileImageUseCase
         $user->profile_image_path = $profile_image_path;
         $user->save();
 
-        // Storage
+        // storage
         Storage::putFileAs('profile_image', $profile_image, $profile_image_path);
     }
 
@@ -26,10 +25,11 @@ class ProfileImageUseCase
     {
         // DB
         $user = User::find($user_id);
+        $profile_image_path = $user->profile_image_path;
         $user->profile_image_path = null;
         $user->save();
 
         // storage
-        Storage::delete('/profile_image/' . $user->profile_image_path);
+        Storage::delete('profile_image/' . $profile_image_path);
     }
 }

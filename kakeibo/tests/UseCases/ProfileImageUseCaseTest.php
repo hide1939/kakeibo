@@ -28,6 +28,7 @@ class ProfileImageUseCaseTest extends TestCase
         $user = User::factory()->create();
 
         $this->usecase->store(UploadedFile::fake()->image('test.jpg'), $user->id);
+
         $this->assertNotNull(User::find($user->id)->profile_image_path);
     }
 
@@ -38,8 +39,7 @@ class ProfileImageUseCaseTest extends TestCase
 
         $this->usecase->store(UploadedFile::fake()->image('test.jpg'), $user->id);
 
-        Storage::disk()->assertExists('/profile_image/' . User::find($user->id)->profile_image_path);
-        // $this->assertFileExists('/profile_image/' . User::find($user->id)->profile_image_path);
+        Storage::disk()->assertExists('profile_image/' . User::find($user->id)->profile_image_path);
     }
 
     /** @test */
@@ -64,6 +64,6 @@ class ProfileImageUseCaseTest extends TestCase
 
         $this->usecase->delete($user->id);
 
-        $this->assertFileDoesNotExist('/profile_image/' . User::find($user->id)->profile_image_path);
+        Storage::disk()->assertMissing('profile_image/' . $user->profile_image_path);
     }
 }
