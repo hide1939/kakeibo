@@ -32,11 +32,11 @@
 - [x]Laravel x React x Ajaxで機能を実装する方法を調べる
 - []JavaScriptを学ぶ
     - 分かりすぎて怖いJavaScript入門(https://www.youtube.com/watch?v=EXxIVEC72mU&list=PLX8Rsrpnn3IVvcPCZTixO7Pf5lAGoyNOA)
-- Reactの勉強をする
+- []Reactの勉強をする
     - 日本一わかりやすいReact入門【基礎編】(https://www.youtube.com/watch?v=Otrc2zAlJyM&list=PLX8Rsrpnn3IWKz6H5ZEPWBY8AKWwb9qq7)
     - 日本一わかりやすいReact入門【実践編】(https://www.youtube.com/watch?v=MzJkWO73S70&list=PLX8Rsrpnn3IVOk48awq_nKW0aFP0MGpnn)
     - Progate(https://prog-8.com/languages/react)
-- Reactのセットアップ
+- []Reactのセットアップ
     - Laravelの本
     - https://readouble.com/laravel/7.x/ja/frontend.html?header=React%25E3%2581%25AE%25E4%25BD%25BF%25E7%2594%25A8
     - https://liginc.co.jp/375726
@@ -72,19 +72,19 @@
         - [x]usecaseで画像アップロードとDBにパスを保存する処理
             - [x]ストレージとDB
         - [x]controllerで保存処理
-        - usecaseで画像を削除する処理(テストも)
+        - [x]usecaseで画像を削除する処理(テストも)
             - [x]userのファクトリにprofile_image_path追加
                 - [x]実際の生成ロジックをそのまま入れてやる
-            - ストレージから画像を削除DBからは論理削除
-        - controllerで画像削除処理
+            - [x]ストレージから画像を削除DBからは論理削除
+        - [x]controllerで画像削除処理
         - 開発ではs3の代わりにローカルディクス(public)を利用
             - [x]envにpublicを設定
             - [x]localとpublicの違い(https://www.ritolab.com/entry/7)
         - [x]シンボリックリンクを張る -> 画像にアクセスして画面に表示するため
             - [x]php artisan storage:link
-        - FormRequestクラスを作る(バリデーション)
+        - []FormRequestクラスを作る(バリデーション)
         - [x]userモデルにimage_pathカラムを追加
-    - 画面で動作確認
+    - [x]画面で動作確認
         - 画像がローカルディスクにアップロードできる
         - DBにパスが保存できる
         - 保存した画像が表示できる 
