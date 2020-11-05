@@ -36,7 +36,7 @@ class UserFactory extends Factory
     {
         return $this->state(function () {
             return [
-                'profile_image_path' => Str::random(20) . '.' . 'jpg'
+                'profile_image_path' => Str::random(20) . '.' . 'jpeg'
             ];
         });
     }
