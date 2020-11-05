@@ -8,14 +8,28 @@ use Illuminate\Support\Facades\Auth;
 
 class ProfileImageController extends Controller
 {
+    private $usecase;
+
+    public function __construct(ProfileImageUseCase $usecase)
+    {
+        $this->usecase = $usecase;
+    }
+
     public function edit()
     {
         return view('layouts.profileimage');
     }
 
-    public function store(Request $request, ProfileImageUseCase $usecase)
+    public function store(Request $request)
     {
-        $usecase->store($request->file('profile_image'), Auth::id());
+        $this->usecase->store($request->file('profile_image'), Auth::id());
+
+        return response(200);
+    }
+
+    public function destroy() 
+    {
+        $this->usecase->delete(Auth::id());
 
         return response(200);
     }

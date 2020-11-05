@@ -3,12 +3,15 @@
 namespace Tests\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 
 class ProfileImageControllerTest extends TestCase
 {
+    use DatabaseTransactions;
+
     /** @test */
     public function editでステータスコード200が返る()
     {
@@ -24,7 +27,7 @@ class ProfileImageControllerTest extends TestCase
     }
 
     /** @test */
-    public function storeでプロフィール画像の保存ができたら200が返る()
+    public function storeでプロフィール画像の保存ができたらステータスコード200が返る()
     {
         Storage::fake();
         $user = User::factory()->create();
@@ -57,5 +60,44 @@ class ProfileImageControllerTest extends TestCase
             'profile_image' => UploadedFile::fake()->image('test.jpg')
         ]);
         Storage::disk()->assertExists('/profile_image/' . User::find($user->id)->profile_image_path);
+    }
+
+    /** @test */
+    public function destroyでプロフィール画像を削除したらステータスコード200が返る()
+    {
+        $user = User::factory()->imagepath()->create();
+        Storage::putFileAs(
+            'profile_image', 
+            UploadedFile::fake()->image('test.jpg'), 
+            $user->profile_image_path
+        );
+
+        $response = $this->actingAs($user)->delete('/profile_image');
+        $response->assertOk();
+    }
+
+    /** @test */
+    public function destroyでDBのプロフィール画像のパスを削除できる()
+    {
+        $user = User::factory()->imagepath()->create();
+
+        $this->actingAs($user)->delete('/profile_image');
+
+        $this->assertNull(User::find($user->id)->profile_image_path);
+    }
+
+    /** @test */
+    public function destroyでストレージのプロフィール画像を削除できる()
+    {
+        $user = User::factory()->imagepath()->create();
+        Storage::putFileAs(
+            'profile_image', 
+            UploadedFile::fake()->image('test.jpg'), 
+            $user->profile_image_path
+        );
+
+        $this->actingAs($user)->delete('/profile_image');
+
+        Storage::disk()->assertMissing('profile_image/' . $user->profile_image_path);
     }
 }
