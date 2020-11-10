@@ -15,19 +15,32 @@ class ProfileImageControllerTest extends TestCase
     /** @test */
     public function editでステータスコード200が返る()
     {
-        $response = $this->get('/profile_image');
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/profile_image');
         $response->assertOk();
     }
 
     /** @test */
     public function editでプロフィール画像登録画面が表示できる()
     {
-        $response = $this->get('/profile_image');
+        $user = User::factory()->create();
+        
+        $response = $this->actingAs($user)->get('/profile_image');
         $response->assertViewIs('layouts.profileimage');
     }
 
     /** @test */
-    public function storeでプロフィール画像の保存ができたらステータスコード200が返る()
+    public function editで現在設定されているプロフィール画像が表示される()
+    {
+        $user = User::factory()->imagepath()->create();
+
+        $response = $this->actingAs($user)->get('/profile_image');
+        $response->assertViewHas('profile_image_path', $user->profile_image_path);
+    }
+
+    /** @test */
+    public function storeでプロフィール画像の保存ができたらプロフィール画像編集画面にリダイレクトする()
     {
         Storage::fake();
         $user = User::factory()->create();
@@ -35,7 +48,7 @@ class ProfileImageControllerTest extends TestCase
         $response = $this->actingAs($user)->post('/profile_image', [
             'profile_image' => UploadedFile::fake()->image('test.jpg')
         ]);
-        $response->assertOk();
+        $response->assertRedirect('/profile_image');
     }
 
     /** @test */
