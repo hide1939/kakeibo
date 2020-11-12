@@ -19,7 +19,7 @@ class ProfileImageController extends Controller
     public function edit()
     {
         return view('layouts.profileimage', [
-            // TODO:ここも認証つけたら直す
+            // TODO:ここも認証つけたら直す+コントローラで直接Eloquentは触らない
             'profile_image_path' => User::find(1)->profile_image_path
             // 'profile_image_path' => User::find(Auth::id())->profile_image_path
         ]);
