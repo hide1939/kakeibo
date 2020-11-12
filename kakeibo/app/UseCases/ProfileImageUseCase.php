@@ -17,8 +17,9 @@ class ProfileImageUseCase
         $user->profile_image_path = $profile_image_path;
         $user->save();
 
-        // TODO:新しい画像をストレージに保存するときに前の画像はストレージから消したいよね
         // storage
+        // TODO:新しい画像をストレージに保存するときに前の画像はストレージから消したいよね -> s3に無駄な画像が増えていく
+        // here
         Storage::putFileAs('profile_image', $profile_image, $profile_image_path);
     }
 
