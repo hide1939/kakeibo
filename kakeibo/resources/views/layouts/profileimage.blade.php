@@ -15,6 +15,7 @@
 
         <div>プロフィール画像</div>
         <img src="{{ asset('storage/profile_image/' . $profile_image_path) }}" width="300px" height="300px" alt="プロフィール画像">
+        <img src="{{ asset('storage/profile_image/default.png') }}" width="300px" height="300px" alt="プロフィール画像">
     </div>
     <script src="js/app.js"></script>
 </body>
