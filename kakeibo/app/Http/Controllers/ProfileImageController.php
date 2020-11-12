@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use App\Services\Query\UserService;
 use App\UseCases\ProfileImageUseCase;
 use Illuminate\Http\Request;
