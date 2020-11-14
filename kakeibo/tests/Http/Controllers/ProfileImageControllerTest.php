@@ -40,6 +40,16 @@ class ProfileImageControllerTest extends TestCase
     }
 
     /** @test */
+    public function editでデフォルトのプロフィール画像が表示される()
+    {
+        // DBにプロフィール画像のパスを持たない
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/profile_image');
+        $response->assertViewHas('profile_image_path', 'default.png');
+    }
+
+    /** @test */
     public function storeでプロフィール画像の保存ができたらプロフィール画像編集画面にリダイレクトする()
     {
         Storage::fake();

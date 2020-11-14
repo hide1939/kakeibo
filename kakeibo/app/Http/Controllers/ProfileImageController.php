@@ -37,6 +37,7 @@ class ProfileImageController extends Controller
         return redirect('profile_image');
     }
 
+    // TODO:将来的にはAjaxにする
     public function destroy() 
     {
         $this->usecase->delete(Auth::id());
