@@ -20,7 +20,7 @@ class ProfileImageController extends Controller
     }
 
     /**
-     * ログイン後にプロフィール画像を更新する
+     * ログイン(認証)後にプロフィール画像を更新する
      * 新規登録時とは処理を分ける
      */
     public function edit()
