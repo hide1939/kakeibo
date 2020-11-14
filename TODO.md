@@ -25,31 +25,123 @@
     - 資料(ライブラリ(predis)・ツール(medis))(https://qiita.com/minato-naka/items/8b31d28823cabaa9487a#redis%E3%82%B3%E3%83%B3%E3%83%86%E3%83%8A%E4%BD%9C%E6%88%90)
 
 ## 開発の開始
-- Reactの勉強をする(Progateを一周する)
-- Reactのセットアップ
+- [x]Ajaxの基礎を勉強する
+- [x]Laravel x Ajaxを実装する方法を調べる
+    - 【Laravel】ajaxを使った検索機能の実装(https://qiita.com/hot-and-cool/items/c2e9e651f0e53dd14303)
+- [x]React x Ajaxを実装する方法を調べる
+- [x]Laravel x React x Ajaxで機能を実装する方法を調べる
+- []JavaScriptを学ぶ
+    - 分かりすぎて怖いJavaScript入門(https://www.youtube.com/watch?v=EXxIVEC72mU&list=PLX8Rsrpnn3IVvcPCZTixO7Pf5lAGoyNOA)
+- []Reactの勉強をする
+    - 日本一わかりやすいReact入門【基礎編】(https://www.youtube.com/watch?v=Otrc2zAlJyM&list=PLX8Rsrpnn3IWKz6H5ZEPWBY8AKWwb9qq7)
+    - 日本一わかりやすいReact入門【実践編】(https://www.youtube.com/watch?v=MzJkWO73S70&list=PLX8Rsrpnn3IVOk48awq_nKW0aFP0MGpnn)
+    - Progate(https://prog-8.com/languages/react)
+- []Reactのセットアップ
+    - Laravelの本
     - https://readouble.com/laravel/7.x/ja/frontend.html?header=React%25E3%2581%25AE%25E4%25BD%25BF%25E7%2594%25A8
     - https://liginc.co.jp/375726
     - https://reffect.co.jp/laravel/laravel6-react-router
-- 必要な機能と開発手順を洗い出し
-    - 
+- 画像アップロード機能を作成する
+    - 資料(https://reffect.co.jp/laravel/how_to_upload_file_in_laravel)
+    - Babelを使用するため、Laravel Mixが動作する環境を作る
+        - 資料(https://qiita.com/ntm718/items/fed0e1060557a4e28ef3)
+        - 資料(https://blog.kozakana.net/2018/11/node_multistaging_build/)
+        - 資料(https://tech.actindi.net/2019/06/20/084247)
+        - [x]Dockerに必要なライブラリをインストール
+            - [x]npmとnode.js
+        - [x]npm -v / node -vで確認
+        - [x]npm installでLaravel Mix自体をインストール
+        - [x]npm run devにより、resources/js/app.jsに書いた内容がpublic/js以下にコンパイルされて出力される
+            - 本番環境に上げる時にはnpm run productionを実行
+                - 圧縮してコンパイルしてくれる
+        - [x]テンプレートでresources/js/app.jsを読み込んで、コンソールに出力されるか確認
+            - [x]viewが表示できない
+                - この記事(https://qiita.com/ponsuke0531/items/cc07807d92ecad60a82f)
+                - rewrite_modを有効に(https://web.just4fun.biz/?Apache/a2enmod%E3%81%A8a2dismod%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E3%81%AE%E5%8B%95%E4%BD%9C%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6)
+                - https://qiita.com/u-akihiro/items/c7a5bb38c34858d00c2a
+                - https://note.com/anchor_cable/n/n2d61fd8a4d59
+        - [x]cropper.js(画像トリミング用jsライブラリ)をインストール
+        - 画像投稿画面を作る 
+            - フロント側
+                - [x]Formファサードの導入
+                    - [x]composer require laravelcollective/html
+                - [x]とりあえずシンプルに
+                - [x]画像がpostできたらいい
+                - [x]デザイン綺麗にするのは後回し
+    - 裏側のロジックを作る
+        - [x]usecaseで画像アップロードとDBにパスを保存する処理
+            - [x]ストレージとDB
+        - [x]controllerで保存処理
+        - [x]usecaseで画像を削除する処理(テストも)
+            - [x]userのファクトリにprofile_image_path追加
+                - [x]実際の生成ロジックをそのまま入れてやる
+            - [x]ストレージから画像を削除DBからは論理削除
+        - [x]controllerで画像削除処理
+        - [x] 開発ではs3の代わりにローカルディクス(public)を利用
+            - [x]envにpublicを設定
+            - [x]localとpublicの違い(https://www.ritolab.com/entry/7)
+        - [x]シンボリックリンクを張る -> 画像にアクセスして画面に表示するため
+            - [x]php artisan storage:link
+        - []FormRequestクラスを作る(バリデーション)
+        - [x]userモデルにimage_pathカラムを追加
+    - []画面で動作確認
+        - 認証機能作った後に確認する
+        - []画像がローカルディスクにアップロードできる
+        - []DBにパスが保存できる
+        - []保存した画像が表示できる 
+            - []edit画面に表示
+            - 登録していないときはデフォルトの画像、登録しているときはその画像を表示
+                - bladeでif文を書く以外にスマートな方法ないかな。。
+        - 画面選択した際にプレビューが表示できる
+            - cropperで画像のトリミングが可能(後からでいいかも)
+        - 画像が削除できる
+            - ストレージから削除
+            - DBから画像パスを削除(nullにする)
+            - 画面から画像が消えてデフォルトの画像に変わる
+            - 新しい画像を登録するタイミングで以前の画像はストレージから削除する
 - auth機能をインストール
-    - 認証機能は基本的にはそのまま使う
+    - 認証機能は基本的にはそのまま使う -> Laravelに乗っかる
     - view等の画面表示の部分だけ独自に整える
+- データベース構造を考える
+    - 必要なテーブル、カラム
+    - データ型
+    - リレーション
+- 必要な機能と開発手順の洗い出し
+    - なるべく細かく
+    - 実装はTDD(テスト駆動開発)で行う
+        - テストを書く→実装する
+- 定期支出登録画面を作る
+    - 
+- sass/scss等でデザインを整える <- デプロイ後でOK
 
 ## デプロイする
+- 途中でもいいのである程度のところでデプロイする
+    - Done is better than perfect
 - AWSの学習
+    - Udemy
 - インフラ構成図の作成
 - AWSのインフラを設定する
 - デプロイ用の設定ファイルおよび環境変数のファイルを作成
+    - deployディレクトリを作成
+        - deployディレクトリ内に以下のファイル群を配置
+    - Dockerfile
+        - アプリのファイルをCOPY
     - php.ini
+        - production用の設定
         - opcacheの導入
-- config.ymlの作成
+            - アプリの高速化
+    - その他必要な設定ファイル(apache等)
+- .circleci/config.ymlの作成
     - 自動テスト
     - 自動デプロイ
-    - GitHub上でmainにマージしたら本番にリリースされる
-- デプロイを行う
+    - GitHub上でmainにマージしたら本番に自動リリースされる
+- 本番デプロイを行う
 
 ## 動作確認
 - 本番環境で画面が映る
 - バグ、不自然な動作が無いか確認
+    - デバッグツールが画面に表示されてないか
+    - その他不要な情報が画面に表示されていないか
 - 監視ツール(NewRelic)の導入
+
+## 宣伝

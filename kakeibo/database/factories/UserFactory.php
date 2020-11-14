@@ -30,4 +30,13 @@ class UserFactory extends Factory
             'remember_token' => Str::random(10),
         ];
     }
+
+    public function imagepath()
+    {
+        return $this->state(function () {
+            return [
+                'profile_image_path' => Str::random(20) . '.' . 'jpeg'
+            ];
+        });
+    }
 }

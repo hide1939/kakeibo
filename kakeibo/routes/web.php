@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileImageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// プロフィール画像アップロード関連
+Route::get('/profile_image', [ProfileImageController::class, 'edit']);
+Route::post('/profile_image', [ProfileImageController::class, 'store']);
+Route::delete('/profile_image', [ProfileImageController::class, 'destroy']);
