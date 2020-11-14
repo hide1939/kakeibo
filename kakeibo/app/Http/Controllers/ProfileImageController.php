@@ -19,29 +19,27 @@ class ProfileImageController extends Controller
         $this->service = $service;
     }
 
+    /**
+     * ログイン後にプロフィール画像を更新する
+     * 新規登録時とは処理を分ける
+     */
     public function edit()
     {
         return view('layouts.profileimage', [
-            // TODO:ここも認証つけたら直す+コントローラで直接Eloquentは触らない
-            'profile_image_path' => $this->service->getById(1)->profile_image_path
-            // 'profile_image_path' => $this->service->getById(Auth::id())->profile_image_path
+            'profile_image_path' => $this->service->getById(Auth::id())->profile_image_path
         ]);
     }
 
     public function store(Request $request)
     {
-        // TODO:一旦認証は先送り
-        // $this->usecase->store($request->file('profile_image'), Auth::id());
-        $this->usecase->store($request->file('profile_image'), 1);
+        $this->usecase->store($request->file('profile_image'), Auth::id());
 
         return redirect('profile_image');
     }
 
     public function destroy() 
     {
-        // TODO:一旦認証は先送り
-        // $this->usecase->delete(Auth::id());
-        $this->usecase->delete(1);
+        $this->usecase->delete(Auth::id());
 
         return response(200);
     }
