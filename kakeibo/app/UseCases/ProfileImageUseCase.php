@@ -13,13 +13,15 @@ class ProfileImageUseCase
     {
         // DB
         $user = User::find($user_id);
+        $previous_profile_image_path = $user->profile_image_path;
         $profile_image_path = Str::random(20) . '.' . $profile_image->extension();
         $user->profile_image_path = $profile_image_path;
         $user->save();
 
         // storage
-        // TODO:新しい画像をストレージに保存するときに前の画像はストレージから消したいよね -> s3に無駄な画像が増えていく
-        // here
+        // 以前の画像をストレージから削除
+        Storage::delete('profile_image/' . $previous_profile_image_path);
+        // 新規画像をストレージに登録
         Storage::putFileAs('profile_image', $profile_image, $profile_image_path);
     }
 

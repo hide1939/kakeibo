@@ -43,6 +43,21 @@ class ProfileImageUseCaseTest extends TestCase
     }
 
     /** @test */
+    public function storeは以前のプロフィール画像がストレージに存在する場合はそれを削除する()
+    {
+        $user = User::factory()->imagepath()->create();
+        Storage::putFileAs(
+            'profile_image', 
+            UploadedFile::fake()->image('test.jpg'), 
+            $user->profile_image_path
+        );
+
+        $this->usecase->store(UploadedFile::fake()->image('test.jpg'), $user->id);
+
+        Storage::disk()->assertMissing('profile_image/' . $user->profile_image_path);
+    }
+
+    /** @test */
     public function deleteはDBのプロフィール画像のパスを削除する()
     {
         $user = User::factory()->imagepath()->create();
