@@ -38,13 +38,21 @@ class ProfileImageUseCase
 
     public function delete($user_id)
     {
-        // DB
-        $user = User::find($user_id);
-        $profile_image_path = $user->profile_image_path;
-        $user->profile_image_path = null;
-        $user->save();
+        DB::beginTransaction();
+        try {
+            // DB
+            $user = User::find($user_id);
+            $profile_image_path = $user->profile_image_path;
+            $user->profile_image_path = null;
+            $user->save();
 
-        // storage
-        Storage::delete('profile_image/' . $profile_image_path);
+            // storage
+            Storage::delete('profile_image/' . $profile_image_path);
+        } catch (Exception $e) {
+            DB::rollBack();
+            Log::error('プロフィール画像削除処理中に例外が発生。DBをロールバックしました');
+            throw $e->getMessage();
+        }
+        DB::commit();
     }
 }
