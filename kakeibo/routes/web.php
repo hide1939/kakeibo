@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileImageController;
+use App\Http\Controllers\RegistController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,10 @@ use App\Http\Controllers\ProfileImageController;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// 新規登録関連
+Route::get('/regist', [RegistController::class, 'create']);
+Route::post('/regist', [RegistController::class, 'store']);
 
 // プロフィール画像アップロード関連
 Route::get('/profile_image', [ProfileImageController::class, 'edit']);
