@@ -23,6 +23,7 @@ Route::get('/', function () {
 Route::get('/regist', [RegistController::class, 'create']);
 Route::post('/regist', [RegistController::class, 'store']);
 
+// TODO:ログイン状態のときのみアクセスできるようにmiddleware設定する
 // プロフィール画像アップロード関連
 Route::get('/profile_image', [ProfileImageController::class, 'edit']);
 Route::post('/profile_image', [ProfileImageController::class, 'store']);
