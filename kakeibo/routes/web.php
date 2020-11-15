@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileImageController;
 use App\Http\Controllers\RegistController;
@@ -22,6 +23,11 @@ Route::get('/', function () {
 // 新規登録関連
 Route::get('/regist', [RegistController::class, 'create']);
 Route::post('/regist', [RegistController::class, 'store']);
+
+// ログイン関連
+Route::get('/login', [LoginController::class, 'index']);
+Route::post('/login', [LoginController::class, 'login']);
+Route::get('/logout', [LoginController::class, 'logout']);
 
 // TODO:ログイン状態のときのみアクセスできるようにmiddleware設定する
 // プロフィール画像アップロード関連
