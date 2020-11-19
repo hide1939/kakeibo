@@ -13,6 +13,9 @@
     - https://liginc.co.jp/375726
     - https://reffect.co.jp/laravel/laravel6-react-router
 
+- 認証機能を作る
+    - []remember me機能を作る
+
 - 画像アップロード機能を作成する
     - []FormRequestクラスを作る(バリデーション)
     - 画面で動作確認
