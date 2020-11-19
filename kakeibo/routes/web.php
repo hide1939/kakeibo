@@ -29,8 +29,9 @@ Route::get('/login', [LoginController::class, 'index']);
 Route::post('/login', [LoginController::class, 'login']);
 Route::get('/logout', [LoginController::class, 'logout']);
 
-// TODO:ログイン状態のときのみアクセスできるようにmiddleware設定する
+Route::group(['middleware' => ['auth']], function () {
 // プロフィール画像アップロード関連
 Route::get('/profile_image', [ProfileImageController::class, 'edit']);
 Route::post('/profile_image', [ProfileImageController::class, 'store']);
 Route::delete('/profile_image', [ProfileImageController::class, 'destroy']);
+});
