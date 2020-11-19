@@ -18,6 +18,7 @@ class LoginController extends Controller
             return redirect('login');
         };
 
+        // TODO:リダイレクト先は仮置き
         return redirect('profile_image');
     }
 
