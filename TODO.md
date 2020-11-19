@@ -1,131 +1,38 @@
-# TODOリスト(アプリの実装手順)
+# TODOリスト(アプリの実装手順)(終わったら消していく)
 
-## 開発前のセットアップ
-- [x]composerをインストールする
-- Laravelをインストールする
-    - [x]コンテナ内のアプリのディレクトリ構成を調整(volumesのところ)
-    - [x]Laravelの画面が表示できる
-    - [x]現在のPRをマージ+新たなブランチを切る
-- phpunitの導入
-    - [x]簡単なテストが動く
-    - [x]テスト用dbの導入
-    - [x]テスト用dbのマイグレーションを行う
-    - [x]簡単なデータベースを用いたテストが動く
-    - [x]テストを動かすのに最低限必要な設定以外は削除
-    - [x]テストのカバレッジについて勉強してphpunitに導入する(xdebug)
-        - [x]コマンド(vendor/bin/phpunit --coverage-html reports/)
-    - [x]phpunit.xmlの中身を理解
-- [x]phpcsの導入(phpcbf)
-    - [x]phpcs.xmlを定義
-- [x]larastan(静的解析ツール)の導入
-- [x]dev環境のみでデバッグツールを導入
-- [x]セッション管理に使うRedisを導入する
-    - [x]docker-composeに追加
-    - [x]Laravel側でsession driverの切り替え
-    - 資料(ライブラリ(predis)・ツール(medis))(https://qiita.com/minato-naka/items/8b31d28823cabaa9487a#redis%E3%82%B3%E3%83%B3%E3%83%86%E3%83%8A%E4%BD%9C%E6%88%90)
-
-## 開発の開始
-- [x]Ajaxの基礎を勉強する
-- [x]Laravel x Ajaxを実装する方法を調べる
-    - 【Laravel】ajaxを使った検索機能の実装(https://qiita.com/hot-and-cool/items/c2e9e651f0e53dd14303)
-- [x]React x Ajaxを実装する方法を調べる
-- [x]Laravel x React x Ajaxで機能を実装する方法を調べる
-- []JavaScriptを学ぶ
-    - 分かりすぎて怖いJavaScript入門(https://www.youtube.com/watch?v=EXxIVEC72mU&list=PLX8Rsrpnn3IVvcPCZTixO7Pf5lAGoyNOA)
-- []Reactの勉強をする
-    - 日本一わかりやすいReact入門【基礎編】(https://www.youtube.com/watch?v=Otrc2zAlJyM&list=PLX8Rsrpnn3IWKz6H5ZEPWBY8AKWwb9qq7)
-    - 日本一わかりやすいReact入門【実践編】(https://www.youtube.com/watch?v=MzJkWO73S70&list=PLX8Rsrpnn3IVOk48awq_nKW0aFP0MGpnn)
-    - Progate(https://prog-8.com/languages/react)
+## 機能の開発
+- JavaScriptを学ぶ
+    - []分かりすぎて怖いJavaScript入門(https://www.youtube.com/watch?v=EXxIVEC72mU&list=PLX8Rsrpnn3IVvcPCZTixO7Pf5lAGoyNOA)
+- Reactの勉強をする
+    - []日本一わかりやすいReact入門【基礎編】(https://www.youtube.com/watch?v=Otrc2zAlJyM&list=PLX8Rsrpnn3IWKz6H5ZEPWBY8AKWwb9qq7)
+    - []日本一わかりやすいReact入門【実践編】(https://www.youtube.com/watch?v=MzJkWO73S70&list=PLX8Rsrpnn3IVOk48awq_nKW0aFP0MGpnn)
+    - []Progate(https://prog-8.com/languages/react)
 - []Reactのセットアップ
     - Laravelの本
     - https://readouble.com/laravel/7.x/ja/frontend.html?header=React%25E3%2581%25AE%25E4%25BD%25BF%25E7%2594%25A8
     - https://liginc.co.jp/375726
     - https://reffect.co.jp/laravel/laravel6-react-router
+
 - 画像アップロード機能を作成する
-    - 資料(https://reffect.co.jp/laravel/how_to_upload_file_in_laravel)
-    - Babelを使用するため、Laravel Mixが動作する環境を作る
-        - 資料(https://qiita.com/ntm718/items/fed0e1060557a4e28ef3)
-        - 資料(https://blog.kozakana.net/2018/11/node_multistaging_build/)
-        - 資料(https://tech.actindi.net/2019/06/20/084247)
-        - [x]Dockerに必要なライブラリをインストール
-            - [x]npmとnode.js
-        - [x]npm -v / node -vで確認
-        - [x]npm installでLaravel Mix自体をインストール
-        - [x]npm run devにより、resources/js/app.jsに書いた内容がpublic/js以下にコンパイルされて出力される
-            - 本番環境に上げる時にはnpm run productionを実行
-                - 圧縮してコンパイルしてくれる
-        - [x]テンプレートでresources/js/app.jsを読み込んで、コンソールに出力されるか確認
-            - [x]viewが表示できない
-                - この記事(https://qiita.com/ponsuke0531/items/cc07807d92ecad60a82f)
-                - rewrite_modを有効に(https://web.just4fun.biz/?Apache/a2enmod%E3%81%A8a2dismod%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E3%81%AE%E5%8B%95%E4%BD%9C%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6)
-                - https://qiita.com/u-akihiro/items/c7a5bb38c34858d00c2a
-                - https://note.com/anchor_cable/n/n2d61fd8a4d59
-        - [x]cropper.js(画像トリミング用jsライブラリ)をインストール
-        - 画像投稿画面を作る 
-            - フロント側
-                - [x]Formファサードの導入
-                    - [x]composer require laravelcollective/html
-                - [x]とりあえずシンプルに
-                - [x]画像がpostできたらいい
-                - [x]デザイン綺麗にするのは後回し
-    - 裏側のロジックを作る
-        - [x]usecaseで画像アップロードとDBにパスを保存する処理
-            - [x]ストレージとDB
-        - [x]controllerで保存処理
-        - [x]usecaseで画像を削除する処理(テストも)
-            - [x]userのファクトリにprofile_image_path追加
-                - [x]実際の生成ロジックをそのまま入れてやる
-            - [x]ストレージから画像を削除DBからは論理削除
-        - [x]controllerで画像削除処理
-        - [x] 開発ではs3の代わりにローカルディクス(public)を利用
-            - [x]envにpublicを設定
-            - [x]localとpublicの違い(https://www.ritolab.com/entry/7)
-        - [x]シンボリックリンクを張る -> 画像にアクセスして画面に表示するため
-            - [x]php artisan storage:link
-        - []FormRequestクラスを作る(バリデーション)
-        - [x]userモデルにimage_pathカラムを追加
-    - []画面で動作確認
-        - [x]認証機能作った後に確認する
-        - [x]画像がローカルディスクにアップロードできる
-        - [x]DBにパスが保存できる
-        - [x]保存した画像が表示できる 
-            - [x]edit画面に表示
-            - [x]登録していないときはデフォルトの画像、登録しているときはその画像を表示
-                - bladeでif文を書く以外にスマートな方法ないかな。。
-        - 画面選択した際にプレビューが表示できる
-            - cropperで画像のトリミングが可能(後からでいいかも)
+    - []FormRequestクラスを作る(バリデーション)
+    - 画面で動作確認
+        - []画面選択した際にプレビューが表示できる
+        - []cropperで画像のトリミングが可能(後からでいいかも)
         - 画像が削除できる
-            - ストレージから削除
-            - DBから画像パスを削除(nullにする)
-            - 画面から画像が消えてデフォルトの画像に変わる
-            - 新しい画像を登録するタイミングで以前の画像はストレージから削除する
-- auth機能をインストール
-    - 「新規登録」と「ログイン」を独自に作る
-    - viewのcss等の細かいデザインは後回し
-    - チェック項目
-        - [x]新規登録した情報がデータベースに保存できる
-            - [x]serviceでメソッド作成
-        - [x]新規登録後にログイン(認証)状態になる
-            - [x]registercontrollerの作成
-        - [x]新規登録画面が表示できる
-        - [x]新規登録後に別画面へリダイレクトする
-        - [x]ログインできる
-            - [x]logincontrollerの作成
-            - [x]ログイン画面を表示できる
-            - [x]認証状態になる
-            - [x]ログイン後に別画面へリダイレクトする
-            - [x]ついでにログアウトも作っておく
-        - [x]簡易的なHTMLを作って新規登録およびログインができることを画面で確認する
+            - []削除ボタンを実装
+            - []ストレージから削除
+            - []DBから画像パスを削除(nullにする)
+            - []画面から画像が消えてデフォルトの画像に変わる
+            - []新しい画像を登録するタイミングで以前の画像はストレージから削除する
+
 - データベース構造を考える
     - 必要なテーブル、カラム
     - データ型
     - リレーション
-- 必要な機能と開発手順の洗い出し
-    - なるべく細かく
-    - 実装はTDD(テスト駆動開発)で行う
-        - テストを書く→実装する
+
 - 定期支出登録画面を作る
     - 
+
 - sass/scss等でデザインを整える <- デプロイ後でOK
 
 ## デプロイする
@@ -151,11 +58,13 @@
     - GitHub上でmainにマージしたら本番に自動リリースされる
 - 本番デプロイを行う
 
+- アジャイル的に機能追加
+
+- インフラのコード化
+
 ## 動作確認
 - 本番環境で画面が映る
 - バグ、不自然な動作が無いか確認
     - デバッグツールが画面に表示されてないか
     - その他不要な情報が画面に表示されていないか
 - 監視ツール(NewRelic)の導入
-
-## 宣伝
