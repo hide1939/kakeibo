@@ -25,7 +25,7 @@ Route::get('/regist', [RegistController::class, 'create']);
 Route::post('/regist', [RegistController::class, 'store']);
 
 // ログイン関連
-Route::get('/login', [LoginController::class, 'index']);
+Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 Route::get('/logout', [LoginController::class, 'logout']);
 

@@ -1,37 +1,27 @@
 # TODOリスト(アプリの実装手順)(終わったら消していく)
 
 ## 機能の開発
-- JavaScriptを学ぶ
-    - []分かりすぎて怖いJavaScript入門(https://www.youtube.com/watch?v=EXxIVEC72mU&list=PLX8Rsrpnn3IVvcPCZTixO7Pf5lAGoyNOA)
-- Reactの勉強をする
-    - []日本一わかりやすいReact入門【基礎編】(https://www.youtube.com/watch?v=Otrc2zAlJyM&list=PLX8Rsrpnn3IWKz6H5ZEPWBY8AKWwb9qq7)
-    - []日本一わかりやすいReact入門【実践編】(https://www.youtube.com/watch?v=MzJkWO73S70&list=PLX8Rsrpnn3IVOk48awq_nKW0aFP0MGpnn)
-    - []Progate(https://prog-8.com/languages/react)
 - []Reactのセットアップ
     - Laravelの本
-    - https://readouble.com/laravel/7.x/ja/frontend.html?header=React%25E3%2581%25AE%25E4%25BD%25BF%25E7%2594%25A8
-    - https://liginc.co.jp/375726
-    - https://reffect.co.jp/laravel/laravel6-react-router
+
+- 認証機能を作る
+    - []remember me機能を作る
 
 - 画像アップロード機能を作成する
     - []FormRequestクラスを作る(バリデーション)
-    - 画面で動作確認
-        - []画面選択した際にプレビューが表示できる
-        - []cropperで画像のトリミングが可能(後からでいいかも)
-        - 画像が削除できる
-            - []削除ボタンを実装
-            - []ストレージから削除
-            - []DBから画像パスを削除(nullにする)
-            - []画面から画像が消えてデフォルトの画像に変わる
-            - []新しい画像を登録するタイミングで以前の画像はストレージから削除する
+    - []画面選択した際にプレビューが表示できる
+    - []cropperで画像のトリミングが可能(後からでいい)
+    - 画像が削除できる
+        - []削除ボタンを実装
+        - []ストレージから削除
+        - []DBから画像パスを削除(nullにする)
+        - []画面から画像が消えてデフォルトの画像に変わる
+        - []新しい画像を登録するタイミングで以前の画像はストレージから削除する
 
 - データベース構造を考える
     - 必要なテーブル、カラム
     - データ型
     - リレーション
-
-- 定期支出登録画面を作る
-    - 
 
 - sass/scss等でデザインを整える <- デプロイ後でOK
 
