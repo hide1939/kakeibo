@@ -20,7 +20,7 @@ class IncomeServiceTest extends TestCase
     }
 
     /** @test */
-    public function 定期収入の合計値を取得できる()
+    public function getRegularTotalAmountで定期収入の合計値を取得できる()
     {
         $user_id = 1;
         Income::factory()->create(['user_id' => $user_id, 'amount' => 200]);

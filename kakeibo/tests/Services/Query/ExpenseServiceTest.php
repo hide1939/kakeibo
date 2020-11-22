@@ -20,7 +20,7 @@ class ExpenseServiceTest extends TestCase
     }
 
     /** @test */
-    public function 定期支出の合計値を取得できる()
+    public function getRegularTotalAmountで定期支出の合計値を取得できる()
     {
         $user_id = 1;
         Expense::factory()->create(['user_id' => $user_id, 'amount' => 200]);
