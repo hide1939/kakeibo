@@ -11,6 +11,8 @@ class ExpenseServiceTest extends TestCase
 {
     use DatabaseTransactions;
 
+    private $service;
+
     public function setUp(): void
     {
         parent::setUp();
