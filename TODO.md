@@ -22,7 +22,7 @@
     - controllerで登録項目と金額を取得してviewに渡す
         - QueryのExpenseServiceとIncomeServiceにgetRegularメソッドを追加する
         - expense,incomeモデルを直接viewに渡してview側で項目とか金額を取得する
-        - viewにRegular登録してある項目と金額をそれぞれ表示する
+        - viewでforeachでデータを回して項目と金額を表示する
     - 取得した項目と金額をデータベースに登録する
         - is_regularをtrueにした状態で
     - クエリパラメータから支出か収入か判定する
