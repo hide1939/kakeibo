@@ -7,6 +7,8 @@
 <body>
     <div>
         <p>定期収支を登録する画面です</p>
+        <p>定期収支の合計↓</p>
+        <p>{{ $regular_total_amount }}</p>
     </div>
 </body>
 </html>

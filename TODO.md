@@ -19,10 +19,6 @@
         - []新しい画像を登録するタイミングで以前の画像はストレージから削除する
 
 - 定期収支登録機能を作る(/regular)
-    - controllerで定期収支の合計金額を取得してviewに渡す
-        - ServiceのgetRegularTotalAmountを呼び出す
-        - Controllerで計算する
-        - viewに表示する
     - controllerで登録項目と金額を取得してviewに渡す
         - QueryのExpenseServiceとIncomeServiceにgetRegularメソッドを追加する
         - expense,incomeモデルを直接viewに渡してview側で項目とか金額を取得する
@@ -32,6 +28,13 @@
     - クエリパラメータから支出か収入か判定する
     - 登録した項目を削除できる
         - 物理削除で良いや
+
+- home->login/register->regularの流れをざっくりと試す
+    - home画面をざっくり作る
+    - 定期収支の項目が登録できるか
+    - 定期収支の項目、金額が表示されるか
+    - 定期収支の合計金額が表示されるか
+    - プロフィール画像が表示されるか
 
 - sass/scss等でデザインを整える <- デプロイ後でOK
 
