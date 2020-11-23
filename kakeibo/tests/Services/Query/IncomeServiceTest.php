@@ -32,4 +32,22 @@ class IncomeServiceTest extends TestCase
             $this->service->getRegularTotalAmount($user_id)
         );
     }
+
+    /** @test */
+    public function getRegularでコレクションに包まれたIncomeモデルオブジェクトを取得できる()
+    {
+        $user_id = 1;
+        Income::factory()->regular()->create(['user_id' => $user_id]);
+
+        $this->assertInstanceOf(Income::class, $this->service->getRegular($user_id)->first());
+    }
+
+    /** @test */
+    public function getRegularでis_regularが1のIncomeモデルオブジェクトを取得できる()
+    {
+        $user_id = 1;
+        Income::factory()->regular()->create(['user_id' => $user_id]);
+
+        $this->assertEquals(1, $this->service->getRegular($user_id)->first()->is_regular);
+    }
 }
