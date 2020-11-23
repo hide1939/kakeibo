@@ -20,7 +20,6 @@
 
 - 定期収支登録機能を作る(/regular)
     - controllerで登録項目と金額を取得してviewに渡す
-        - QueryのExpenseServiceとIncomeServiceにgetRegularメソッドを追加する
         - expense,incomeモデルを直接viewに渡してview側で項目とか金額を取得する
         - viewでforeachでデータを回して項目と金額を表示する
     - 取得した項目と金額をデータベースに登録する
