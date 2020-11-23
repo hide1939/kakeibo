@@ -43,6 +43,18 @@ class RegularControllerTest extends TestCase
     }
 
     /** @test */
+    public function editで定期収支の負の合計金額がviewに渡る()
+    {
+        $user = User::factory()
+            ->has(Income::factory()->regular()->state(['amount' => 500]))
+            ->has(Expense::factory()->regular()->state(['amount' => 1200]))
+            ->create();
+
+        $response = $this->actingAs($user)->get('/regular');
+        $response->assertViewHas('regular_total_amount', -700);
+    }
+
+    /** @test */
     public function editでregular_expenseがviewに渡る()
     {
         $user = User::factory()->create();
