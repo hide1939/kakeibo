@@ -19,14 +19,18 @@
         - []新しい画像を登録するタイミングで以前の画像はストレージから削除する
 
 - 定期収支登録機能を作る(/regular)
-        - viewでforeachでデータを回して項目と金額を表示する
+    - ExpenseServiceとIncomeServiceのハッピーパス以外の処理を実装する
+        - データがなくて取れない場合とかはどうなる？
     - 取得した項目と金額をデータベースに登録する
         - is_regularをtrueにした状態で
-    - クエリパラメータから支出か収入か判定する
+        - RegularUserCaseでExpenseとIncomeを一気に登録するでいいかも
+            - クエリパラメータから支出か収入か判定する
+            - if文でExpenseかIncomeかを判定して
+            - Regularを登録する場所はここしかないので、Serviceに含めて汎用的にする必要がない
     - 登録した項目を削除できる
         - 物理削除で良いや
     - ExpenseServiceとIncomeServiceのハッピーパス以外の処理を実装する
-        - データがなくて取れない場合とかはどうなる？
+    - 画面で表示確認する
 
 - home->login/register->regularの流れをざっくりと試す
     - home画面をざっくり作る
