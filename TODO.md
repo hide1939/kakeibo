@@ -28,6 +28,8 @@
     - クエリパラメータから支出か収入か判定する
     - 登録した項目を削除できる
         - 物理削除で良いや
+    - ExpenseServiceとIncomeServiceのハッピーパス以外の処理を実装する
+        - データがなくて取れない場合とかはどうなる？
 
 - home->login/register->regularの流れをざっくりと試す
     - home画面をざっくり作る

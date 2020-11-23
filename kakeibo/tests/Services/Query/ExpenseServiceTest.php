@@ -32,4 +32,22 @@ class ExpenseServiceTest extends TestCase
             $this->service->getRegularTotalAmount($user_id)
         );
     }
+
+    /** @test */
+    public function getRegularでコレクションに包まれたExpenseモデルオブジェクトを取得できる()
+    {
+        $user_id = 1;
+        Expense::factory()->regular()->create(['user_id' => $user_id]);
+
+        $this->assertInstanceOf(Expense::class, $this->service->getRegular($user_id)->first());
+    }
+
+    /** @test */
+    public function getRegularでis_regularが1のExpenseモデルオブジェクトを取得できる()
+    {
+        $user_id = 1;
+        Expense::factory()->regular()->create(['user_id' => $user_id]);
+
+        $this->assertEquals(1, $this->service->getRegular($user_id)->first()->is_regular);
+    }
 }

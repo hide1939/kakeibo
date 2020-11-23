@@ -15,4 +15,14 @@ class ExpenseService
             ->where('is_regular', config('const.is_regular.true'))
             ->sum('amount');
     }
+
+    /**
+     * コレクションに包まれた、is_rugularが1のExpenseモデルオブジェクトを取得する
+     */
+    public function getRegular($user_id)
+    {
+        return Expense::where('user_id', $user_id)
+            ->where('is_regular', config('const.is_regular.true'))
+            ->get();
+    }
 }
