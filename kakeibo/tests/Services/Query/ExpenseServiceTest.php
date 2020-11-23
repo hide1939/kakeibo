@@ -34,6 +34,18 @@ class ExpenseServiceTest extends TestCase
     }
 
     /** @test */
+    public function getRegularTotalAmountは定期支出に何も登録していない場合は0が返る()
+    {
+        $user_id = 1;
+        Expense::factory()->create(['user_id' => $user_id, 'amount' => 200]);
+
+        $this->assertEquals(
+            0,
+            $this->service->getRegularTotalAmount($user_id)
+        );
+    }
+
+    /** @test */
     public function getRegularでコレクションに包まれたExpenseモデルオブジェクトを取得できる()
     {
         $user_id = 1;

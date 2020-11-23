@@ -23,12 +23,23 @@ class IncomeServiceTest extends TestCase
     public function getRegularTotalAmountで定期収入の合計値を取得できる()
     {
         $user_id = 1;
-        Income::factory()->create(['user_id' => $user_id, 'amount' => 200]);
         Income::factory()->regular()->create(['user_id' => $user_id, 'amount' => 500]);
         Income::factory()->regular()->create(['user_id' => $user_id, 'amount' => 1500]);
 
         $this->assertEquals(
             2000,
+            $this->service->getRegularTotalAmount($user_id)
+        );
+    }
+
+    /** @test */
+    public function getRegularTotalAmountは定期支出に何も登録していない場合は0が返る()
+    {
+        $user_id = 1;
+        Income::factory()->create(['user_id' => $user_id, 'amount' => 200]);
+
+        $this->assertEquals(
+            0,
             $this->service->getRegularTotalAmount($user_id)
         );
     }
