@@ -41,4 +41,22 @@ class RegularControllerTest extends TestCase
         $response = $this->actingAs($user)->get('/regular');
         $response->assertViewHas('regular_total_amount', 700);
     }
+
+    /** @test */
+    public function editでregular_expenseがviewに渡る()
+    {
+        $user = User::factory()->create();
+        
+        $response = $this->actingAs($user)->get('/regular');
+        $response->assertViewHas('regular_expense');
+    }
+
+    /** @test */
+    public function editでregular_incomeがviewに渡る()
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/regular');
+        $response->assertViewHas('regular_income');
+    }
 }

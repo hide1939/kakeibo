@@ -25,8 +25,14 @@ class RegularController extends Controller
         $regular_total_amount = $this->income_service->getRegularTotalAmount(Auth::id()) 
             - $this->expense_service->getRegularTotalAmount(Auth::id());
 
+        $regular_expense = $this->expense_service->getRegular(Auth::id());
+
+        $regular_income = $this->income_service->getRegular(Auth::id());
+
         return view('layouts.regular', [
-            'regular_total_amount' => $regular_total_amount
+            'regular_total_amount' => $regular_total_amount,
+            'regular_expense' => $regular_expense,
+            'regular_income' => $regular_income
         ]);
     }
 }
