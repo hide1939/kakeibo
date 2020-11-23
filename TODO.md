@@ -26,6 +26,8 @@
             - if文でExpenseかIncomeかを判定して
             - Regularを登録する場所はここしかないので、Serviceに含めて汎用的にする必要がない
     - 登録した項目を削除できる
+        - クエリパラメータでExpenseかIncomeかを判定
+        - クエリパラメータで項目のidを渡す
         - 物理削除で良いや
     - ExpenseServiceとIncomeServiceのハッピーパス以外の処理を実装する
     - 画面で表示確認する
