@@ -62,4 +62,13 @@ class ExpenseServiceTest extends TestCase
 
         $this->assertEquals(1, $this->service->getRegular($user_id)->first()->is_regular);
     }
+
+    /** @test */
+    public function 定期支出カラムに何も入っていない場合getRegularは空のコレクションを返す()
+    {
+        $user_id = 1;
+        Expense::factory()->create(['user_id' => $user_id]);
+
+        $this->assertTrue($this->service->getRegular($user_id)->isEmpty());
+    }
 }
