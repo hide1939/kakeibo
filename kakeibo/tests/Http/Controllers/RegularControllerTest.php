@@ -55,20 +55,20 @@ class RegularControllerTest extends TestCase
     }
 
     /** @test */
-    public function editでregular_expenseがviewに渡る()
+    public function editでregular_expensesがviewに渡る()
     {
         $user = User::factory()->create();
         
         $response = $this->actingAs($user)->get('/regular');
-        $response->assertViewHas('regular_expense');
+        $response->assertViewHas('regular_expenses');
     }
 
     /** @test */
-    public function editでregular_incomeがviewに渡る()
+    public function editでregular_incomesがviewに渡る()
     {
         $user = User::factory()->create();
 
         $response = $this->actingAs($user)->get('/regular');
-        $response->assertViewHas('regular_income');
+        $response->assertViewHas('regular_incomes');
     }
 }

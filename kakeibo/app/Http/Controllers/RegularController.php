@@ -31,8 +31,8 @@ class RegularController extends Controller
 
         return view('layouts.regular', [
             'regular_total_amount' => $regular_total_amount,
-            'regular_expense' => $regular_expense,
-            'regular_income' => $regular_income
+            'regular_expenses' => $regular_expense,
+            'regular_incomes' => $regular_income
         ]);
     }
 }
