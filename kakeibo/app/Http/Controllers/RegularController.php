@@ -22,17 +22,11 @@ class RegularController extends Controller
      */
     public function edit()
     {
-        $regular_total_amount = $this->income_service->getRegularTotalAmount(Auth::id()) 
-            - $this->expense_service->getRegularTotalAmount(Auth::id());
-
-        $regular_expense = $this->expense_service->getRegular(Auth::id());
-
-        $regular_income = $this->income_service->getRegular(Auth::id());
-
         return view('layouts.regular', [
-            'regular_total_amount' => $regular_total_amount,
-            'regular_expenses' => $regular_expense,
-            'regular_incomes' => $regular_income
+            'regular_total_amount' => $this->income_service->getRegularTotalAmount(Auth::id()) 
+                - $this->expense_service->getRegularTotalAmount(Auth::id()),
+            'regular_expenses' => $this->expense_service->getRegular(Auth::id()),
+            'regular_incomes' => $this->income_service->getRegular(Auth::id())
         ]);
     }
 }
