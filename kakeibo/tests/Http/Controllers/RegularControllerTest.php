@@ -2,6 +2,7 @@
 
 namespace Tests\Http\Controllers;
 
+use App\Http\Controllers\RegularController;
 use App\Models\Expense;
 use App\Models\Income;
 use App\Models\User;
@@ -70,5 +71,51 @@ class RegularControllerTest extends TestCase
 
         $response = $this->actingAs($user)->get('/regular');
         $response->assertViewHas('regular_incomes');
+    }
+
+    /** @test */
+    public function storeでクエリパラメータがeの場合はExpenseテーブルにデータを登録できる()
+    {
+        $user = User::factory()->create();
+        $this->actingAs($user)->post(action([RegularController::class, 'store'], ['param' => 'e']), [
+            'item' => 'item', 
+            'amount' => 200,
+        ]);
+
+        $this->assertDatabaseHas('expenses', [
+            'user_id' => $user->id,
+            'item' => 'item',
+            'amount' => 200,
+            'is_regular' => 1
+        ]);
+    }
+
+    /** @test */
+    public function storeでクエリパラメータがiの場合はIncomeテーブルにデータを登録できる()
+    {
+        $user = User::factory()->create();
+        $this->actingAs($user)->post(action([RegularController::class, 'store'], ['param' => 'i']), [
+            'item' => 'item', 
+            'amount' => 200,
+        ]);
+
+        $this->assertDatabaseHas('incomes', [
+            'user_id' => $user->id,
+            'item' => 'item',
+            'amount' => 200,
+            'is_regular' => 1
+        ]);
+    }
+
+    /** @test */
+    public function storeで登録処理が完了した後は定期収支画面にリダイレクトする()
+    {
+        $user = User::factory()->create();
+        $response = $this->actingAs($user)->post(action([RegularController::class, 'store'], ['param' => 'i']), [
+            'item' => 'item', 
+            'amount' => 200,
+        ]);
+
+        $response->assertRedirect(action([RegularController::class, 'edit']));
     }
 }

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Services\Query\ExpenseService;
 use App\Services\Query\IncomeService;
+use App\UseCases\RegularUseCase;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class RegularController extends Controller
@@ -28,5 +30,15 @@ class RegularController extends Controller
             'regular_expenses' => $this->expense_service->getRegular(Auth::id()),
             'regular_incomes' => $this->income_service->getRegular(Auth::id())
         ]);
+    }
+
+    /**
+     * 定期収支を登録する
+     */
+    public function store(Request $request, RegularUseCase $regular_usecase)
+    {
+        $regular_usecase->store(Auth::id(), $request->query('param'), $request->item, $request->amount);
+
+        return redirect(action([RegularController::class, 'edit']));
     }
 }

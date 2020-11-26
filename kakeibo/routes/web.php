@@ -39,4 +39,5 @@ Route::group(['middleware' => ['auth']], function () {
 
     // 定期収支登録関連
     Route::get('/regular', [RegularController::class, 'edit']);
+    Route::post('/regular', [RegularController::class, 'store']);
 });
