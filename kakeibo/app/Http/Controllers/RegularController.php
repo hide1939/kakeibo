@@ -12,11 +12,16 @@ class RegularController extends Controller
 {
     private $expense_service;
     private $income_service;
+    private $regular_usecase;
 
-    public function __construct(ExpenseService $expense_service, IncomeService $income_service)
-    {
+    public function __construct(
+        ExpenseService $expense_service, 
+        IncomeService $income_service, 
+        RegularUseCase $regular_usecase
+    ) {
         $this->expense_service = $expense_service;
         $this->income_service = $income_service;
+        $this->regular_usecase = $regular_usecase;
     }
 
     /**
@@ -35,9 +40,9 @@ class RegularController extends Controller
     /**
      * 定期収支を登録する
      */
-    public function store(Request $request, RegularUseCase $regular_usecase)
+    public function store(Request $request)
     {
-        $regular_usecase->store(Auth::id(), $request->query('param'), $request->item, $request->amount);
+        $this->regular_usecase->store(Auth::id(), $request->query('param'), $request->item, $request->amount);
 
         return redirect(action([RegularController::class, 'edit']));
     }
