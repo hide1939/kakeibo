@@ -19,14 +19,6 @@
         - []新しい画像を登録するタイミングで以前の画像はストレージから削除する
 
 - 定期収支登録機能を作る(/regular)
-    - 削除
-        - 削除のルーティング設定
-        - まずテスト書く
-        - Controllerにdestroyメソッドを作る
-        - Controllerでクエリパラメータからidとe or iを取得
-        - ContorllerからService呼ぶ
-            - クエリパラメータの値で条件分岐
-        - 定期収支登録機能にリダイレクトする
     - ExpenseServiceとIncomeServiceのハッピーパス以外の処理を実装する
     - 画面で表示確認する
         - 投稿フォームを作る(paramで種類送る、item,amount)

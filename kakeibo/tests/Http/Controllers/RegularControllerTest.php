@@ -118,4 +118,49 @@ class RegularControllerTest extends TestCase
 
         $response->assertRedirect(action([RegularController::class, 'edit']));
     }
+
+    /** @test */
+    public function destroyでパラメータにeを渡した場合はExpenseテーブルのカラムが削除される()
+    {
+        $user = User::factory()->create();
+        $expense = Expense::factory()->regular()->create([
+            'user_id' => $user->id,
+        ]);
+        $this->actingAs($user)->delete(action([RegularController::class, 'destroy'], [
+            'param' => 'e',
+            'id' => $expense->id]
+        ));
+
+        $this->assertNull(Expense::find($expense->id));
+    }
+
+    /** @test */
+    public function destroyでパラメータにiを渡した場合はIncomeテーブルのカラムが削除される()
+    {
+        $user = User::factory()->create();
+        $income = Income::factory()->regular()->create([
+            'user_id' => $user->id,
+        ]);
+        $this->actingAs($user)->delete(action([RegularController::class, 'destroy'], [
+            'param' => 'i',
+            'id' => $income->id]
+        ));
+
+        $this->assertNull(Income::find($income->id));
+    }
+
+    /** @test */
+    public function destroyでデータを削除した後は定期収支画面にリダイレクトする()
+    {
+        $user = User::factory()->create();
+        $income = Income::factory()->regular()->create([
+            'user_id' => $user->id,
+        ]);
+        $response = $this->actingAs($user)->delete(action([RegularController::class, 'destroy'], [
+            'param' => 'i',
+            'id' => $income->id]
+        ));
+
+        $response->assertRedirect(action([RegularController::class, 'edit']));
+    }
 }
