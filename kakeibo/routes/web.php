@@ -19,7 +19,7 @@ use App\Http\Controllers\RegularController;
 
 // ホーム画面
 Route::get('/', function () {
-    return view('welcome');
+    return view('layouts.home');
 });
 
 // 新規登録関連
