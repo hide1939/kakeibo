@@ -18,21 +18,48 @@
         - []画面から画像が消えてデフォルトの画像に変わる
         - []新しい画像を登録するタイミングで以前の画像はストレージから削除する
 
-- 定期収支登録機能を作る(/regular)
-    - 今後の実装の流れをざっくり洗い出す(〇〇を作る、くらいで良い)
-    - ExpenseServiceとIncomeServiceのハッピーパス以外の処理を実装する
-    - 画面で表示確認する
-        - 投稿フォームを作る(paramで種類送る、item,amount)
-        - 定期収支データがカラムに何も入っていない場合(そのユーザーのカラムにis_regularがtrueのデータがない場合)画面はどうなる？
-            - エラーとか出なくて、単に何も表示されなければいい
-        - 項目と金額を登録できる
-        - 登録した項目を削除できる
+- メイン画面を作る
+    - []その月の収支を登録できる
+        - regularのときみたいにUseCaseでやる
+            - ここでしかやらないので
+            - MainUseCaseのstoreメソッドを作る
+            - クエリパラメータで渡ってきたiとeをUseCaseで判定する
+            - is_regularはデフォルトでfalseなので何もしなくて良い
+            - Controllerから呼ぶ
+                - 引数にuser_id、e or iのパラメータ、item、amountを渡す
+    - []収支を削除できる
+        - regularのときに作ったCommandExpenseServiceとCommandIncomeServiceをMainControllerから呼ぶ
+        - regularと同じ実装でOK
+            - 共通して使えるようにServiceで作ったので
+    - []メイン画面を表示できる
+        - 表示させるもの
+            - その月の収支合計を表示
+                - 今月の収入合計、支出合計を表示するかもしれないので、regularみたいにServiceからそれぞれ読んでControllerで計算する形にする
+                - また、「今月単体の収支」と、「その収支に定期収支を足し合わせた数」を表示する可能性があるので、Controllerで計算する形にする
+                - QueryExpenseServiceのgetMonthTotalAmount
+                    - user_idとmonthを渡す
+                        - monthにはデフォルト値で今月をCarbonで取得して渡す
+                    - whereでmonthとis_regularが0で絞る
+                    - sumでamountの合計値を計算する
+                - QueryIncomeServiceのgetMonthTotalAmount
+                    - user_idとmonthを渡す
+                        - monthにはデフォルト値で今月をCarbonで取得して渡す
+                    - whereでmonthと、is_regularが0で絞る
+                    - sumでamountの合計値を計算する
+                - MainControllerから二つのServiceを呼ぶ
+                    - 引数にAuth::id()とクエリパラメータから取得したmonthを渡す
+                        - monthは取得できなかったらService側でデフォルトの今月が指定されるはず
+            - その月の収支の項目と金額を表示
+                - QueryのExpenseServiceとIncomeServiceに新たにメソッドを作る
+                    - getByMonthとかで良い気がする
+                    - user_id,is_regularが0,monthで絞る
+                    - MainControllerで作ったServiceを呼んでModelを取得する
+            - ログインしている人の名前
+                - Auth::userで取得できるのでそれをviewに渡す
+            - 今月を表示(2020年10月など)
+                - viewでCarbon使うか、ControllerでCarbon使ってviewに月を渡すか
 
 - home->login/register->regularの流れをざっくりと試す
-    - home画面をざっくり作る
-    - 定期収支の項目が登録できるか
-    - 定期収支の項目、金額が表示されるか
-    - 定期収支の合計金額が表示されるか
     - プロフィール画像が表示されるか
 
 - sass/scss等でデザインを整える <- デプロイ後でOK
