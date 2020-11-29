@@ -36,7 +36,8 @@
             <p>定期収入の項目と金額</p>
             @foreach ($regular_expenses as $regular_expense)
             <ul>
-                <li>{{ $regular_expense->item : $regular_expense->amount }}</li>
+                <li>{{ $regular_expense->item }}</li>
+                <li>{{ $regular_expense->amount }}</li>
                 {{ Form::open(['url' => action([RegularController::class, 'destroy'], [
                     'param' => 'e',
                     'id' => $regular_expense->id]
@@ -48,7 +49,8 @@
             <p>定期支出の項目と金額</p>
             @foreach ($regular_incomes as $regular_income)
             <ul>
-                <li>{{ $regular_income->item: $regular_income->amount }}</li>
+                <li>{{ $regular_income->item }}</li>
+                <li>{{ $regular_income->amount }}</li>
                 {{ Form::open(['url' => action([RegularController::class, 'destroy'], [
                     'param' => 'i',
                     'id' => $regular_income->id]
