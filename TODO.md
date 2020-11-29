@@ -58,6 +58,8 @@
                 - Auth::userで取得できるのでそれをviewに渡す
             - 今月を表示(2020年10月など)
                 - viewでCarbon使うか、ControllerでCarbon使ってviewに月を渡すか
+            - メイン画面を表示する
+                - ルーティングを設定
 
 - home->login/register->regularの流れをざっくりと試す
     - プロフィール画像が表示されるか
