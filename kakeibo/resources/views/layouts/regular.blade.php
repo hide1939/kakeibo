@@ -38,7 +38,7 @@
             <ul>
                 <li>{{ $regular_expense->item }}</li>
                 <li>{{ $regular_expense->amount }}</li>
-                {{ Form::open(['method' => 'DELETE', 'url' => '/regular?param=e&id=$regular_expense->id']) }}
+                {{ Form::open(['method' => 'DELETE', 'url' => '/regular?param=e&id=' . $regular_expense->id]) }}
                 {{ Form::submit('削除') }}
                 {{ Form::close() }}
             </ul>
@@ -48,7 +48,7 @@
             <ul>
                 <li>{{ $regular_income->item }}</li>
                 <li>{{ $regular_income->amount }}</li>
-                {{ Form::open(['method' => 'DELETE', 'url' => '/regular?param=i&id=$regular_expense->id']) }}
+                {{ Form::open(['method' => 'DELETE', 'url' => '/regular?param=i&id=' . $regular_income->id]) }}
                 {{ Form::submit('削除') }}
                 {{ Form::close() }}
             </ul>
