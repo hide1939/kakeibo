@@ -33,7 +33,7 @@
             {{ Form::close() }}
         </div>
         <div>
-            <p>定期収入の項目と金額</p>
+            <p>定期支出の項目と金額</p>
             @foreach ($regular_expenses as $regular_expense)
             <ul>
                 <li>{{ $regular_expense->item }}</li>
@@ -43,7 +43,7 @@
                 {{ Form::close() }}
             </ul>
             @endforeach
-            <p>定期支出の項目と金額</p>
+            <p>定期収入の項目と金額</p>
             @foreach ($regular_incomes as $regular_income)
             <ul>
                 <li>{{ $regular_income->item }}</li>
