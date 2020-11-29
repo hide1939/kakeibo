@@ -40,7 +40,7 @@ class RegistControllerTest extends TestCase
     }
 
     /** @test */
-    public function storeで新規登録後は定期支出・収入画面にリダイレクトする()
+    public function storeで新規登録後は定期収支登録画面にリダイレクトする()
     {
         $response = $this->post('/regist', [
             'name' => 'test君',
@@ -48,8 +48,7 @@ class RegistControllerTest extends TestCase
             'password' => 'password@123',
         ]);
 
-        // TODO:サブスク機能・画面作ったら直す
-        $response->assertRedirect('/profile_image');
+        $response->assertRedirect('/regular');
     }
 
     /** @test */

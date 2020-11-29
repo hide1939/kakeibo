@@ -29,7 +29,6 @@ class RegistController extends Controller
             return redirect('/regist');
         }
 
-        // TODO:サブスク機能・画面作ったら直す
-        return redirect('/profile_image');
+        return redirect('/regular');
     }
 }

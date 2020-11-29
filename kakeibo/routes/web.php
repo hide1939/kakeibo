@@ -4,6 +4,7 @@ use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileImageController;
 use App\Http\Controllers\RegistController;
+use App\Http\Controllers\RegularController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,8 +17,9 @@ use App\Http\Controllers\RegistController;
 |
 */
 
+// ホーム画面
 Route::get('/', function () {
-    return view('welcome');
+    return view('layouts.home');
 });
 
 // 新規登録関連
@@ -30,8 +32,13 @@ Route::post('/login', [LoginController::class, 'login']);
 Route::get('/logout', [LoginController::class, 'logout']);
 
 Route::group(['middleware' => ['auth']], function () {
-// プロフィール画像アップロード関連
-Route::get('/profile_image', [ProfileImageController::class, 'edit']);
-Route::post('/profile_image', [ProfileImageController::class, 'store']);
-Route::delete('/profile_image', [ProfileImageController::class, 'destroy']);
+    // プロフィール画像アップロード関連
+    Route::get('/profile_image', [ProfileImageController::class, 'edit']);
+    Route::post('/profile_image', [ProfileImageController::class, 'store']);
+    Route::delete('/profile_image', [ProfileImageController::class, 'destroy']);
+
+    // 定期収支登録関連
+    Route::get('/regular', [RegularController::class, 'edit']);
+    Route::post('/regular', [RegularController::class, 'store']);
+    Route::delete('regular', [RegularController::class, 'destroy']);
 });
