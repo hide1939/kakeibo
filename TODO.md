@@ -20,13 +20,9 @@
 
 - メイン画面を作る
     - []その月の収支を登録できる
-        - regularのときみたいにUseCaseでやる
-            - ここでしかやらないので
-            - MainUseCaseのstoreメソッドを作る
-            - クエリパラメータで渡ってきたiとeをUseCaseで判定する
-            - is_regularはデフォルトでfalseなので何もしなくて良い
-            - Controllerから呼ぶ
-                - 引数にuser_id、e or iのパラメータ、item、amountを渡す
+        - MainControllerから呼ぶ
+            - MainController作る(storeメソッド)
+            - 引数にuser_id、e or iのパラメータ、item、amountを渡す
     - []収支を削除できる
         - regularのときに作ったCommandExpenseServiceとCommandIncomeServiceをMainControllerから呼ぶ
         - regularと同じ実装でOK
