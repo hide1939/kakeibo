@@ -19,24 +19,9 @@
         - []新しい画像を登録するタイミングで以前の画像はストレージから削除する
 
 - メイン画面を作る
-    - []その月の収支を登録できる
-        - MainControllerから呼ぶ
-            - MainController作る(storeメソッド)
-            - 引数にuser_id、e or iのパラメータ、item、amountを渡す
-    - []収支を削除できる
-        - regularのときに作ったCommandExpenseServiceとCommandIncomeServiceをMainControllerから呼ぶ
-        - regularと同じ実装でOK
-            - 共通して使えるようにServiceで作ったので
     - []メイン画面を表示できる
         - 表示させるもの
-            - その月の収支合計を表示
-                - 今月の収入合計、支出合計を表示するかもしれないので、regularみたいにServiceからそれぞれ読んでControllerで計算する形にする
-                - また、「今月単体の収支」と、「その収支に定期収支を足し合わせた数」を表示する可能性があるので、Controllerで計算する形にする
-                - QueryExpenseServiceのgetMonthTotalAmount
-                    - user_idとmonthを渡す
-                        - monthにはデフォルト値で今月をCarbonで取得して渡す
-                    - whereでmonthとis_regularが0で絞る
-                    - sumでamountの合計値を計算する
+            - その月の収入合計を表示
                 - QueryIncomeServiceのgetMonthTotalAmount
                     - user_idとmonthを渡す
                         - monthにはデフォルト値で今月をCarbonで取得して渡す
@@ -44,7 +29,7 @@
                     - sumでamountの合計値を計算する
                 - MainControllerから二つのServiceを呼ぶ
                     - 引数にAuth::id()とクエリパラメータから取得したmonthを渡す
-                        - monthは取得できなかったらService側でデフォルトの今月が指定されるはず
+                    - getMonthTotalAmountは年月を指定しない場合は今月の支出の合計値を取得するのテストの実装(ifでやる)
             - その月の収支の項目と金額を表示
                 - QueryのExpenseServiceとIncomeServiceに新たにメソッドを作る
                     - getByMonthとかで良い気がする
@@ -56,6 +41,14 @@
                 - viewでCarbon使うか、ControllerでCarbon使ってviewに月を渡すか
             - メイン画面を表示する
                 - ルーティングを設定
+    - []その月の収支を登録できる
+        - MainControllerから呼ぶ
+            - MainController作る(storeメソッド)
+            - 引数にuser_id、e or iのパラメータ、item、amountを渡す
+    - []収支を削除できる
+        - regularのときに作ったCommandExpenseServiceとCommandIncomeServiceをMainControllerから呼ぶ
+        - regularと同じ実装でOK
+            - 共通して使えるようにServiceで作ったので
 
 - home->login/register->regularの流れをざっくりと試す
     - プロフィール画像が表示されるか
