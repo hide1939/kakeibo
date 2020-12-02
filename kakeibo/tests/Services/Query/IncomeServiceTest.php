@@ -33,7 +33,7 @@ class IncomeServiceTest extends TestCase
     }
 
     /** @test */
-    public function getRegularTotalAmountは定期支出に何も登録していない場合は0が返る()
+    public function getRegularTotalAmountは定期収入に何も登録していない場合は0が返る()
     {
         $user_id = 1;
         Income::factory()->create(['user_id' => $user_id, 'amount' => 200]);
@@ -69,5 +69,83 @@ class IncomeServiceTest extends TestCase
         Income::factory()->create(['user_id' => $user_id]);
 
         $this->assertTrue($this->service->getRegular($user_id)->isEmpty());
+    }
+
+    /** @test */
+    public function getMonthTotalAmountは指定した年月の収入の合計値を返す()
+    {
+        $user_id = 1;
+        Income::factory()->create([
+            'user_id' => $user_id,
+            'amount' => 200,
+            'created_at' => '2010-10-01 10:00:00'
+        ]);
+        Income::factory()->create([
+            'user_id' => $user_id,
+            'amount' => 500,
+            'created_at' => '2020-10-01 10:00:00'
+        ]);
+        Income::factory()->create([
+            'user_id' => $user_id,
+            'amount' => 1500,
+            'created_at' => '2020-10-21 10:00:00'
+        ]);
+
+        $this->assertEquals(
+            2000,
+            $this->service->getMonthTotalAmount($user_id, '2020', '10')
+        );
+    }
+
+    /** @test */
+    public function getMonthTotalAmountはis_regularが0のデータの収入の合計値を返す()
+    {
+        $user_id = 1;
+        Income::factory()->regular()->create([
+            'user_id' => $user_id,
+            'amount' => 200,
+            'created_at' => '2020-10-01 10:00:00'
+        ]);
+        Income::factory()->create([
+            'user_id' => $user_id,
+            'amount' => 500,
+            'created_at' => '2020-10-09 10:00:00'
+        ]);
+        Income::factory()->create([
+            'user_id' => $user_id,
+            'amount' => 1500,
+            'created_at' => '2020-10-21 10:00:00'
+        ]);
+
+        $this->assertEquals(
+            2000,
+            $this->service->getMonthTotalAmount($user_id, '2020', '10')
+        );
+    }
+
+    /** @test */
+    public function getMonthTotalAmountは指定したユーザーの収入の合計値を返す()
+    {
+        $user_id = 1;
+        Income::factory()->create([
+            'user_id' => 2,
+            'amount' => 200,
+            'created_at' => '2020-10-01 10:00:00'
+        ]);
+        Income::factory()->create([
+            'user_id' => $user_id,
+            'amount' => 500,
+            'created_at' => '2020-10-09 10:00:00'
+        ]);
+        Income::factory()->create([
+            'user_id' => $user_id,
+            'amount' => 1500,
+            'created_at' => '2020-10-21 10:00:00'
+        ]);
+
+        $this->assertEquals(
+            2000,
+            $this->service->getMonthTotalAmount($user_id, '2020', '10')
+        );
     }
 }

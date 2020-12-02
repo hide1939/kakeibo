@@ -25,4 +25,16 @@ class IncomeService
             ->where('is_regular', config('const.is_regular.true'))
             ->get();
     }
+
+    /** 
+     * 指定した年・月の収入の合計値を取得する(is_regularは0)
+     */
+    public function getMonthTotalAmount($user_id, $year, $month)
+    {
+        return Income::where('user_id', $user_id)
+            ->where('is_regular', config('const.is_regular.false'))
+            ->whereYear('created_at', $year)
+            ->whereMonth('created_at', $month)
+            ->sum('amount');
+    }
 }

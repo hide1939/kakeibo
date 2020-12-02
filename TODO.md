@@ -21,15 +21,10 @@
 - メイン画面を作る
     - []メイン画面を表示できる
         - 表示させるもの
-            - その月の収入合計を表示
-                - QueryIncomeServiceのgetMonthTotalAmount
-                    - user_idとmonthを渡す
-                        - monthにはデフォルト値で今月をCarbonで取得して渡す
-                    - whereでmonthと、is_regularが0で絞る
-                    - sumでamountの合計値を計算する
-                - MainControllerから二つのServiceを呼ぶ
-                    - 引数にAuth::id()とクエリパラメータから取得したmonthを渡す
-                    - getMonthTotalAmountは年月を指定しない場合は今月の支出の合計値を取得するのテストの実装(ifでやる)
+            - ServiceのwhereはModelのScopeに寄せる(名詞 -> 動詞)
+            - MainControllerから二つのServiceを呼ぶ
+                - 引数にAuth::id()とクエリパラメータから取得したmonthを渡す
+                - getMonthTotalAmountは年月を指定しない場合は今月の支出の合計値を取得するのテストの実装(ifでやる)
             - その月の収支の項目と金額を表示
                 - QueryのExpenseServiceとIncomeServiceに新たにメソッドを作る
                     - getByMonthとかで良い気がする
