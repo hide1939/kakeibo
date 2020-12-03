@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileImageController;
 use App\Http\Controllers\RegistController;
@@ -41,4 +42,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/regular', [RegularController::class, 'edit']);
     Route::post('/regular', [RegularController::class, 'store']);
     Route::delete('regular', [RegularController::class, 'destroy']);
+
+    // メイン画面関連
+    Route::get('/main', [MainController::class, 'index']);
 });
