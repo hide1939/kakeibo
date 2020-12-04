@@ -37,4 +37,16 @@ class ExpenseService
             ->whereMonth('created_at', $month)
             ->sum('amount');
     }
+
+    /**
+     * コレクションに包まれた、指定した年月のis_rugularが0のExpenseモデルオブジェクトを取得する
+     */
+    public function getByYearAndMonth($user_id, $year, $month)
+    {
+        return Expense::where('user_id', $user_id)
+            ->where('is_regular', config('const.is_regular.false'))
+            ->whereYear('created_at', $year)
+            ->whereMonth('created_at', $month)
+            ->get();
+    }
 }

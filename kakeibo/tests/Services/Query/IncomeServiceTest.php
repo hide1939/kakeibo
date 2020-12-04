@@ -148,4 +148,40 @@ class IncomeServiceTest extends TestCase
             $this->service->getMonthTotalAmount($user_id, '2020', '10')
         );
     }
+
+    /** @test */
+    public function getByYearAndMonthで指定した年月のコレクションに包まれたIncomeモデルオブジェクトを取得できる()
+    {
+        $user_id = 1;
+        Income::factory()->create([
+            'user_id' => $user_id,
+            'created_at' => '2020-06-13 10:00:08'
+        ]);
+
+        $this->assertInstanceOf(Income::class, $this->service->getByYearAndMonth($user_id, '2020', '6')->first());
+    }
+
+    /** @test */
+    public function getByYearAndMonthでis_regularが0のIncomeモデルオブジェクトを取得できる()
+    {
+        $user_id = 1;
+        Income::factory()->create([
+            'user_id' => $user_id,
+            'created_at' => '2020-06-13 10:00:08'
+        ]);
+
+        $this->assertEquals(0, $this->service->getByYearAndMonth($user_id, '2020', '6')->first()->is_regular);
+    }
+
+    /** @test */
+    public function 今月の支出が何もない場合getByYearAndMonthは空のコレクションを返す()
+    {
+        $user_id = 1;
+        Income::factory()->create([
+            'user_id' => $user_id,
+            'created_at' => '2010-06-13 10:00:08'
+        ]);
+
+        $this->assertTrue($this->service->getByYearAndMonth($user_id, '2020', '10')->isEmpty());
+    }
 }
