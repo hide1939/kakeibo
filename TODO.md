@@ -20,17 +20,8 @@
 
 - メイン画面を作る
     - []メイン画面を表示できる
-        - メイン画面を表示する
-            - ルーティングを設定
-            - blade作成(main.blade.php)
-        - MainControllerから二つのServiceを呼ぶ
-            - 引数にAuth::id()とクエリパラメータから取得したyear(y),month(m)を渡す
-            - getMonthTotalAmountは年月を指定しない場合は今月の支出の合計値を取得するのテストの実装(ifでやる)
         - その月の収支の項目と金額を表示
-            - QueryのExpenseServiceとIncomeServiceに新たにメソッドを作る
-                - getByMonthとかで良い気がする
-                - user_id,is_regularが0,monthで絞る
-                - MainControllerで作ったServiceを呼んでModelを取得する
+            - MainControllerで作ったServiceのメソッド(getByYearAndMont)を呼んでModelを取得する
         - ログインしている人の名前
             - Auth::userで取得できるのでそれをviewに渡す
         - 今月を表示(2020年10月など)
