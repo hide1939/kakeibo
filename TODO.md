@@ -2,10 +2,11 @@
 
 ## 機能の開発
 - []Reactのセットアップ
-    - Laravelの本
+    - Laravelの本参考に
 
 - 認証機能を作る
     - []remember me機能を作る
+    - attemptに追加したら良い
 
 - 画像アップロード機能を作成する
     - []FormRequestクラスを作る(バリデーション)
@@ -19,29 +20,19 @@
         - []新しい画像を登録するタイミングで以前の画像はストレージから削除する
 
 - メイン画面を作る
-    - []メイン画面を表示できる
-        - 今月を表示(2020年10月など)
-            - viewでCarbon使うか、ControllerでCarbon使ってviewに月を渡すか
-        - メイン画面を表示する
-            - ルーティングを設定
-    - []その月の収支を登録できる
-        - MainControllerから呼ぶ
-            - MainController作る(storeメソッド)
-            - 引数にuser_id、e or iのパラメータ、item、amountを渡す
     - []収支を削除できる
         - regularのときに作ったCommandExpenseServiceとCommandIncomeServiceをMainControllerから呼ぶ
         - regularと同じ実装でOK
             - 共通して使えるようにServiceで作ったので
 
-- home->login/register->regularの流れをざっくりと試す
-    - プロフィール画像が表示されるか
-
-- sass/scss等でデザインを整える <- デプロイ後でOK
+- 最低限のデザインを作る
+    - scssとかsassとかを使って緻密にやるのはデプロイ後
+    - Reactを組み込んで動的にするのもデプロイ後
 
 ## デプロイする
 - 途中でもいいのである程度のところでデプロイする
     - Done is better than perfect
-- AWSの学習
+- 最低限のAWSの学習
     - Udemy
 - インフラ構成図の作成
 - AWSのインフラを設定する
@@ -55,13 +46,15 @@
         - opcacheの導入
             - アプリの高速化
     - その他必要な設定ファイル(apache等)
+    - .env.productionを作成
 - .circleci/config.ymlの作成
     - 自動テスト
     - 自動デプロイ
     - GitHub上でmainにマージしたら本番に自動リリースされる
 - 本番デプロイを行う
 
-- アジャイル的に機能追加
+- アジャイル的に機能追加していく
+    - クオリティを段階的に上げていく
 
 - インフラのコード化
 
@@ -76,3 +69,4 @@
 - ServiceのwhereはModelのScopeに寄せる(名詞 -> 動詞)
 - ビジネスロジックはコントローラに書くのではなく、なるべくRequestクラスに移す
 - TODOを片付ける
+- SPA化
