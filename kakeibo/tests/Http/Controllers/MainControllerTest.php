@@ -94,4 +94,20 @@ class MainControllerTest extends TestCase
         $response = $this->actingAs($this->user)->get(action([MainController::class, 'index']));
         $response->assertViewHas('month_total_amount', 300);
     }
+
+    /** @test */
+    public function indexでmonth_expensesをviewに渡せる()
+    {
+        $this->actingAs($this->user)->get(action([MainController::class, 'index']))
+            ->assertViewHas('month_expenses');
+
+    }
+
+    /** @test */
+    public function indexでmonth_incomesをviewに渡せる()
+    {
+        $this->actingAs($this->user)->get(action([MainController::class, 'index']))
+            ->assertViewHas('month_incomes');
+
+    }
 }

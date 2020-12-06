@@ -20,8 +20,6 @@
 
 - メイン画面を作る
     - []メイン画面を表示できる
-        - その月の収支の項目と金額を表示
-            - MainControllerで作ったServiceのメソッド(getByYearAndMont)を呼んでModelを取得する
         - ログインしている人の名前
             - Auth::userで取得できるのでそれをviewに渡す
         - 今月を表示(2020年10月など)
