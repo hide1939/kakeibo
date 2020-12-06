@@ -26,6 +26,7 @@ class MainController extends Controller
      */
     public function index(Request $request)
     {
+        // TODO:この辺のロジックはコントローラではなくRequestクラスに移したい
         $year = is_null($request->query('y')) ? Carbon::now()->year : $request->query('y');
         $month = is_null($request->query('m')) ? Carbon::now()->month : $request->query('m');
 
