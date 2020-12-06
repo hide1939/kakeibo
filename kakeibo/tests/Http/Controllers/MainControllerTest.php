@@ -19,7 +19,9 @@ class MainControllerTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->user = User::factory()->create();
+        $this->user = User::factory()->create([
+            'name' => 'laravelkun'
+        ]);
     }
 
     /** @test */
@@ -109,5 +111,34 @@ class MainControllerTest extends TestCase
         $this->actingAs($this->user)->get(action([MainController::class, 'index']))
             ->assertViewHas('month_incomes');
 
+    }
+
+    /** @test */
+    public function indexでログインユーザー名がviewに渡る()
+    {
+        $this->actingAs($this->user)->get(action([MainController::class, 'index']))
+            ->assertViewHas('login_user_name', 'laravelkun');
+    }
+
+    /** @test */
+    public function indexでクエリパラメータで指定した年月がviewに渡る()
+    {
+        $this->actingAs($this->user)->get(action([MainController::class, 'index'], [
+            'y' => '2020',
+            'm' => '5'
+        ]))->assertViewHas([
+                'year' => '2020',
+                'month' => '5'
+            ]);
+    }
+
+    /** @test */
+    public function クエリパラメータで指定しなかった場合は、indexで現在の年月がviewに渡る()
+    {
+        $this->actingAs($this->user)->get(action([MainController::class, 'index']))
+            ->assertViewHas([
+                'year' => Carbon::now()->year,
+                'month' => Carbon::now()->month
+            ]);
     }
 }
