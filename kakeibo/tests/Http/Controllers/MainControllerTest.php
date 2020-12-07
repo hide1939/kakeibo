@@ -169,4 +169,39 @@ class MainControllerTest extends TestCase
             'amount' => 200000
         ]);
     }
+
+    /** @test */
+    public function destroyで指定した支出項目を削除できる()
+    {
+        $expense = Expense::factory()->create();
+        $this->actingAs($this->user)->delete(action([MainController::class, 'destroy'], [
+            'param' => 'e', 
+            'id' => $expense->id
+        ]));
+
+        $this->assertNull(Expense::find($expense->id));
+    }
+
+    /** @test */
+    public function destroyで指定した収入項目を削除できる()
+    {
+        $income = Income::factory()->create();
+        $this->actingAs($this->user)->delete(action([MainController::class, 'destroy'], [
+            'param' => 'i', 
+            'id' => $income->id
+        ]));
+
+        $this->assertNull(Income::find($income->id));
+    }
+
+    /** @test */
+    public function destroyで項目を削除した後はメイン画面にリダイレクトする()
+    {
+        $income = Income::factory()->create();
+        $response = $this->actingAs($this->user)->delete(action([MainController::class, 'destroy'], [
+            'param' => 'i', 
+            'id' => $income->id
+        ]));
+        $response->assertRedirect(action([MainController::class, 'index']));
+    }
 }

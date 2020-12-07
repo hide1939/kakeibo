@@ -46,4 +46,5 @@ Route::group(['middleware' => ['auth']], function () {
     // メイン画面関連
     Route::get('/main', [MainController::class, 'index']);
     Route::post('/main', [MainController::class, 'store']);
+    Route::delete('/main', [MainController::class, 'destroy']);
 });

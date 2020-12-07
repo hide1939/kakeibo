@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\Command\ExpenseService as CommandExpenseService;
+use App\Services\Command\IncomeService as CommandIncomeService;
 use App\Services\Query\ExpenseService as QueryExpenseService;
 use App\Services\Query\IncomeService as QueryIncomeService;
 use App\UseCases\MainUseCase;
@@ -13,15 +15,21 @@ class MainController extends Controller
 {
     private $query_expense_service;
     private $query_income_service;
+    private $command_expense_service;
+    private $command_income_service;
     private $main_usecase;
 
     public function __construct(
         QueryExpenseService $query_expense_service,
         QueryIncomeService $query_income_service,
+        CommandExpenseService $command_expense_service,
+        CommandIncomeService $command_income_service,
         MainUseCase $main_usecase
     ) {
         $this->query_expense_service = $query_expense_service;
         $this->query_income_service = $query_income_service;
+        $this->command_expense_service = $command_expense_service;
+        $this->command_income_service = $command_income_service;
         $this->main_usecase = $main_usecase;
     }
 
@@ -52,5 +60,20 @@ class MainController extends Controller
     public function store(Request $request)
     {
         $this->main_usecase->store(Auth::id(), $request->query('param'), $request->item, $request->amount);
+    }
+
+    /** 
+     * メイン画面で収支の削除を行う
+     */
+    public function destroy(Request $request) 
+    {
+        if ($request->query('param') === 'e') {
+            $this->command_expense_service->delete($request->query('id'));
+        }
+        if ($request->query('param') === 'i') {
+            $this->command_income_service->delete($request->query('id'));
+        }
+
+        return redirect(action([MainController::class, 'index']));
     }
 }
