@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>定期収支登録画面</title>
+    <title>kakeibo</title>
 </head>
 <body>
     <div>

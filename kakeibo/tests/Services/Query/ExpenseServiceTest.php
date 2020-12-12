@@ -71,4 +71,118 @@ class ExpenseServiceTest extends TestCase
 
         $this->assertTrue($this->service->getRegular($user_id)->isEmpty());
     }
+
+    /** @test */
+    public function getMonthTotalAmountは指定した年月の支出の合計値を返す()
+    {
+        $user_id = 1;
+        Expense::factory()->create([
+            'user_id' => $user_id,
+            'amount' => 200,
+            'created_at' => '2010-10-01 10:00:00'
+        ]);
+        Expense::factory()->create([
+            'user_id' => $user_id,
+            'amount' => 500,
+            'created_at' => '2020-10-01 10:00:00'
+        ]);
+        Expense::factory()->create([
+            'user_id' => $user_id,
+            'amount' => 1500,
+            'created_at' => '2020-10-21 10:00:00'
+        ]);
+
+        $this->assertEquals(
+            2000,
+            $this->service->getMonthTotalAmount($user_id, '2020', '10')
+        );
+    }
+
+    /** @test */
+    public function getMonthTotalAmountはis_regularが0のデータ支出の合計値を返す()
+    {
+        $user_id = 1;
+        Expense::factory()->regular()->create([
+            'user_id' => $user_id,
+            'amount' => 200,
+            'created_at' => '2020-10-01 10:00:00'
+        ]);
+        Expense::factory()->create([
+            'user_id' => $user_id,
+            'amount' => 500,
+            'created_at' => '2020-10-09 10:00:00'
+        ]);
+        Expense::factory()->create([
+            'user_id' => $user_id,
+            'amount' => 1500,
+            'created_at' => '2020-10-21 10:00:00'
+        ]);
+
+        $this->assertEquals(
+            2000,
+            $this->service->getMonthTotalAmount($user_id, '2020', '10')
+        );
+    }
+
+    /** @test */
+    public function getMonthTotalAmountは指定したユーザーの支出の合計値を返す()
+    {
+        $user_id = 1;
+        Expense::factory()->create([
+            'user_id' => 2,
+            'amount' => 200,
+            'created_at' => '2020-10-01 10:00:00'
+        ]);
+        Expense::factory()->create([
+            'user_id' => $user_id,
+            'amount' => 500,
+            'created_at' => '2020-10-09 10:00:00'
+        ]);
+        Expense::factory()->create([
+            'user_id' => $user_id,
+            'amount' => 1500,
+            'created_at' => '2020-10-21 10:00:00'
+        ]);
+
+        $this->assertEquals(
+            2000,
+            $this->service->getMonthTotalAmount($user_id, '2020', '10')
+        );
+    }
+
+    /** @test */
+    public function getByYearAndMonthで指定した年月のコレクションに包まれたExpenseモデルオブジェクトを取得できる()
+    {
+        $user_id = 1;
+        Expense::factory()->create([
+            'user_id' => $user_id,
+            'created_at' => '2020-06-13 10:00:08'
+        ]);
+
+        $this->assertInstanceOf(Expense::class, $this->service->getByYearAndMonth($user_id, '2020', '6')->first());
+    }
+
+    /** @test */
+    public function getByYearAndMonthでis_regularが0のExpenseモデルオブジェクトを取得できる()
+    {
+        $user_id = 1;
+        Expense::factory()->create([
+            'user_id' => $user_id,
+            'created_at' => '2020-06-13 10:00:08'
+        ]);
+
+        $this->assertEquals(0, $this->service->getByYearAndMonth($user_id, '2020', '6')->first()->is_regular);
+    }
+
+    /** @test */
+    public function 今月の支出が何もない場合getByYearAndMonthは空のコレクションを返す()
+    {
+        $user_id = 1;
+        Expense::factory()->create([
+            'user_id' => $user_id,
+            'created_at' => '2010-06-13 10:00:08'
+        ]);
+
+        $this->assertTrue($this->service->getByYearAndMonth($user_id, '2020', '10')->isEmpty());
+    }
 }

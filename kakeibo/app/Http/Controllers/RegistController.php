@@ -20,6 +20,9 @@ class RegistController extends Controller
         return view('layouts.regist');
     }
 
+    /**
+     * 新規登録時にもプロフィール画像を登録できるようにする
+     */
     public function store(Request $request)
     {
         $this->service->regist($request->all());
