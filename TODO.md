@@ -1,8 +1,8 @@
 # TODOリスト
 
 ## SPA化の前に最低限のフロントデザインを作る
-- これ(https://semantic-ui.com/)使う
 - 起点となるbase.blade.php作る(整理する)
+- これ(https://semantic-ui.com/)使う(まず勉強)
 - トップページ
 - 新規登録画面
 - ログイン画面
