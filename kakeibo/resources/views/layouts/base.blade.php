@@ -17,10 +17,5 @@
     <div class="ui container">
         @yield('content')     
     </div>
-    <div class="ui inverted segment">
-        <div class="ui center aligned container">
-            <h2>kakeibo</h2>
-        </div>
-    </div>
 </body>
 </html>
