@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="ui placeholder segment">
-    <!-- 画像入れる -->
+    <!-- 画像(img)入れる -->
   <div class="ui icon header">
     シンプルな家計簿アプリです
   </div>
