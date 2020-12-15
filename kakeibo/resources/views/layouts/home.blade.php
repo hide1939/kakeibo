@@ -5,7 +5,7 @@
 @section('content')
 <div class="ui placeholder segment">
   <div class="ui icon header">
-    シンプルな家計簿アプリです
+    シンプルな家計簿アプリ
   </div>
   <div class="inline">
     <button class="ui inverted orange button">
