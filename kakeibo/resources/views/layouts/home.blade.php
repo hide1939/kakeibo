@@ -4,7 +4,6 @@
 
 @section('content')
 <div class="ui placeholder segment">
-    <!-- 画像(img)入れる -->
   <div class="ui icon header">
     シンプルな家計簿アプリです
   </div>
@@ -16,5 +15,7 @@
         <a href="/login">ログイン</a>
     </button>
   </div>
+  <br>
+  <img class="ui centered big image" src="{{ asset('storage/common/money.jpeg') }}">
 </div>
 @endsection
