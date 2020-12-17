@@ -24,6 +24,7 @@
     @endif
     <div class="ui inverted segment">
         <div class="ui center aligned container">
+            {{-- リンクにする --}}
             <h2>kakeibo</h2>
         </div>
     </div>
