@@ -13,15 +13,15 @@
     <div class="ui inverted segment">
         <div class="ui container">
             <div class="ui inverted secondary pointing menu">
-                <a class="item active">kakeibo</a>
-                <a class="item">定期収支</a>
+                <a href="/" class="item active">kakeibo</a>
+                <a href="/regular" class="item">定期収支</a>
                 <div class="right menu">
-                    <a class="ui item">Logout</a>
+                    <a href="/logout" class="ui item">Logout</a>
                 </div>
             </div>
         </div>
     </div>
-    @endif
+    @else
     <div class="ui inverted segment">
         <div class="ui center aligned container">
             {{-- リンクにする --}}
@@ -29,6 +29,7 @@
             <h2><a href='/' style='color:white'>kakeibo</a></h2>
         </div>
     </div>
+    @endif
     <div class="ui container">
         @yield('content')     
     </div>
