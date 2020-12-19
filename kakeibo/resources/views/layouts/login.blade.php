@@ -3,14 +3,23 @@
 @section('title', 'ログイン')
 
 @section('content')
-<div>ログイン画面だよ</div>
-{{ Form::open(['url' => '/login']) }}
-{{ Form::label('name', '名前') }}
-{{ Form::input('text', 'name')}}
-{{ Form::label('email', 'email') }}
-{{ Form::email('email') }}
-{{ Form::label('password', 'パスワード') }}
-{{ Form::password('password') }}
-{{ Form::submit('送信') }}
+<br>
+<h2>ログイン</h2>
+<br>
+{{ Form::open(['url' => '/login', 'method' => 'post', 'class' => 'ui fluid form']) }}
+    <div class="field">
+        <div class="ui pointing below label">名前</div>
+        {{ Form::input('text', 'name', '', ['placeholder' => 'name']) }}
+    </div>
+    <div class="field">
+        <div class="ui pointing below label">メールアドレス</div>
+        {{ Form::email('email', '', ['placeholder' => 'email']) }}
+    </div>
+    <div class="field">
+        <div class="ui pointing below label">パスワード</div>
+        {{ Form::password('password') }}
+    </div>
+    <br>
+    <button type="submit" class="positive large ui button">送信</button>
 {{ Form::close() }}
 @endsection

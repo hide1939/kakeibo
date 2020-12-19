@@ -25,7 +25,8 @@
     <div class="ui inverted segment">
         <div class="ui center aligned container">
             {{-- リンクにする --}}
-            <h2>kakeibo</h2>
+            {{-- cssにする --}}
+            <h2><a href='/' style='color:white'>kakeibo</a></h2>
         </div>
     </div>
     <div class="ui container">

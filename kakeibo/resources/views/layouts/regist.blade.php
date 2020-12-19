@@ -19,6 +19,7 @@
         <div class="ui pointing below label">パスワード</div>
         {{ Form::password('password') }}
     </div>
+    <br>
     <button type="submit" class="positive large ui button">登録</button>
 {{ Form::close() }}
 @endsection
