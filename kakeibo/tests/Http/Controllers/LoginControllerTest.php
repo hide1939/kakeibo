@@ -59,8 +59,7 @@ class LoginControllerTest extends TestCase
             'password' => 'test@123'
         ]);
 
-        // TODO:メイン画面作ったらリダイレクト先直す
-        $response->assertRedirect('profile_image');
+        $response->assertRedirect('/main');
     }
 
     /** @test */
