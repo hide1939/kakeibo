@@ -3,49 +3,94 @@
 @section('title', '定期収支登録')
 
 @section('content')
-<div>
-    <p>定期収支の合計</p>
-    <p>{{ $regular_total_amount }}円</p>
+<div class="ui placeholder segment">
+    <div class="ui icon header">
+        <h2>定期収支の合計</h2>
+        <div class="ui centered cards">
+            <div class="card">
+                <div class="content">
+                    <h1>{{ $regular_total_amount }}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<div>
-    <p>定期支出</p>
-    {{ Form::open(['url' => '/regular?param=e']) }}
-    {{ Form::label('item', '支出項目') }}
-    {{ Form::input('text', 'item')}}
-    {{ Form::label('amount', '支出金額') }}
-    {{ Form::input('number', 'amount')}}
-    {{ Form::submit('送信') }}
-    {{ Form::close() }}
-    <p>---------------------</p>
-    <p>定期収入</p>
-    {{ Form::open(['url' => '/regular?param=i']) }}
-    {{ Form::label('item', '収入項目') }}
-    {{ Form::input('text', 'item')}}
-    {{ Form::label('amount', '収入金額') }}
-    {{ Form::input('number', 'amount')}}
-    {{ Form::submit('送信') }}
-    {{ Form::close() }}
+<br>
+<div class="ui placeholder segment">
+    <div class="ui center aligned icon header">
+        {{ Form::open(['url' => '/regular?param=e']) }}
+            <div class="ui huge form">
+                <h3>支出</h3>
+                <div class="two fields">
+                    <div class="field">
+                        {{ Form::input('text', 'item', '', ['placeholder' => '項目名'])}}
+                    </div>
+                    <div class="field">
+                        {{ Form::input('number', 'amount', '', ['placeholder' => '金額'])}}
+                    </div>
+                </div>
+                <button type="submit" class="positive large ui button">登録</button>
+            </div>
+        {{ Form::close() }}
+        <br>
+        {{ Form::open(['url' => '/regular?param=i']) }}
+            <div class="ui huge form">
+                <h3>収入</h3>
+                <div class="two fields">
+                    <div class="field">
+                        {{ Form::input('text', 'item', '', ['placeholder' => '項目名'])}}
+                    </div>
+                    <div class="field">
+                        {{ Form::input('number', 'amount', '', ['placeholder' => '金額'])}}
+                    </div>
+                </div>
+                <button type="submit" class="positive large ui button">登録</button>
+            </div>
+        {{ Form::close() }}
+    </div>
 </div>
-<div>
-    <p>定期支出の項目と金額</p>
+<br>
+<table class="ui celled table">
+    <thead>
+        <tr>
+            <th>支出</th>
+            <th>金額</th>
+            <th></th>
+        </tr>
+    </thead>
     @foreach ($regular_expenses as $regular_expense)
-    <ul>
-        <li>{{ $regular_expense->item }}</li>
-        <li>{{ $regular_expense->amount }}</li>
-        {{ Form::open(['method' => 'DELETE', 'url' => '/regular?param=e&id=' . $regular_expense->id]) }}
-        {{ Form::submit('削除') }}
-        {{ Form::close() }}
-    </ul>
+    <tbody>
+        <tr>
+            <td data-label="Name">{{ $regular_expense->item }}</td>
+            <td data-label="Age">{{ $regular_expense->amount }}</td>
+            <td data-label="Job">
+                {{ Form::open(['method' => 'DELETE', 'url' => '/regular?param=e&id=' . $regular_expense->id]) }}
+                {{ Form::submit('削除') }}
+                {{ Form::close() }}
+            </td>
+        </tr>
+    </tbody>
     @endforeach
-    <p>定期収入の項目と金額</p>
+    <thead>
+        <tr>
+            <th>収入</th>
+            <th>金額</th>
+            <th></th>
+        </tr>
+    </thead>
     @foreach ($regular_incomes as $regular_income)
-    <ul>
-        <li>{{ $regular_income->item }}</li>
-        <li>{{ $regular_income->amount }}</li>
-        {{ Form::open(['method' => 'DELETE', 'url' => '/regular?param=i&id=' . $regular_income->id]) }}
-        {{ Form::submit('削除') }}
-        {{ Form::close() }}
-    </ul>
+    <tbody>
+        <tr>
+            <td data-label="Name">{{ $regular_income->item }}</td>
+            <td data-label="Age">{{ $regular_income->amount }}</td>
+            <td data-label="Job">
+                {{ Form::open(['method' => 'DELETE', 'url' => '/regular?param=i&id=' . $regular_income->id]) }}
+                {{ Form::submit('削除') }}
+                {{ Form::close() }}
+            </td>
+        </tr>
+    </tbody>
     @endforeach
-</div>
+</table>
+<br>
 @endsection
