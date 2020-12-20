@@ -41,7 +41,8 @@ class RegularController extends Controller
             'regular_total_amount' => $this->query_income_service->getRegularTotalAmount(Auth::id()) 
                 - $this->query_expense_service->getRegularTotalAmount(Auth::id()),
             'regular_expenses' => $this->query_expense_service->getRegular(Auth::id()),
-            'regular_incomes' => $this->query_income_service->getRegular(Auth::id())
+            'regular_incomes' => $this->query_income_service->getRegular(Auth::id()),
+            'login_user_name' => Auth::user()->name
         ]);
     }
 

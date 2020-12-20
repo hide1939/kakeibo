@@ -74,6 +74,14 @@ class RegularControllerTest extends TestCase
     }
 
     /** @test */
+    public function editでログインユーザー名がviewに渡る()
+    {
+        $user = User::factory()->create(['name' => 'laravelkun']);
+        $this->actingAs($user)->get(action([RegularController::class, 'edit']))
+            ->assertViewHas('login_user_name', 'laravelkun');
+    }
+
+    /** @test */
     public function storeでクエリパラメータがeの場合はExpenseテーブルにデータを登録できる()
     {
         $user = User::factory()->create();

@@ -50,6 +50,15 @@ class ProfileImageControllerTest extends TestCase
     }
 
     /** @test */
+    public function editでログインユーザー名がviewに渡る()
+    {
+        $user = User::factory()->create(['name' => 'laravelkun']);
+
+        $response = $this->actingAs($user)->get('/profile_image');
+        $response->assertViewHas('login_user_name', 'laravelkun');
+    }
+
+    /** @test */
     public function storeでプロフィール画像の保存ができたらプロフィール画像編集画面にリダイレクトする()
     {
         Storage::fake();
