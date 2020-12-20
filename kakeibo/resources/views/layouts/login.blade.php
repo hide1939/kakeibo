@@ -20,6 +20,6 @@
         {{ Form::password('password') }}
     </div>
     <br>
-    <button type="submit" class="positive large ui button">送信</button>
+    <button type="submit" class="positive large ui button">ログイン</button>
 {{ Form::close() }}
 @endsection
