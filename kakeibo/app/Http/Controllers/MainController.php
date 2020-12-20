@@ -60,6 +60,8 @@ class MainController extends Controller
     public function store(Request $request)
     {
         $this->main_usecase->store(Auth::id(), $request->query('param'), $request->item, $request->amount);
+
+        return redirect(action([MainController::class, 'index']));
     }
 
     /** 

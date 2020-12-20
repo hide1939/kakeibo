@@ -171,6 +171,16 @@ class MainControllerTest extends TestCase
     }
 
     /** @test */
+    public function storeで指定した収支を登録した後はメイン画面にリダイレクトする()
+    {
+        $response = $this->actingAs($this->user)->post(action([MainController::class, 'store'], ['param' => 'i']), [
+            'item' => '仕事',
+            'amount' => 200000
+        ]);
+        $response->assertRedirect(action([MainController::class, 'index']));
+    }
+
+    /** @test */
     public function destroyで指定した支出項目を削除できる()
     {
         $expense = Expense::factory()->create();
