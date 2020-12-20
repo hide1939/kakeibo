@@ -14,8 +14,10 @@
         <div class="ui container">
             <div class="ui inverted secondary pointing menu">
                 <a href="/" class="item active">kakeibo</a>
+                <a href="/main" class="item">月の収支</a>
                 <a href="/regular" class="item">定期収支</a>
                 <div class="right menu">
+                    <p>{{ $login_user_name }}</p>
                     <a href="/logout" class="ui item">Logout</a>
                 </div>
             </div>
@@ -31,7 +33,7 @@
     </div>
     @endif
     <div class="ui container">
-        @yield('content')     
+        @yield('content')   
     </div>
 </body>
 </html>
