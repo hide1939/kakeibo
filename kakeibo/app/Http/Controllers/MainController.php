@@ -44,9 +44,10 @@ class MainController extends Controller
 
         // TODO:この辺のパラメータはviewで直接取れるならそうしたい
         return view('layouts.main', [
+            // TODO:+収支のときは+も表示させたい
             'month_total_amount' => $this->query_income_service->getMonthTotalAmount(Auth::id(), $year, $month) 
                 - $this->query_expense_service->getMonthTotalAmount(Auth::id(), $year, $month),
-            'month_expenses' => $this->query_income_service->getByYearAndMonth(Auth::id(), $year, $month),
+            'month_expenses' => $this->query_expense_service->getByYearAndMonth(Auth::id(), $year, $month),
             'month_incomes' => $this->query_income_service->getByYearAndMonth(Auth::id(), $year, $month),
             'login_user_name' => Auth::user()->name,
             'year' => $year,
@@ -60,6 +61,8 @@ class MainController extends Controller
     public function store(Request $request)
     {
         $this->main_usecase->store(Auth::id(), $request->query('param'), $request->item, $request->amount);
+
+        return redirect(action([MainController::class, 'index']));
     }
 
     /** 

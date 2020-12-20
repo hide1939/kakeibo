@@ -26,7 +26,9 @@ class ProfileImageController extends Controller
     public function edit()
     {
         return view('layouts.profileimage', [
-            'profile_image_path' => $this->service->getById(Auth::id())->profile_image_path
+            'profile_image_path' => $this->service->getById(Auth::id())->profile_image_path,
+            // TODO:Controllerから渡さなくても普通にviewでAuth::userで取ればいい
+            'login_user_name' => Auth::user()->name
         ]);
     }
 

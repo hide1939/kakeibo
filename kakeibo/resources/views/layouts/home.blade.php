@@ -1,13 +1,21 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <title>kakeibo</title>
-</head>
-<body>
-    <div>
+@extends('layouts.base')
+
+@section('title', 'kakeibo')
+
+@section('content')
+<div class="ui placeholder segment">
+  <div class="ui icon header">
+    シンプルな家計簿アプリ
+  </div>
+  <div class="inline">
+    <button class="ui inverted orange button">
         <a href="/regist">新規登録</a>
+    </button>
+    <button class="ui inverted blue button">
         <a href="/login">ログイン</a>
-    </div>
-</body>
-</html>
+    </button>
+  </div>
+  <br>
+  <img class="ui centered big image" src="{{ asset('storage/common/money.jpeg') }}">
+</div>
+@endsection

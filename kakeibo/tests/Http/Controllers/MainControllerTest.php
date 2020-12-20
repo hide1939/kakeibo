@@ -108,6 +108,7 @@ class MainControllerTest extends TestCase
     /** @test */
     public function indexでmonth_incomesをviewに渡せる()
     {
+        // TODO:項目だけでなく、ちゃんと正しい金額が渡っているかもテストしたい
         $this->actingAs($this->user)->get(action([MainController::class, 'index']))
             ->assertViewHas('month_incomes');
 
@@ -168,6 +169,16 @@ class MainControllerTest extends TestCase
             'item' => '仕事',
             'amount' => 200000
         ]);
+    }
+
+    /** @test */
+    public function storeで指定した収支を登録した後はメイン画面にリダイレクトする()
+    {
+        $response = $this->actingAs($this->user)->post(action([MainController::class, 'store'], ['param' => 'i']), [
+            'item' => '仕事',
+            'amount' => 200000
+        ]);
+        $response->assertRedirect(action([MainController::class, 'index']));
     }
 
     /** @test */
