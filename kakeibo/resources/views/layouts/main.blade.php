@@ -18,6 +18,12 @@
 <br>
 <div class="ui placeholder segment">
     <div class="ui center aligned icon header">
+        {{-- TODO:入力欄とボタンを横並びにしたい(semantic uiのgrid?) --}}
+        <div class="ui buttons">
+            <button class="ui button active">支出</button>
+            <div class="or"></div>
+            <button class="ui positive button">収入</button>
+        </div>
         {{ Form::open(['url' => '/main?param=e']) }}
             <div class="ui huge form">
                 <h3>支出</h3>
