@@ -108,6 +108,7 @@ class MainControllerTest extends TestCase
     /** @test */
     public function indexでmonth_incomesをviewに渡せる()
     {
+        // TODO:項目だけでなく、ちゃんと正しい金額が渡っているかもテストしたい
         $this->actingAs($this->user)->get(action([MainController::class, 'index']))
             ->assertViewHas('month_incomes');
 
