@@ -74,13 +74,3 @@
 </table>
 <br>
 @endsection
-<script>
-    const expense = function () {
-        $expense_income_form = document.getElementById('expense_income_form');
-        $expense_income_form.id = 'expense_form';
-    }
-    const income = function () {
-        $expense_income_form = document.getElementById('expense_income_form');
-        $expense_income_form.id = 'income_form';
-    }
-</script>
