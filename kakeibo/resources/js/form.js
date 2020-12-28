@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 // formのコンポーネントを読み込む
 import ExpenseForm from './components/expense_form.js';
