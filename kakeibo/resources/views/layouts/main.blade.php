@@ -20,39 +20,13 @@
     <div class="ui center aligned icon header">
         {{-- TODO:入力欄とボタンを横並びにしたい(semantic uiのgrid?) --}}
         <div class="ui buttons">
-            <button class="ui button active">支出</button>
+            <button class="ui button active" onclick="expense()">支出</button>
             <div class="or"></div>
-            <button class="ui positive button">収入</button>
+            <button class="ui positive button" onclick="income()">収入</button>
         </div>
-        <form action="/main?param=e" method="post" >
-            <div class="ui huge form">
-                <h3>支出</h3>
-                <div class="two fields">
-                    <div class="field">
-                        <input type="text" name="item", placeholder="項目名">
-                    </div>
-                    <div class="field">
-                        <input type="number" name="amount", placeholder="金額">
-                    </div>
-                </div>
-                <button type="submit" class="positive large ui button">登録</button>
-            </div>
-        </form>
-        <br>
-        <form action="/main?param=i" method="post" >
-            <div class="ui huge form">
-                <h3>収入</h3>
-                <div class="two fields">
-                    <div class="field">
-                        <input type="text" name="item", placeholder="項目名">
-                    </div>
-                    <div class="field">
-                        <input type="number" name="amount", placeholder="金額">
-                    </div>
-                </div>
-                <button type="submit" class="positive large ui button">登録</button>
-            </div>
-        </form>
+        <div id="expense_income_form">
+            {{-- この中にexportかincomeのフォームが入る --}}
+        </div>
     </div>
 </div>
 <br>
@@ -100,3 +74,13 @@
 </table>
 <br>
 @endsection
+<script>
+    const expense = function () {
+        $expense_income_form = document.getElementById('expense_income_form');
+        $expense_income_form.id = 'expense_form';
+    }
+    const income = function () {
+        $expense_income_form = document.getElementById('expense_income_form');
+        $expense_income_form.id = 'income_form';
+    }
+</script>
