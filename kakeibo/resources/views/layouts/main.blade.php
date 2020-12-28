@@ -24,35 +24,35 @@
             <div class="or"></div>
             <button class="ui positive button">収入</button>
         </div>
-        {{ Form::open(['url' => '/main?param=e']) }}
+        <form action="/main?param=e" method="post" >
             <div class="ui huge form">
                 <h3>支出</h3>
                 <div class="two fields">
                     <div class="field">
-                        {{ Form::input('text', 'item', '', ['placeholder' => '項目名'])}}
+                        <input type="text" name="item", placeholder="項目名">
                     </div>
                     <div class="field">
-                        {{ Form::input('number', 'amount', '', ['placeholder' => '金額'])}}
+                        <input type="number" name="amount", placeholder="金額">
                     </div>
                 </div>
                 <button type="submit" class="positive large ui button">登録</button>
             </div>
-        {{ Form::close() }}
+        </form>
         <br>
-        {{ Form::open(['url' => '/main?param=i']) }}
+        <form action="/main?param=i" method="post" >
             <div class="ui huge form">
                 <h3>収入</h3>
                 <div class="two fields">
                     <div class="field">
-                        {{ Form::input('text', 'item', '', ['placeholder' => '項目名'])}}
+                        <input type="text" name="item", placeholder="項目名">
                     </div>
                     <div class="field">
-                        {{ Form::input('number', 'amount', '', ['placeholder' => '金額'])}}
+                        <input type="number" name="amount", placeholder="金額">
                     </div>
                 </div>
                 <button type="submit" class="positive large ui button">登録</button>
             </div>
-        {{ Form::close() }}
+        </form>
     </div>
 </div>
 <br>
