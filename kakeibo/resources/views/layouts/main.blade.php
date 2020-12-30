@@ -18,14 +18,9 @@
 <br>
 <div class="ui placeholder segment">
     <div class="ui center aligned icon header">
-        {{-- TODO:入力欄とボタンを横並びにしたい(semantic uiのgrid?) --}}
-        <div class="ui buttons">
-            <button class="ui button active" onclick="expense()">支出</button>
-            <div class="or"></div>
-            <button class="ui positive button" onclick="income()">収入</button>
-        </div>
         <div id="expense_income_form">
-            {{-- この中にexportかincomeのフォームが入る --}}
+            {{-- TODO:入力欄とボタンを横並びにしたい(semantic uiのgrid?) --}}
+            {{-- この中にReactによりボタンとexpenseかincomeのフォームが入る --}}
         </div>
     </div>
 </div>
@@ -74,13 +69,6 @@
 </table>
 <br>
 @endsection
-<script>
-    const expense = function () {
-        $expense_income_form = document.getElementById('expense_income_form');
-        $expense_income_form.id = 'expense_form';
-    }
-    const income = function () {
-        $expense_income_form = document.getElementById('expense_income_form');
-        $expense_income_form.id = 'income_form';
-    }
-</script>
+@section('js_script')
+<script src="{{ asset('js/app.js') }}"></script>
+@endsection
