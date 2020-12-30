@@ -12,5 +12,8 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-// フォーム表示に関するcomponentを読み込み
-require('./form');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Component from './component.js';
+
+ReactDOM.render(<Component />, document.getElementById('expense_income_form'));
