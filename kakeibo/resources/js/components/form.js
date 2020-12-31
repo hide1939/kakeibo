@@ -3,9 +3,11 @@ import React from 'react';
 class Form extends React.Component {
     constructor(props) {
         super(props);
+        let csrf_token = document.head.querySelector('meta[name="csrf-token"]');
         this.state = {
             title: '支出',
-            uri: '/main?param=e'
+            uri: '/main?param=e',
+            csrf_token: csrf_token.content
         }
         this.setExpenseValue = this.setExpenseValue.bind(this);
         this.setIncomeValue = this.setIncomeValue.bind(this);
@@ -34,7 +36,7 @@ class Form extends React.Component {
                     <button className="ui positive button" onClick={this.setIncomeValue}>収入</button>
                 </div>
                 <form action={ this.state.uri } method="post">
-                    {/* <input type="hidden" name="_token" value={csrf_token} /> */}
+                    <input type="hidden" name="_token" value={ this.state.csrf_token } />
                     <div className="ui huge form">
                     <h3>{ this.state.title }</h3>
                         <div className="two fields">
