@@ -18,7 +18,7 @@
                 <a href="/regular" class="item">定期収支</a>
                 <div class="right menu">
                     <a href="#" class="ui item">{{ $login_user_name }}</a>
-                    <a href="/logout" class="ui item">Logout</a>
+                    <a href="/logout" class="ui item">ログアウト</a>
                 </div>
             </div>
         </div>
