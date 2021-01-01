@@ -14,6 +14,6 @@ require('./bootstrap');
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Component from './component.js';
+import Form from './components/form.js';
 
-ReactDOM.render(<Component />, document.getElementById('expense_income_form'));
+ReactDOM.render(<Form />, document.getElementById('expense_income_form'));
