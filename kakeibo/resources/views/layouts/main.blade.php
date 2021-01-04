@@ -2,6 +2,10 @@
 
 @section('title', 'メイン画面')
 
+@section('head_info')
+<meta name="api-token" content="{{ Auth::user()->api_token }}">
+@endsection
+
 @section('content')
 <div class="ui placeholder segment">
     <div class="ui icon header">
@@ -25,48 +29,9 @@
     </div>
 </div>
 <br>
-<table class="ui celled table">
-    <thead>
-        <tr>
-            <th>支出</th>
-            <th>金額</th>
-            <th></th>
-        </tr>
-    </thead>
-    @foreach ($month_expenses as $month_expense)
-    <tbody>
-        <tr>
-            <td data-label="Name">{{ $month_expense->item }}</td>
-            <td data-label="Age">{{ $month_expense->amount }}</td>
-            <td data-label="Job">
-                {{ Form::open(['method' => 'DELETE', 'url' => '/main?param=e&id=' . $month_expense->id]) }}
-                {{ Form::submit('削除') }}
-                {{ Form::close() }}
-            </td>
-        </tr>
-    </tbody>
-    @endforeach
-    <thead>
-        <tr>
-            <th>収入</th>
-            <th>金額</th>
-            <th></th>
-        </tr>
-    </thead>
-    @foreach ($month_incomes as $month_income)
-    <tbody>
-        <tr>
-            <td data-label="Name">{{ $month_income->item }}</td>
-            <td data-label="Age">{{ $month_income->amount }}</td>
-            <td data-label="Job">
-                {{ Form::open(['method' => 'DELETE', 'url' => '/main?param=i&id=' . $month_income->id]) }}
-                {{ Form::submit('削除') }}
-                {{ Form::close() }}
-            </td>
-        </tr>
-    </tbody>
-    @endforeach
-</table>
+<div id="expense_income_table">
+    {{-- 収支のテーブルを表示する --}}
+</div>
 <br>
 @endsection
 @section('js_script')
