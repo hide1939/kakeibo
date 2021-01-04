@@ -4,7 +4,7 @@ import axios from 'axios';
 class Table extends React.Component {
     constructor(props) {
         super(props);
-        let api_token = document.head.querySelector('meta[name="api-token"]')
+        let api_token = document.head.querySelector('meta[name="api-token"]');
         this.state = {
             month_expenses: 'hoge',
             month_incomes: 'fuga',
