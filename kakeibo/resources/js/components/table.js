@@ -12,7 +12,6 @@ class Table extends React.Component {
         }
     }
 
-    // getリクエストでメイン画面でtableに表示するjsonデータを取得する
     componentDidMount() {
         axios.get('api/main', {
             params: {
