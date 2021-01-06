@@ -19,29 +19,55 @@ class Table extends React.Component {
                 api_token: this.state.api_token
             }
         })
-            .then(function (response) {
-                // stateに取得したjson配列をセット
+            .then((response) => {
                 this.setState({
                     month_expenses: response.data.month_expenses,
                     month_incomes: response.data.month_incomes
                 });
             })
-            .catch(function (error) {
+            .catch((error) => {
                 console.log('error');
             })
-            .then(function () {
+            .then(() => {
                 console.log('always executed');
             })
     }
 
-    // ループ処理でテーブルを表示する
     render() {
         const { month_expenses, month_incomes } = this.state;
-        $month_expenses_block = month_expenses.map(month_expense => {
-
+        const month_expenses_block = month_expenses.map(month_expense => {
+            return (
+                <tbody>
+                    <tr>
+                        <td data-label="Name">{ month_expense.item }</td>
+                        <td data-label="Age">{ month_expense.amount }</td>
+                        <td data-label="Job">
+                            <form action={ '/main?param=e&id=' + month_expense.id } method='delete'>
+                                <button type="submit">削除</button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            );
         });
+        const month_incomes_block = month_incomes.map(month_income => {
+            return (
+                <tbody>
+                    <tr>
+                        <td data-label="Name">{ month_income.item }</td>
+                        <td data-label="Age">{ month_income.amount }</td>
+                        <td data-label="Job">
+                            <form action={ '/main?param=i&id=' + month_income.id } method='delete'>
+                                <button type="submit">削除</button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            );
+        });
+
         return (
-            <table class="ui celled table">
+            <table className="ui celled table">
                 <thead>
                     <tr>
                         <th>支出</th>
@@ -49,19 +75,7 @@ class Table extends React.Component {
                         <th></th>
                     </tr>
                 </thead>
-                {/* @foreach ($month_expenses as $month_expense) */}
-                <tbody>
-                    <tr>
-                        <td data-label="Name">{{ $month_expense->item }}</td>
-                        <td data-label="Age">{{ $month_expense->amount }}</td>
-                        <td data-label="Job">
-                            <form action='/main?param=e&id=' . $month_expense->id method='delete'></form>
-                                <button type="submit">削除</button>
-                            </form>
-                        </td>
-                    </tr>
-                </tbody>
-                @endforeach
+                { month_expenses_block }
                 <thead>
                     <tr>
                         <th>収入</th>
@@ -69,19 +83,7 @@ class Table extends React.Component {
                         <th></th>
                     </tr>
                 </thead>
-                @foreach ($month_incomes as $month_income)
-                <tbody>
-                    <tr>
-                        <td data-label="Name">{{ $month_income->item }}</td>
-                        <td data-label="Age">{{ $month_income->amount }}</td>
-                        <td data-label="Job">
-                            <form action='/main?param=i&id=' . $month_income->id method='delete'></form>
-                                <button type="submit">削除</button>
-                            </form>
-                        </td>
-                    </tr>
-                </tbody>
-                @endforeach
+                { month_incomes_block }
             </table>
         );
     }
