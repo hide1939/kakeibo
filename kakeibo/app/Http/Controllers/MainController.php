@@ -56,16 +56,6 @@ class MainController extends Controller
     }
 
     /** 
-     * メイン画面で収支の登録をする
-     */
-    public function store(Request $request)
-    {
-        $this->main_usecase->store(Auth::id(), $request->query('param'), $request->item, $request->amount);
-
-        return redirect(action([MainController::class, 'index']));
-    }
-
-    /** 
      * メイン画面で収支の削除を行う
      */
     public function destroy(Request $request) 

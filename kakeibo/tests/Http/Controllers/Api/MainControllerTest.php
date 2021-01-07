@@ -34,4 +34,34 @@ class MainControllerTest extends TestCase
             ->get(action([MainController::class, 'index']));
         $response->assertJsonCount(1, 'month_incomes');
     }
+
+    /** @test */
+    public function storeでjson形式で渡ってくる支出データを登録できる()
+    {
+        $user = User::factory()->create();
+        $this->actingAs($user, 'api')->postJson(action([MainController::class, 'store'], ['param' => 'e']), [
+            'item' => '超高級焼肉',
+            'amount' => 200000
+        ]);
+
+        $this->assertDatabaseHas('expenses', [
+            'item' => '超高級焼肉',
+            'amount' => 200000
+        ]);
+    }
+
+    /** @test */
+    public function storeでjson形式で渡ってくる収入データを登録できる()
+    {
+        $user = User::factory()->create();
+        $this->actingAs($user, 'api')->postJson(action([MainController::class, 'store'], ['param' => 'i']), [
+            'item' => '仕事',
+            'amount' => 200000
+        ]);
+
+        $this->assertDatabaseHas('incomes', [
+            'item' => '仕事',
+            'amount' => 200000
+        ]);
+    }
 }

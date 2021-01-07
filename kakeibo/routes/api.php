@@ -14,4 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/main', [MainController::class, 'index']);
+Route::group(['middleware' => ['auth:api']], function () {
+    // メイン画面
+    Route::get('/main', [MainController::class, 'index']);
+    Route::post('/main', [MainController::class, 'store']);
+});
