@@ -29,6 +29,7 @@ class Main extends React.Component {
 
     // 表示するデータを取得する
     componentDidMount() {
+        // TODO:将来的に年月のparameterも渡せるようにする
         axios.get('api/main', {
             params: {
                 api_token: this.state.api_token
