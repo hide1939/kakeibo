@@ -14,8 +14,7 @@ require('./bootstrap');
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Form from './components/form.js';
-import Table from './components/table.js';
+import Main from './components/main.js';
 
-ReactDOM.render(<Form />, document.getElementById('expense_income_form'));
-ReactDOM.render(<Table />, document.getElementById('expense_income_table'));
+// メイン画面
+ReactDOM.render(<Main />, document.getElementById('main'));
