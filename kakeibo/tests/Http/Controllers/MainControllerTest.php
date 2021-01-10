@@ -6,7 +6,6 @@ use App\Http\Controllers\MainController;
 use App\Models\Expense;
 use App\Models\Income;
 use App\Models\User;
-use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 
@@ -36,28 +35,6 @@ class MainControllerTest extends TestCase
     {
         $this->actingAs($this->user)->get(action([MainController::class, 'index']))
             ->assertViewHas('login_user_name', 'laravelkun');
-    }
-
-    /** @test */
-    public function indexでクエリパラメータで指定した年月がviewに渡る()
-    {
-        $this->actingAs($this->user)->get(action([MainController::class, 'index'], [
-            'y' => '2020',
-            'm' => '5'
-        ]))->assertViewHas([
-                'year' => '2020',
-                'month' => '5'
-            ]);
-    }
-
-    /** @test */
-    public function クエリパラメータで指定しなかった場合は、indexで現在の年月がviewに渡る()
-    {
-        $this->actingAs($this->user)->get(action([MainController::class, 'index']))
-            ->assertViewHas([
-                'year' => Carbon::now()->year,
-                'month' => Carbon::now()->month
-            ]);
     }
 
     /** @test */

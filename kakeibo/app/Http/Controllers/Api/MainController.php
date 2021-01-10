@@ -41,7 +41,9 @@ class MainController extends Controller
             'month_total_amount' => $this->query_income_service->getMonthTotalAmount(Auth::id(), $year, $month) 
                 - $this->query_expense_service->getMonthTotalAmount(Auth::id(), $year, $month),
             'month_expenses' => $this->query_expense_service->getByYearAndMonth(Auth::id(), $year, $month),
-            'month_incomes' => $this->query_income_service->getByYearAndMonth(Auth::id(), $year, $month)
+            'month_incomes' => $this->query_income_service->getByYearAndMonth(Auth::id(), $year, $month),
+            'year' => $year,
+            'month' => $month
         ]);
     }
 

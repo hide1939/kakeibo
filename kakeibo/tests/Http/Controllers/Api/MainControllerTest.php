@@ -106,6 +106,30 @@ class MainControllerTest extends TestCase
     }
 
     /** @test */
+    public function indexでクエリパラメータで指定した年月がjsonデータとして返る()
+    {
+        $user = User::factory()->create();
+        $this->actingAs($user, 'api')->get(action([MainController::class, 'index'], [
+            'y' => '2020',
+            'm' => '5'
+        ]))->assertJson([
+                'year' => '2020',
+                'month' => '5'
+            ]);
+    }
+
+    /** @test */
+    public function クエリパラメータで指定しなかった場合は、indexで現在の年月がjsonで返る()
+    {
+        $user = User::factory()->create();
+        $this->actingAs($user, 'api')->get(action([MainController::class, 'index']))
+            ->assertJson([
+                'year' => Carbon::now()->year,
+                'month' => Carbon::now()->month
+            ]);
+    }
+
+    /** @test */
     public function storeでjson形式で渡ってくる支出データを登録できる()
     {
         $user = User::factory()->create();

@@ -4,33 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Services\Command\ExpenseService as CommandExpenseService;
 use App\Services\Command\IncomeService as CommandIncomeService;
-use App\Services\Query\ExpenseService as QueryExpenseService;
-use App\Services\Query\IncomeService as QueryIncomeService;
-use App\UseCases\MainUseCase;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class MainController extends Controller
 {
-    private $query_expense_service;
-    private $query_income_service;
     private $command_expense_service;
     private $command_income_service;
-    private $main_usecase;
 
-    public function __construct(
-        QueryExpenseService $query_expense_service,
-        QueryIncomeService $query_income_service,
-        CommandExpenseService $command_expense_service,
-        CommandIncomeService $command_income_service,
-        MainUseCase $main_usecase
-    ) {
-        $this->query_expense_service = $query_expense_service;
-        $this->query_income_service = $query_income_service;
+    public function __construct(CommandExpenseService $command_expense_service, CommandIncomeService $command_income_service) 
+    {
         $this->command_expense_service = $command_expense_service;
         $this->command_income_service = $command_income_service;
-        $this->main_usecase = $main_usecase;
     }
 
     /**
@@ -38,16 +23,8 @@ class MainController extends Controller
      */
     public function index(Request $request)
     {
-        // TODO:この辺のロジックはコントローラではなくRequestクラスに移したい
-        $year = is_null($request->query('y')) ? Carbon::now()->year : $request->query('y');
-        $month = is_null($request->query('m')) ? Carbon::now()->month : $request->query('m');
-
         // TODO:この辺のパラメータはviewで直接取れるならそうしたい
-        return view('layouts.main', [
-            'login_user_name' => Auth::user()->name,
-            'year' => $year,
-            'month' => $month
-        ]);
+        return view('layouts.main', ['login_user_name' => Auth::user()->name]);
     }
 
     /** 
