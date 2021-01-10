@@ -8,8 +8,10 @@
 
 @section('content')
 <div id="main">
+    {{-- main.jsの内容が入る --}}
 </div>
 @endsection
+
 @section('js_script')
 <script src="{{ asset('js/app.js') }}"></script>
 @endsection
