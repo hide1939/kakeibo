@@ -7,21 +7,27 @@ class Main extends React.Component {
         let csrf_token = document.head.querySelector('meta[name="csrf-token"]').content;
         let api_token = document.head.querySelector('meta[name="api-token"]').content;
         this.state = {
+            // この辺のデフォルト値は適切な値にしたい
             title: '支出',
-            uri: '/main?param=e',
+            param: 'e',
             month_expenses: [],
             month_incomes: [],
             csrf_token: csrf_token,
             api_token: api_token,
             month_total_amount: 0,
-            // TODO:ajaxが終わる前は以下のデフォルト値が表示されてしまう？
-            year: 1,
-            month: 1
+            year: '',
+            month: '',
+            item_value: '',
+            amount_value: ''
         };
         this.setExpenseValue = this.setExpenseValue.bind(this);
         this.setIncomeValue = this.setIncomeValue.bind(this);
+        this.postValue = this.postValue.bind(this);
+        this.handleItemChange = this.handleItemChange.bind(this);
+        this.handleAmountChange = this.handleAmountChange.bind(this);
     }
 
+    // 表示するデータを取得する
     componentDidMount() {
         axios.get('api/main', {
             params: {
@@ -45,17 +51,46 @@ class Main extends React.Component {
             })
     }
 
+    handleItemChange(event) {
+        this.setState({
+            item_value: event.target.value
+        });
+    }
+
+    handleAmountChange(event) {
+        this.setState({
+            amount_value: event.target.value
+        });
+    }
+
+    // フォーム入力したデータをpostして登録する
+    postValue() {
+        // TODO:postする前にtableにデータを追加する+合計金額も直す(stateで取得して再代入し直す)
+
+
+        axios.post('api/main?' + 'param=' + this.state.param + '&api_token=' + this.state.api_token, {
+            item: this.state.item_value,
+            amount: this.state.amount_value
+        })
+        .then((response) => {
+            // 特に処理なし
+        })
+        .catch((response) => {
+            console.log('cant post data');
+        })
+    }
+
     setExpenseValue() {
         this.setState({
             title: '支出',
-            uri: '/main?param=e'
+            param: 'e'
         });
     }
 
     setIncomeValue() {
         this.setState({
             title: '収入',
-            uri: '/main?param=i'
+            param: 'i'
         });
     }
 
@@ -111,23 +146,23 @@ class Main extends React.Component {
                     <div className="ui center aligned icon header">
                         {/* TODO:入力欄とボタンを横並びにしたい(semantic uiのgrid?) */}
                         <div className="ui buttons">
-                            <button className="ui button active" onClick={this.setExpenseValue}>支出</button>
+                            <button className="ui button active" onClick={ this.setExpenseValue }>支出</button>
                             <div className="or"></div>
-                            <button className="ui positive button" onClick={this.setIncomeValue}>収入</button>
+                            <button className="ui positive button" onClick={ this.setIncomeValue }>収入</button>
                         </div>
-                        <form action={ this.state.uri } method="post">
+                        <form>
                             <input type="hidden" name="_token" value={ this.state.csrf_token } />
                             <div className="ui huge form">
                                 <h3>{ this.state.title }</h3>
                                 <div className="two fields">
                                     <div className="field">
-                                        <input type="text" name="item" placeholder="項目名" />
+                                        <input type="text" name="item" placeholder="項目名" value={ this.state.item_value } onChange={ this.handleItemChange } />
                                     </div>
                                     <div className="field">
-                                        <input type="number" name="amount" placeholder="金額" />
+                                        <input type="number" name="amount" placeholder="金額" value={ this.state.amount_value } onChange={ this.handleAmountChange } />
                                     </div>
                                 </div>
-                                <button type="submit" className="positive large ui button">登録</button>
+                                <button type="button" className="positive large ui button" onClick={ this.postValue }>登録</button>
                             </div>
                         </form>
                     </div>
