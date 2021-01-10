@@ -3,11 +3,11 @@ import React from 'react';
 class Form extends React.Component {
     constructor(props) {
         super(props);
-        let csrf_token = document.head.querySelector('meta[name="csrf-token"]');
+        let csrf_token = document.head.querySelector('meta[name="csrf-token"]').content;
         this.state = {
             title: '支出',
             uri: '/main?param=e',
-            csrf_token: csrf_token.content
+            csrf_token: csrf_token
         }
         this.setExpenseValue = this.setExpenseValue.bind(this);
         this.setIncomeValue = this.setIncomeValue.bind(this);
