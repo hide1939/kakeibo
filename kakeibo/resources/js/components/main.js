@@ -12,7 +12,11 @@ class Main extends React.Component {
             month_expenses: [],
             month_incomes: [],
             csrf_token: csrf_token,
-            api_token: api_token
+            api_token: api_token,
+            month_total_amount: 0,
+            // TODO:ajaxが終わる前は以下のデフォルト値が表示されてしまう？
+            year: 1,
+            month: 1
         };
         this.setExpenseValue = this.setExpenseValue.bind(this);
         this.setIncomeValue = this.setIncomeValue.bind(this);
@@ -26,8 +30,11 @@ class Main extends React.Component {
         })
             .then((response) => {
                 this.setState({
+                    month_total_amount: response.data.month_total_amount,
                     month_expenses: response.data.month_expenses,
-                    month_incomes: response.data.month_incomes
+                    month_incomes: response.data.month_incomes,
+                    year: response.data.year,
+                    month: response.data.month
                 });
             })
             .catch((error) => {
@@ -87,21 +94,21 @@ class Main extends React.Component {
 
         return (
             <>
-                <div class="ui placeholder segment">
-                    <div class="ui icon header">
-                        {/* <h2>{{ $year }}年{{ $month }}月</h2> */}
-                        <div class="ui centered cards">
-                            <div class="card">
-                                <div class="content">
-                                    {/* <h1>{{ $month_total_amount }}</h1> */}
+                <div className="ui placeholder segment">
+                    <div className="ui icon header">
+                        <h2>{ this.state.year }年{ this.state.month }月</h2>
+                        <div className="ui centered cards">
+                            <div className="card">
+                                <div className="content">
+                                    <h1>{ this.state.month_total_amount }</h1>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <br />
-                <div class="ui placeholder segment">
-                    <div class="ui center aligned icon header">
+                <div className="ui placeholder segment">
+                    <div className="ui center aligned icon header">
                         {/* TODO:入力欄とボタンを横並びにしたい(semantic uiのgrid?) */}
                         <div className="ui buttons">
                             <button className="ui button active" onClick={this.setExpenseValue}>支出</button>
