@@ -66,8 +66,24 @@ class Main extends React.Component {
 
     // フォーム入力したデータをpostして登録する
     postValue() {
-        // TODO:postする前にtableにデータを追加する+合計金額も直す(stateで取得して再代入し直す)
-
+        if (this.state.param == 'e') {
+            this.setState({
+                month_total_amount: this.state.month_total_amount -= this.state.amount_value,
+                // month_expenses: this.state.month_expenses.push({
+                //     'item': this.state.item_value,
+                //     'amount': this.state.amount_value
+                // })
+            })
+        }
+        if (this.state.param == 'i') {
+            this.setState({
+                month_total_amount: this.state.month_total_amount += this.state.amount_value,
+                // month_incomes: this.state.month_incomes.push({
+                //     'item': this.state.item_value,
+                //     'amount': this.state.amount_value
+                // })
+            })
+        }
 
         axios.post('api/main?' + 'param=' + this.state.param + '&api_token=' + this.state.api_token, {
             item: this.state.item_value,
