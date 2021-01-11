@@ -68,20 +68,12 @@ class Main extends React.Component {
     postValue() {
         if (this.state.param == 'e') {
             this.setState({
-                month_total_amount: this.state.month_total_amount -= this.state.amount_value,
-                // month_expenses: this.state.month_expenses.push({
-                //     'item': this.state.item_value,
-                //     'amount': this.state.amount_value
-                // })
+                month_total_amount: this.state.month_total_amount -= this.state.amount_value
             })
         }
         if (this.state.param == 'i') {
             this.setState({
-                month_total_amount: this.state.month_total_amount += this.state.amount_value,
-                // month_incomes: this.state.month_incomes.push({
-                //     'item': this.state.item_value,
-                //     'amount': this.state.amount_value
-                // })
+                month_total_amount: this.state.month_total_amount += this.state.amount_value                
             })
         }
 
@@ -90,7 +82,8 @@ class Main extends React.Component {
             amount: this.state.amount_value
         })
         .then((response) => {
-            // 特に処理なし
+            // テーブルを更新する 
+            this.componentDidMount();
         })
         .catch((response) => {
             console.log('cant post data');
