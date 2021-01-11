@@ -68,6 +68,7 @@ class Main extends React.Component {
     postValue() {
         if (this.state.param == 'e') {
             this.setState({
+                // TODO:文字列の連結になってる？
                 month_total_amount: this.state.month_total_amount -= this.state.amount_value
             })
         }
@@ -84,6 +85,11 @@ class Main extends React.Component {
         .then((response) => {
             // テーブルを更新する 
             this.componentDidMount();
+            // フォームにセットしたデータを消す
+            this.setState({
+                item_value: '',
+                amount_value: ''
+            });
         })
         .catch((response) => {
             console.log('cant post data');
