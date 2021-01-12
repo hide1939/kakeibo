@@ -68,13 +68,12 @@ class Main extends React.Component {
     postValue() {
         if (this.state.param == 'e') {
             this.setState({
-                // TODO:文字列の連結になってる？
                 month_total_amount: this.state.month_total_amount -= this.state.amount_value
             })
         }
         if (this.state.param == 'i') {
             this.setState({
-                month_total_amount: this.state.month_total_amount += this.state.amount_value                
+                month_total_amount: this.state.month_total_amount += parseInt(this.state.amount_value)
             })
         }
 
