@@ -27,7 +27,7 @@ class Main extends React.Component {
         this.handleAmountChange = this.handleAmountChange.bind(this);
     }
 
-    // 表示するデータを取得する
+    // getでメイン画面に表示するデータを取得する
     componentDidMount() {
         // TODO:将来的に年月のparameterも渡せるようにする
         axios.get('api/main', {
@@ -52,12 +52,14 @@ class Main extends React.Component {
             })
     }
 
+    // 入力したitemを取得
     handleItemChange(event) {
         this.setState({
             item_value: event.target.value
         });
     }
 
+    // 入力したamountを取得
     handleAmountChange(event) {
         this.setState({
             amount_value: event.target.value
@@ -95,6 +97,7 @@ class Main extends React.Component {
         })
     }
 
+    // post時のパラメーターを指定
     setExpenseValue() {
         this.setState({
             title: '支出',
