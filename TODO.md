@@ -1,13 +1,12 @@
 # TODOリスト
-- remember cookieの期限を変える
-    - 1ヶ月にしてみる
-    - blogにも追加
 
 ## 本番環境にデプロイする
 - 最低限のGCPの学習
-    - とりあえず今回はGKEにデプロイ(自分でGCP環境構築)
     - LaravelをGKEにデプロイする方法
+        - https://pusher.com/tutorials/laravel-kubernetes-google-cloud
 - インフラ構成図の作成
+    - https://app.diagrams.net/?splash=0&libs=gcp
+    - 参考(https://www.google.com/search?q=GCP+%E6%A7%8B%E6%88%90%E5%9B%B3&sxsrf=ALeKk01oON8oBeecKBa0jdyrzbMUAj5b9Q:1610542612251&source=lnms&tbm=isch&sa=X&ved=2ahUKEwj7wbHi-pjuAhVXfXAKHYfHAvoQ_AUoAXoECBIQAw)
 - GKEのインフラを設定する
     - lbとか、必要なやつ定義
     - ネットワークのビデオ見つつ、ブログに手順まとめつつ(LaravelアプリをGKEにデプロイする手順を完全解説！)
@@ -83,3 +82,5 @@
         - propsとかの概念
 - html,jsx等の不要な属性を削除する
 - consoleに表示されているエラーを解消する
+- remember cookieの期限を変える
+    - 1ヶ月にしてみる
