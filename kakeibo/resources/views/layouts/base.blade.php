@@ -2,8 +2,9 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    @yield('head_info')
     <title>@yield('title')</title>
-    <script src="js/app.js"></script>
     {{-- semantic ui --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
@@ -18,7 +19,7 @@
                 <a href="/regular" class="item">定期収支</a>
                 <div class="right menu">
                     <a href="#" class="ui item">{{ $login_user_name }}</a>
-                    <a href="/logout" class="ui item">Logout</a>
+                    <a href="/logout" class="ui item">ログアウト</a>
                 </div>
             </div>
         </div>
@@ -35,5 +36,6 @@
     <div class="ui container">
         @yield('content')   
     </div>
+    @yield('js_script')
 </body>
 </html>

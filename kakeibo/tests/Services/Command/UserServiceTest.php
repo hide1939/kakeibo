@@ -66,4 +66,16 @@ class UserServiceTest extends TestCase
             User::where('email', 'test@example.com')->first()->password
         ));
     }
+
+    /** @test */
+    public function registでapi_tokenを登録できる()
+    {
+        $this->service->regist([
+            'name' => 'test君',
+            'email' => 'test@example.com',
+            'password' => 'password@123',
+        ]);
+
+        $this->assertNotNull(User::where('email', 'test@example.com')->first()->api_token);
+    }
 }

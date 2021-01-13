@@ -1,25 +1,24 @@
 # TODOリスト
 
-## SPA化の前に最低限のフロントデザインを作る
-- Reactのセットアップ
-    - Laravelの本参考に
-    - 公式も
-- Reactを使って単一機能のSPA化
-    - 細かくタスクを洗い出す(敵を倒せる大きさに分割する)
-    - とりあえず単一機能だけで良い
-    - 作れたらデプロイフローに移る
-
 ## 本番環境にデプロイする
-- 最低限のAWSの学習
-    - Udemy、本
+- 最低限のGCPの学習
+    - LaravelをGKEにデプロイする方法
+        - https://pusher.com/tutorials/laravel-kubernetes-google-cloud
 - インフラ構成図の作成
-- AWSのインフラを設定する
+    - https://app.diagrams.net/?splash=0&libs=gcp
+    - 参考(https://www.google.com/search?q=GCP+%E6%A7%8B%E6%88%90%E5%9B%B3&sxsrf=ALeKk01oON8oBeecKBa0jdyrzbMUAj5b9Q:1610542612251&source=lnms&tbm=isch&sa=X&ved=2ahUKEwj7wbHi-pjuAhVXfXAKHYfHAvoQ_AUoAXoECBIQAw)
+- GKEのインフラを設定する
+    - lbとか、必要なやつ定義
+    - ネットワークのビデオ見つつ、ブログに手順まとめつつ(LaravelアプリをGKEにデプロイする手順を完全解説！)
+- とりあえず手動でデプロイしてみる
 - デプロイ用の設定ファイルおよび環境変数のファイルを作成
     - deployディレクトリを作成
         - deployディレクトリ内に以下のファイル群を配置
     - Dockerfile
         - アプリのファイルをCOPY
     - kubernetesの定義ファイル
+        - deployment.yml?
+        - service.yml?
     - php.ini
         - production用の設定
         - opcacheの導入
@@ -31,6 +30,7 @@
     - 自動デプロイ
     - GitHub上でmainにマージしたら本番に自動リリースされる
 - 本番デプロイを行う
+- 画面で確認
 
 ## 追加機能の開発(デプロイ後にアジャイル的に行う)
 - 認証機能を作る
@@ -63,3 +63,24 @@
 - プロフィール画像登録画面のUIを作る
     - semantic uiでデザイン
     - リンクも適切に張る
+- コードのリファクタリング
+- jsファイルのリファクタリング
+    - component.jsとかいらん？
+- 別の環境にデプロイしてみる -> 次のアプリに移る前についでに勉強しておく
+    - AWS
+    - レンタルサーバー
+    - Firebase
+- メイン画面も定期収支画面と同じようなjs(React)にする
+- 次の月へボタンを押したら次の月(前の月)へ移動できるようにする
+    - htmlの追加実装
+        - 前の月・次の月へ移動するボタン
+        - Reactで実装
+- Reactのコードのブラッシュアップをする
+    - componentを意識してファイルの切り分け
+        - 今はmain画面のjsを一つのファイルにまとめてるけど、これでいいの？
+        - もっと細かく分割する必要がある？
+        - propsとかの概念
+- html,jsx等の不要な属性を削除する
+- consoleに表示されているエラーを解消する
+- remember cookieの期限を変える
+    - 1ヶ月にしてみる
