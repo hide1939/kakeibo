@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels: #podに指定するlabel
+    app: kakeibo
+  name: kakeibo
+spec:
+  replicas: 2 #作成するpod数
+  selector:
+    matchLabels:
+      app: kakeibo
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template: #podの定義
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: kakeibo
+    spec:
+      containers:
+      - image: gcr.io/myproject-301613/kakeibo:v1
+        imagePullPolicy: Always
+        name: kakeibo
+        ports: 
+          - containerPort: 80
+        resources: #cpu,memoryの使用するリソースの上限を指定
+          limits:
+            cpu: 50m
+            memory: 100Mi
+          requests:
+            cpu: 50m
+            memory: 100Mi
