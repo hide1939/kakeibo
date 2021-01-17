@@ -22,7 +22,7 @@ spec:
         app: kakeibo
     spec:
       containers:
-      - image: gcr.io/myproject-301613/kakeibo:v1
+      - image: gcr.io/myproject-301613/kakeibo:v3
         imagePullPolicy: Always
         name: kakeibo
         ports: 
