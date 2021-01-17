@@ -59,3 +59,7 @@ gcloud container clusters delete [cluster name]
 
 # memo
 - HTTP(S)ロードバランサはプロキシサーバーで、このトピックの LoadBalancerタイプのServiceで説明するネットワークロードバランサとは根本的に異なります。(https://cloud.google.com/kubernetes-engine/docs/concepts/service?hl=ja)
+
+- GKEの3つのロードバランサ(https://cloud.google.com/kubernetes-engine/docs/concepts/network-overview?hl=ja#ext-lb)
+
+- GKEでホストされているHTTP(S)サービスを公開する場合は、負荷分散としてHTTP(S)負荷分散の利用をおすすめします(https://cloud.google.com/kubernetes-engine/docs/tutorials/http-balancer?hl=ja)
