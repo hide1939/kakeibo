@@ -21,6 +21,9 @@ package app to docker images
 - build Docker image
 docker build --file=deploy/Dockerfile -t kakeibo .
 
+- authenticate the Docker CLI (command line interface) tool to the container registry
+gcloud auth configure-docker
+
 - tag images
 docker tag kakeibo gcr.io/myproject-301613/kakeibo:v1(tag name)
 docker tag kakeibo gcr.io/myproject-301613/kakeibo:latest
@@ -42,3 +45,17 @@ kubectl expose deployment kakeibo --port 80 --target-port=80 --type NodePort --d
 - apply service.yaml
 cd deploy/k8s
 kubectl apply -f service.yaml
+
+- check service specification
+kubectl get service -o yaml
+
+- get an "outside world" link to our application
+kubectl get services
+kubectl get services kakeibo
+
+- delete cluster
+gcloud container clusters delete [cluster name]
+
+
+# memo
+- HTTP(S)ロードバランサはプロキシサーバーで、このトピックの LoadBalancerタイプのServiceで説明するネットワークロードバランサとは根本的に異なります。(https://cloud.google.com/kubernetes-engine/docs/concepts/service?hl=ja)
