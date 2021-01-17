@@ -4,7 +4,7 @@ metadata:
   creationTimestamp: null
   labels: #podに指定するlabel
     app: kakeibo
-  name: kakeibo
+  name: kakeibo #Deploymentの名前
 spec:
   replicas: 2 #作成するpod数
   selector:
@@ -19,14 +19,14 @@ spec:
     metadata:
       creationTimestamp: null
       labels:
-        app: kakeibo
+        app: kakeibo #各podに付けるラベル名
     spec:
       containers:
-      - image: gcr.io/myproject-301613/kakeibo:v3
+      - image: gcr.io/myproject-301613/kakeibo:v3 #コンテナの作成に使用するイメージ(GCRからpullしてくる)
         imagePullPolicy: Always
-        name: kakeibo
+        name: kakeibo #ポッドが1つのコンテナkakeiboを実行する
         ports: 
-          - containerPort: 80
+          - containerPort: 80 #Deploymentでは、pod用にポート80を開く(トラフィックを送受信する)
         resources: #cpu,memoryの使用するリソースの上限を指定
           limits:
             cpu: 50m
