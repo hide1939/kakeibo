@@ -15,6 +15,11 @@ User::factory()->create();
 # technical memo
 
 ## How to deploy this app to GKE
+- before making some files, setup some infrastructures on GCP
+    - cluster
+    - cloudSQL
+    - LoadBalancer
+
 - make Dockerfile
 package app to docker images
 
