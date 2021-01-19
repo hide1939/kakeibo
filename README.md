@@ -33,7 +33,7 @@ docker push gcr.io/myproject-301613/kakeibo:v1
 docker push gcr.io/myproject-301613/kakeibo:latest
 
 - create deployment.yml(kubernetes manifest file)
-kubectl create deployment kakeibo --image=gcr.io/[project-id]/kakeibo:v1 --dry-run -o yaml > deployment.yaml
+kubectl create deployment kakeibo --image=gcr.io/myproject-301613/kakeibo:v1 --dry-run -o yaml > deployment.yaml
 
 - apply deployment.yaml
 cd deploy/k8s
@@ -46,12 +46,21 @@ kubectl expose deployment kakeibo --port 80 --target-port=80 --type NodePort --d
 cd deploy/k8s
 kubectl apply -f service.yaml
 
+- if backends is HEALTHY, it's ok
+
 - check service specification
 kubectl get service -o yaml
 
 - get an "outside world" link to our application
 kubectl get services
 kubectl get services kakeibo
+
+- setting permission
+Laravelをインストールした後に、多少のパーミッションの設定が必要。storage下とbootstrap/cacheディレクトリをWebサーバから書き込み可能にする必要あり。
+    - 二つのコンテナの両方に入ったところで以下のコマンドを実行
+        - chmod 777 storage/
+        - chmod 777 bootstrap/cache/
+
 
 - delete cluster
 gcloud container clusters delete [cluster name]
