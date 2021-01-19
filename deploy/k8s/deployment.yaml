@@ -22,7 +22,7 @@ spec:
         app: kakeibo #各podに付けるラベル名
     spec:
       containers:
-      - image: gcr.io/myproject-301613/kakeibo:v4 #コンテナの作成に使用するイメージ(GCRからpullしてくる)
+      - image: gcr.io/myproject-301613/kakeibo:v5 #コンテナの作成に使用するイメージ(GCRからpullしてくる)
         imagePullPolicy: Always
         name: kakeibo #ポッドが1つのコンテナkakeiboを実行する
         ports: 

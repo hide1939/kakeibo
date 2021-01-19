@@ -40,6 +40,12 @@ docker push gcr.io/myproject-301613/kakeibo:latest
 - create deployment.yml(kubernetes manifest file)
 kubectl create deployment kakeibo --image=gcr.io/myproject-301613/kakeibo:v1 --dry-run -o yaml > deployment.yaml
 
+- get credentials to contact(connect) GKE cluster
+gcloud container clusters get-credentials [cluster-name]
+
+- at the second time, update deployment.yml
+    - update image tag
+
 - apply deployment.yaml
 cd deploy/k8s
 kubectl apply -f deployment.yaml
@@ -63,8 +69,8 @@ kubectl get services kakeibo
 - setting permission
 Laravelをインストールした後に、多少のパーミッションの設定が必要。storage下とbootstrap/cacheディレクトリをWebサーバから書き込み可能にする必要あり。
     - 二つのコンテナの両方に入ったところで以下のコマンドを実行
-        - chmod 777 storage/
-        - chmod 777 bootstrap/cache/
+        - chmod -R 777 storage/
+        - chmod -R 777 bootstrap/cache/
 
 
 - delete cluster
