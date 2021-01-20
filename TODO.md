@@ -1,16 +1,14 @@
 # TODOリスト
 
 ## 本番環境にデプロイする
-- 最低限のGCPの学習
-    - LaravelをGKEにデプロイする方法
-        - https://pusher.com/tutorials/laravel-kubernetes-google-cloud
+- Qiita等参考に手動でGKEにデプロイする
+    - 実装の流れをブログに
 - インフラ構成図の作成
     - https://app.diagrams.net/?splash=0&libs=gcp
     - 参考(https://www.google.com/search?q=GCP+%E6%A7%8B%E6%88%90%E5%9B%B3&sxsrf=ALeKk01oON8oBeecKBa0jdyrzbMUAj5b9Q:1610542612251&source=lnms&tbm=isch&sa=X&ved=2ahUKEwj7wbHi-pjuAhVXfXAKHYfHAvoQ_AUoAXoECBIQAw)
 - GKEのインフラを設定する
     - lbとか、必要なやつ定義
     - ネットワークのビデオ見つつ、ブログに手順まとめつつ(LaravelアプリをGKEにデプロイする手順を完全解説！)
-- とりあえず手動でデプロイしてみる
 - デプロイ用の設定ファイルおよび環境変数のファイルを作成
     - deployディレクトリを作成
         - deployディレクトリ内に以下のファイル群を配置
@@ -84,3 +82,15 @@
 - consoleに表示されているエラーを解消する
 - remember cookieの期限を変える
     - 1ヶ月にしてみる
+- sslでアクセスできるようにする
+    - 何すればいいの？
+- 本番環境にredisを導入する
+- DNS導入する
+    - urlでアクセスできるように
+    - hostsしなくていいように
+- Dockerfile
+    - より綺麗で正しい書き方を追求する
+        - RUN sed -it導入
+        - apacheファイル全体をコピーするのではなく、一部のみ書き換える
+            - この方が効率がいい？
+- .dockerignoreを導入する
