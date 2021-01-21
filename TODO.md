@@ -1,6 +1,8 @@
 # TODOリスト
 - serviceの4つのタイプについて頭を整理
 - deployment.yamlとservice.yamlのコードを全て理解
+- cloudRunと接続する
+    - envに設定(最終的には環境変数にするけど)
 
 ## 本番環境にデプロイする
 - インフラ構成図の作成
