@@ -31,6 +31,7 @@ package the app to docker image
 docker build --file=deploy/Dockerfile -t kakeibo .
 
 - get credentials to contact(connect) to GKE cluster
+    - to get this command have to go gcp > gke > cluster > operation > connection
 gcloud container clusters get-credentials [cluster-name]
 
 - authenticate the Docker CLI (command line interface) tool to the container registry
