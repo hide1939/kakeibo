@@ -1,22 +1,22 @@
-# about this app
-- This is my original kakeibo app. I made this to make my skills and knowledges up.
+# About
+- This is my original kakeibo(household expenses) app. I made this to make my skills and knowledges about programming, gcp and some other services up.
 
 
-# Laravel8.x memo
+# Laravel8.x note
 - routing
 how to write routing
 Route::get('/regist', [RegistController::class, 'create']);
 
 - factory
-how to write routing
+how to write factory
 User::factory()->create();
 
 
-# technical memo
+# Technical note
 
 ## How to deploy this app to GKE
-- before making some files, setup some infrastructures on GCP
-    - Look this!
+- before making some manifest files, setup some infrastructures on GCP
+    - basically, look this
         - https://cloud.google.com/kubernetes-engine/docs/quickstart?hl=ja
     - cluster
         - gcloud container clusters create cluster-name --num-nodes=1
@@ -25,42 +25,42 @@ User::factory()->create();
     - LoadBalancer
 
 - make Dockerfile
-package app to docker images
+package the app to docker image
 
 - build Docker image
 docker build --file=deploy/Dockerfile -t kakeibo .
+
+- get credentials to contact(connect) to GKE cluster
+gcloud container clusters get-credentials [cluster-name]
 
 - authenticate the Docker CLI (command line interface) tool to the container registry
 gcloud auth configure-docker
 
 - get project id
-    - gcloud config get-value project
+gcloud config get-value project
 
 - tag images
-docker tag kakeibo gcr.io/myproject-301613/kakeibo:v1(tag name)
-docker tag kakeibo gcr.io/myproject-301613/kakeibo:latest
+docker tag kakeibo gcr.io/[project id]/kakeibo:v1(tag name)
+docker tag kakeibo gcr.io/[project id]/kakeibo:latest
 
 - push Docker images to GCR
-docker push gcr.io/myproject-301613/kakeibo:v1
-docker push gcr.io/myproject-301613/kakeibo:latest
+docker push gcr.io/[project id]/kakeibo:v1
+docker push gcr.io/[project id]/kakeibo:latest
 
-- create deployment.yml(kubernetes manifest file)
-kubectl create deployment kakeibo --image=gcr.io/myproject-301613/kakeibo:v1 --dry-run -o yaml > deployment.yaml
+- create deployment.yaml(kubernetes manifest file)
+kubectl create deployment kakeibo --image=gcr.io/[project id]/kakeibo:v1 --dry-run -o yaml > deployment.yaml
 
-- get credentials to contact(connect) GKE cluster
-gcloud container clusters get-credentials [cluster-name]
+- at the second time and after, have to update deployment.yaml to update pods
+    - have to update image tag version
 
-- at the second time, update deployment.yml
-    - update image tag
-
-- apply deployment.yaml
+- apply deployment.yaml(give instructions to master node to pull image to  the pods and make pods and container process)
 cd deploy/k8s
 kubectl apply -f deployment.yaml
 
 - check deployment
     - kubectl get deployments
 
-- create service.yml
+- create service.yml(NodePort Type)
 kubectl expose deployment kakeibo --port 80 --target-port=80 --type NodePort --dry-run -o yaml > service.yaml
 
 - apply service.yaml
@@ -76,18 +76,18 @@ kubectl get service -o yaml
 kubectl get services
 kubectl get services kakeibo
 
-- setting permission
+- setting permission to Laravel
 Laravelをインストールした後に、多少のパーミッションの設定が必要。storage下とbootstrap/cacheディレクトリをWebサーバから書き込み可能にする必要あり。
-    - 二つのコンテナの両方に入ったところで以下のコマンドを実行
+after installing laravel, you have to setup permissions to the laravel directory. have to make under "storage" and "bootstrap/cache" writable
+    - use this command afterr enter pod and container
         - chmod -R 777 storage/
         - chmod -R 777 bootstrap/cache/
-
 
 - delete cluster
 gcloud container clusters delete [cluster name]
 
 
-# memo
+# Memo
 - HTTP(S)ロードバランサはプロキシサーバーで、このトピックの LoadBalancerタイプのServiceで説明するネットワークロードバランサとは根本的に異なります。(https://cloud.google.com/kubernetes-engine/docs/concepts/service?hl=ja)
 
 - GKEの3つのロードバランサ(https://cloud.google.com/kubernetes-engine/docs/concepts/network-overview?hl=ja#ext-lb)
@@ -100,10 +100,20 @@ gcloud container clusters delete [cluster name]
     - インターネットからアプリケーションにアクセスする際のルールと負荷分散を定義
     - アプリケーションをデプロイしたら、ユーザーがアクセスできるように、そのアプリケーションをインターネットに公開する必要があります
     - アプリケーションを公開するには、Service を作成します
-    - Service は、アプリケーションと外部トラフィックに公開するKubernetesリソース
+    - Serviceは、アプリケーションと外部トラフィックに公開するKubernetesリソース
+    - podの集合にアクセスするための経路を定義
 
 - 作成したGKEクラスタにアプリをデプロイするには、2つのKubernetesオブジェクトが必要です
     - アプリを定義するDeployment
         - Deploymentを使用して、ReplicaSetとそれに関連するPodの作成と更新を行います。
     - アプリへのアクセス方法を定義するService
-        - Serviceは、一連のPodに単一のアクセスポイントを提供します
+        - Serviceは、一連のPodに「単一のアクセスポイント」を提供します
+
+- ノードプールは、クラスタ内で同じ構成を持つノードのグループ
+- プール内の各ノードにはKubernetesノードラベル cloud.google.com/gke-nodepoolが設定されます
+- クラスタの作成時に指定したノード数とノードタイプがデフォルトのノードプールになります。 その後、クラスタに別のサイズやタイプのカスタムノードプールを追加できます。特定のノードプール内のノードはすべて同一になります
+
+- Namespace 
+    - クラスタ内の入れ子となる仮想的なクラスタ
+        - クラスタが持つnamespace一覧
+            - kubectl get namespace

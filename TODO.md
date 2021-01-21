@@ -1,22 +1,10 @@
 # TODOリスト
 
 ## 本番環境にデプロイする
-- Qiita等参考に手動でGKEにデプロイする
-    - 実装の流れをブログに
 - インフラ構成図の作成
     - https://app.diagrams.net/?splash=0&libs=gcp
     - 参考(https://www.google.com/search?q=GCP+%E6%A7%8B%E6%88%90%E5%9B%B3&sxsrf=ALeKk01oON8oBeecKBa0jdyrzbMUAj5b9Q:1610542612251&source=lnms&tbm=isch&sa=X&ved=2ahUKEwj7wbHi-pjuAhVXfXAKHYfHAvoQ_AUoAXoECBIQAw)
-- GKEのインフラを設定する
-    - lbとか、必要なやつ定義
-    - ネットワークのビデオ見つつ、ブログに手順まとめつつ(LaravelアプリをGKEにデプロイする手順を完全解説！)
 - デプロイ用の設定ファイルおよび環境変数のファイルを作成
-    - deployディレクトリを作成
-        - deployディレクトリ内に以下のファイル群を配置
-    - Dockerfile
-        - アプリのファイルをCOPY
-    - kubernetesの定義ファイル
-        - deployment.yml?
-        - service.yml?
     - php.ini
         - production用の設定
         - opcacheの導入
