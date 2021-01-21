@@ -1,4 +1,6 @@
 # TODOリスト
+- serviceの4つのタイプについて頭を整理
+- deployment.yamlとservice.yamlのコードを全て理解
 
 ## 本番環境にデプロイする
 - インフラ構成図の作成
