@@ -1,20 +1,6 @@
 # TODOリスト
-- serviceの4つのタイプについて頭を整理
-- deployment.yamlとservice.yamlのコードを全て理解
-- cloudRunと接続する
-    - envに設定(最終的には環境変数にするけど)
 
 ## 本番環境にデプロイする
-- インフラ構成図の作成
-    - https://app.diagrams.net/?splash=0&libs=gcp
-    - 参考(https://www.google.com/search?q=GCP+%E6%A7%8B%E6%88%90%E5%9B%B3&sxsrf=ALeKk01oON8oBeecKBa0jdyrzbMUAj5b9Q:1610542612251&source=lnms&tbm=isch&sa=X&ved=2ahUKEwj7wbHi-pjuAhVXfXAKHYfHAvoQ_AUoAXoECBIQAw)
-- デプロイ用の設定ファイルおよび環境変数のファイルを作成
-    - php.ini
-        - production用の設定
-        - opcacheの導入
-            - アプリの高速化
-    - その他必要な設定ファイル(apache等)
-    - .env.productionを作成
 - .circleci/config.ymlの作成
     - 自動テスト
     - 自動デプロイ
@@ -86,3 +72,11 @@
         - apacheファイル全体をコピーするのではなく、一部のみ書き換える
             - この方が効率がいい？
 - .dockerignoreを導入する
+- deployment.yamlとservice.yamlのコードを全て理解
+- インフラ構成図の作成(READMEに貼る)
+    - https://app.diagrams.net/?splash=0&libs=gcp
+    - 参考(https://www.google.com/search?q=GCP+%E6%A7%8B%E6%88%90%E5%9B%B3&sxsrf=ALeKk01oON8oBeecKBa0jdyrzbMUAj5b9Q:1610542612251&source=lnms&tbm=isch&sa=X&ved=2ahUKEwj7wbHi-pjuAhVXfXAKHYfHAvoQ_AUoAXoECBIQAw)
+- php.iniの本番用ファイルを導入
+    - production用の設定
+    - opcacheの導入
+        - アプリの高速化
