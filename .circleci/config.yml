@@ -16,6 +16,10 @@ jobs:
             ls
             ls -a
             pwd
+      - run:
+          name: hoge
+          command: |
+            pwd
       # cache composer to speed up "composer install" at the second time and after
       - restore_cache:
           # search composer.lock cache 
