@@ -11,7 +11,11 @@ jobs:
       - checkout
       - run:
           name: change directory
-          command: cd kakeibo
+          command: |
+            cd kakeibo
+            ls
+            ls -a
+            pwd
       # cache composer to speed up "composer install" at the second time and after
       - restore_cache:
           # search composer.lock cache 
