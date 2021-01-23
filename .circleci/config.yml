@@ -6,10 +6,10 @@ jobs:
         environment:
       - image: circleci/mysql:5.7-ram
         environment:
-          MYSQL_ROOT_PASSWORD: root
-          MYSQL_DATABASE: test-database
-          MYSQL_USER: test-user
-          MYSQL_PASSWORD: test-pass
+          - MYSQL_ROOT_PASSWORD: root
+          - MYSQL_DATABASE: test-database
+          - MYSQL_USER: test-user
+          - MYSQL_PASSWORD: test-pass
     working_directory: ~/myProject
     steps:
       - checkout
