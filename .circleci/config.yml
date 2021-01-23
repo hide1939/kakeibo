@@ -6,6 +6,10 @@ jobs:
         environment:
       - image: circleci/mysql:5.7-ram
         environment:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: test-database
+          MYSQL_USER: test-user
+          MYSQL_PASSWORD: test-pass
     working_directory: ~/myProject
     steps:
       - checkout
@@ -25,6 +29,10 @@ jobs:
           key: composer-v1-{{ checksum "./kakeibo/composer.lock" }}
           paths:
             - kakeibo/vendor
+      - run:
+          name: migrate database for phpunit test
+          working_directory: kakeibo
+          command: php artisan migrate --env=testing
       - run:
           name: execute phpunit test
           working_directory: kakeibo
