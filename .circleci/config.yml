@@ -37,8 +37,8 @@ jobs:
       - run:
           name: install mysql php extension
           command: |
-            apt-get update
-            docker-php-ext-install pdo_mysql
+            sudo apt-get update
+            sudo docker-php-ext-install pdo_mysql
       - run:
           name: check extension second
           working_directory: kakeibo
