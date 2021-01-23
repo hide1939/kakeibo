@@ -80,3 +80,4 @@
     - production用の設定
     - opcacheの導入
         - アプリの高速化
+- circleciのファイルを完全に理解する
