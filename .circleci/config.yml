@@ -32,4 +32,5 @@ jobs:
             ls
             ls -a
             pwd
+            cat .env.testing
             vendor/bin/phpunit
