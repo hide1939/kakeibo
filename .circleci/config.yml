@@ -10,8 +10,8 @@ jobs:
     steps:
       - checkout
       - run:
-        name: change directory(cd)
-        command: working_directory kakeibo
+          name: change directory(cd)
+          command: working_directory kakeibo
       - run:
-        name: execute phpunit test
-        command: vendor/bin/phpunit
+          name: execute phpunit test
+          command: vendor/bin/phpunit
