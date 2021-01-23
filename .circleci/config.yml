@@ -46,7 +46,8 @@ jobs:
           command: |
             sudo apt-get update
             sudo apt-get install -y libfreetype6-dev libjpeg-dev libpng-dev
-            sudo docker-php-ext-install gd pdo_mysql --with-jpeg-dir=/usr/include/
+            sudo docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
+            sudo docker-php-ext-install gd pdo_mysql
       - run:
           name: check extension second
           working_directory: kakeibo
