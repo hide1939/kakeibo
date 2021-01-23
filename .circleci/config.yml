@@ -27,6 +27,7 @@ jobs:
             - kakeibo/vendor
       - run:
           name: execute phpunit test
+          working_directory: kakeibo
           command: |
             ls
             ls -a
