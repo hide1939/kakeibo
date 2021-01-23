@@ -12,4 +12,8 @@ jobs:
       - run:
           working_directory: kakeibo
           name: execute phpunit test
-          command: vendor/bin/phpunit
+          command: |
+            ls
+            ls -a
+            pwd
+            vendor/bin/phpunit
