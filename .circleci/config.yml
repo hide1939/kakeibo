@@ -35,7 +35,7 @@ jobs:
           command: |
             php -m
       - run:
-          name install mysql php extension
+          name: install mysql php extension
           command: docker-php-ext-install pdo_mysql
       - run:
           name: check extension second
