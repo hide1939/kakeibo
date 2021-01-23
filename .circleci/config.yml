@@ -37,10 +37,20 @@ jobs:
           paths:
             - kakeibo/vendor
       - run:
+          name: check extension
+          working_directory: kakeibo
+          command: |
+            php -m
+      - run:
           name: install mysql php extension
           command: |
             sudo apt-get update
             sudo docker-php-ext-install pdo_mysql
+      - run:
+          name: check extension second
+          working_directory: kakeibo
+          command: |
+            php -m
       - run:
           name: migrate database for phpunit test
           working_directory: kakeibo
