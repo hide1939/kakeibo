@@ -1,0 +1,17 @@
+version: 2
+jobs:
+  test:
+    docker:
+      - image: circleci/php:7.3
+        environment:
+      - image: circleci/mysql:5.7-ram
+        environment:
+    working_directory: ~/kakeibo
+    steps:
+      - checkout
+      - run
+        name: change directory(cd)
+        command: working_directory kakeibo
+      - run
+        name: execute phpunit test
+        command: vendor/bin/phpunit
