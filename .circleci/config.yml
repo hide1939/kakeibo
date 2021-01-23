@@ -9,9 +9,9 @@ jobs:
     working_directory: ~/kakeibo
     steps:
       - checkout
-      - run
+      - run:
         name: change directory(cd)
         command: working_directory kakeibo
-      - run
+      - run:
         name: execute phpunit test
         command: vendor/bin/phpunit
