@@ -13,20 +13,20 @@ jobs:
           name: change directory(cd)
           working_directory: kakeibo
       # cache composer to speed up "composer install" at the second time and after
-      - restore_cache:
-          # search composer.lock cache 
-          # if composer.lock was changed, this key will be fail
-          keys:
-          - composer-v1-{{ checksum "composer.lock" }}
-          # search new cache
-          - composer-v1-
-      - run: 
-          name: execute "composer install" to make vendor/
-          command: composer install -n --prefer-dist
-      - save_cache:
-          key: composer-v1-{{ checksum "composer.lock" }}
-          paths:
-            - vendor
+      # - restore_cache:
+      #     # search composer.lock cache 
+      #     # if composer.lock was changed, this key will be fail
+      #     keys:
+      #     - composer-v1-{{ checksum "composer.lock" }}
+      #     # search new cache
+      #     - composer-v1-
+      # - run: 
+      #     name: execute "composer install" to make vendor/
+      #     command: composer install -n --prefer-dist
+      # - save_cache:
+      #     key: composer-v1-{{ checksum "composer.lock" }}
+      #     paths:
+      #       - vendor
       - run:
           name: execute phpunit test
           command: |
