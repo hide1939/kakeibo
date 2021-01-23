@@ -4,9 +4,17 @@ jobs:
     docker:
       - image: circleci/php:7.3
         environment:
+          - APP_ENV=testing
+          - APP_KEY=base64:9tvXas6NOO2xwDWWvH9QuUjF5B/3asfbxx/Ejl8bQCo=
+          - DB_CONNECTION=mysql
+          # - DB_HOST=db-test
+          - DB_HOST=127.0.0.1
+          - DB_PORT=3306
+          - DB_DATABASE=test-database
+          - DB_USERNAME=test-user
+          - DB_PASSWORD=test-pass
       - image: circleci/mysql:5.7-ram
         environment:
-          - MYSQL_ROOT_PASSWORD: root
           - MYSQL_DATABASE: test-database
           - MYSQL_USER: test-user
           - MYSQL_PASSWORD: test-pass
