@@ -30,10 +30,6 @@ jobs:
           paths:
             - kakeibo/vendor
       - run:
-          name: migrate database for phpunit test
-          working_directory: kakeibo
-          command: php artisan migrate --env=testing
-      - run:
           name: check extension
           working_directory: kakeibo
           command: |
@@ -46,6 +42,10 @@ jobs:
           working_directory: kakeibo
           command: |
             php -m
+      - run:
+          name: migrate database for phpunit test
+          working_directory: kakeibo
+          command: php artisan migrate --env=testing
       - run:
           name: execute phpunit test
           working_directory: kakeibo
