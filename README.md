@@ -40,6 +40,9 @@ gcloud auth configure-docker
 - get project id
 gcloud config get-value project
 
+- check default region and zone
+gcloud compute project-info describe --project [project id]
+
 - tag images
 docker tag kakeibo gcr.io/[project id]/kakeibo:v1(tag name)
 docker tag kakeibo gcr.io/[project id]/kakeibo:latest
