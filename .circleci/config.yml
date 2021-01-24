@@ -76,6 +76,12 @@ jobs:
             docker tag kakeibo gcr.io/myproject-301613/kakeibo:${CIRCLE_BUILD_NUM}
             docker tag kakeibo gcr.io/myproject-301613/kakeibo:latest
       - run:
+          name: authorize Google Cloud SDK and setup default settings
+          command: |
+            echo $GCLOUD_SERVICE_KEY | gcloud auth activate-service-account --key-file=-
+            gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
+            gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
+      - run:
           name: push Docker images to GCR
           working_directory: myProject
           command: |
