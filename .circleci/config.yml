@@ -1,4 +1,4 @@
-version: 2
+version: 2.1
 jobs:
   build:
     docker:
@@ -58,6 +58,9 @@ jobs:
             - deploy
             - kakeibo
   deploy:
+    docker:
+      - image: google/cloud-sdk
+    working_directory: ~/myProject
     steps:
       - attach_workspace:
           at: myProject
