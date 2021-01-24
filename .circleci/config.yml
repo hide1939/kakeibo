@@ -57,7 +57,7 @@ jobs:
           paths: 
             - deploy
             - kakeibo
-  deploy-to-gke:
+  deploy:
     steps:
       - attach_workspace:
           at: myProject
