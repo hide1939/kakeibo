@@ -53,7 +53,7 @@ jobs:
           command: |
             vendor/bin/phpunit
       - persist_to_workspace:
-          root: myProject
+          root: .
           paths: 
             - deploy
             - kakeibo
