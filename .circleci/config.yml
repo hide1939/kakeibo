@@ -53,14 +53,14 @@ jobs:
           command: |
             vendor/bin/phpunit
       - persist_to_workspace:
-        root: myProject
-        paths: 
-          - deploy
-          - kakeibo
+          root: myProject
+          paths: 
+            - deploy
+            - kakeibo
   deploy-to-gke:
     steps:
       - attach_workspace:
-        at: myProject
+          at: myProject
       - run:
         name: check
         command: |
