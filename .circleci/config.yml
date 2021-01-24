@@ -60,13 +60,13 @@ jobs:
   deploy:
     docker:
       - image: google/cloud-sdk
-    working_directory: ~/myProject
+    # working_directory: ~/myProject
     steps:
       - attach_workspace:
           at: myProject
       - run:
-        name: check
-        command: |
-          pwd
-          ls
-          ls -a
+          name: check
+          command: |
+            pwd
+            ls
+            ls -a
