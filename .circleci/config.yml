@@ -57,7 +57,7 @@ jobs:
           paths: 
             - deploy
             - kakeibo
-  deploy:
+  deploy-to-gke:
     docker:
       - image: google/cloud-sdk
     # working_directory: ~/myProject
@@ -70,3 +70,11 @@ jobs:
             pwd
             ls
             ls -a
+workflows:
+  version: 2
+  build_test_and_deploy:
+    jobs:
+      - build-test
+      - deploy-to-gke:
+          requires:
+            - build-test
