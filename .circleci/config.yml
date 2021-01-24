@@ -60,12 +60,12 @@ jobs:
   deploy-to-gke:
     docker:
       - image: google/cloud-sdk
-    # working_directory: ~/myProject
     steps:
       - attach_workspace:
           at: myProject
       - run:
           name: check
+          working_directory: myProject
           command: |
             pwd
             ls
