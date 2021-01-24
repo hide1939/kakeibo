@@ -63,6 +63,8 @@ jobs:
     steps:
       - attach_workspace:
           at: myProject
+      - setup_remote_docker:
+          version: 19.03.13
       - run:
           name: build-docker-image
           working_directory: myProject
