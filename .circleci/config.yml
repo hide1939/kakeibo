@@ -78,7 +78,7 @@ jobs:
       - run:
           name: authorize Google Cloud SDK and setup default settings
           command: |
-            echo ${HOME}
+            # echo ${HOME}
             echo ${GCLOUD_SERVICE_KEY}
             echo ${GOOGLE_PROJECT_ID}
             echo ${GCLOUD_SERVICE_KEY} > ${HOME}/gcloud-service-key.json
