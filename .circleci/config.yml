@@ -101,15 +101,13 @@ jobs:
           working_directory: myProject
           command: |
             cat ./deploy/k8s/deployment.yaml
-            cat ./deploy/k8s/deployment.yaml | envsubst > ./deploy/k8s/deployment.yaml
+            cat ./deploy/k8s/deployment.yaml | envsubst > ${HOME}/deployment.yaml
             cat ./deploy/k8s/deployment.yaml
       - run:
           name: apply deployment.yaml
-          working_directory: myProject/deploy/k8s
           command: |
-            ls
-            cat deployment.yaml
-            kubectl apply -f deployment.yaml
+            cat ${HOME}/deployment.yaml
+            kubectl apply -f ${HOME}/deployment.yaml
       - run:
           name: apply service.yaml
           working_directory: myProject/deploy/k8s
