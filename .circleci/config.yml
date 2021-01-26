@@ -88,6 +88,10 @@ jobs:
             docker push gcr.io/myproject-301613/kakeibo:${CIRCLE_BUILD_NUM}
             docker push gcr.io/myproject-301613/kakeibo:latest
       - run:
+          name: connect to cluster
+          command: |
+            gcloud container clusters get-credentials cluster-kakeibo --zone us-west1-a --project ${GOOGLE_PROJECT_ID}
+      - run:
           name: install gettext to use envsubst
           command: |
             apt-get update
