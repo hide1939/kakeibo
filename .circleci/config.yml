@@ -90,8 +90,8 @@ jobs:
       - run:
           name: install gettext to use envsubst
           command: |
-            sudo apt-get update
-            sudo apt-get install -y gettext
+            apt-get update
+            apt-get install -y gettext
       - run:
           name: update deployment.yaml to new tag
           working_directory: myProject
