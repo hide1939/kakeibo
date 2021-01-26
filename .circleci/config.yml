@@ -101,6 +101,7 @@ jobs:
           working_directory: myProject
           command: |
             cat ./deploy/k8s/deployment.yaml | envsubst > ./deploy/k8s/deployment.yaml
+            cat ./deploy/k8s/deployment.yaml
       - run:
           name: apply deployment.yaml
           working_directory: myProject/deploy/k8s
