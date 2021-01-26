@@ -1,6 +1,6 @@
 version: 2.1
 jobs:
-  build-test:
+  build-and-test:
     docker:
       - image: circleci/php:7.3
         environment:
@@ -57,7 +57,7 @@ jobs:
           paths: 
             - deploy
             - kakeibo
-  deploy-to-gke:
+  deploy:
     docker:
       - image: google/cloud-sdk
     steps:
@@ -96,15 +96,22 @@ jobs:
           name: update deployment.yaml to new tag
           working_directory: myProject
           command: |
-            cat ./deploy/k8s/deployment.yaml
-            cat ./deploy/k8s/deployment.yaml | envsubst
             cat ./deploy/k8s/deployment.yaml | envsubst > ./deploy/k8s/deployment.yaml
-            cat ./deploy/k8s/deployment.yaml
+      - run:
+          name: apply deployment.yaml
+          working_directory: myProject/deploy/k8s
+          command: |
+            kubectl apply -f deployment.yaml
+      - run:
+          name: apply service.yaml
+          working_directory: myProject/deploy/k8s
+          command: |
+            kubectl apply -f service.yaml
 workflows:
   version: 2
   build_test_and_deploy:
     jobs:
-      - build-test
-      - deploy-to-gke:
+      - build-and-test
+      - deploy:
           requires:
-            - build-test
+            - build-and-test
