@@ -88,6 +88,11 @@ jobs:
             docker push gcr.io/myproject-301613/kakeibo:${CIRCLE_BUILD_NUM}
             docker push gcr.io/myproject-301613/kakeibo:latest
       - run:
+          name: install gettext to use envsubst
+          command: |
+            sudo apt-get update
+            sudo apt-get install -y gettext
+      - run:
           name: update deployment.yaml to new tag
           working_directory: myProject
           command: |
