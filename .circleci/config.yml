@@ -101,7 +101,7 @@ jobs:
           name: apply deployment.yaml
           working_directory: myProject/deploy/k8s
           command: |
-            pwd
+            kubectl get nodes
             kubectl apply -f deployment.yaml
       - run:
           name: apply service.yaml
