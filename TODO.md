@@ -2,6 +2,7 @@
 
 ## 本番環境にデプロイする
 - .circleci/config.ymlの作成
+    - envsubstがうまく行ってない？envsubstの後にcatしたら何も表示されない
     - 自動デプロイ
     - GitHub上でmainにマージしたら本番に自動リリースされる
 - 画面で確認
