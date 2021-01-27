@@ -51,6 +51,7 @@ jobs:
           name: execute phpunit test
           working_directory: kakeibo
           command: |
+            ls -a
             vendor/bin/phpunit
       - persist_to_workspace:
           root: .
