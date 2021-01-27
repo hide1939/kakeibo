@@ -5,7 +5,7 @@ jobs:
       - image: circleci/php:7.3
         environment:
           - APP_ENV: testing
-          - APP_KEY: base64:9tvXas6NOO2xwDWWvH9QuUjF5B/3asfbxx/Ejl8bQCo=
+          - APP_KEY: ${APP_KEY_FOR_TEST}
           - DB_CONNECTION: mysql
           - DB_HOST: 127.0.0.1
           - DB_PORT: 3306
@@ -50,8 +50,7 @@ jobs:
       - run:
           name: execute phpunit test
           working_directory: kakeibo
-          command: |
-            vendor/bin/phpunit
+          command: vendor/bin/phpunit
       - persist_to_workspace:
           root: .
           paths: 
@@ -104,22 +103,18 @@ jobs:
             docker push gcr.io/myproject-301613/kakeibo:latest
       - run:
           name: connect to cluster
-          command: |
-            gcloud container clusters get-credentials cluster-kakeibo --zone us-west1-a --project ${GOOGLE_PROJECT_ID}
+          command: gcloud container clusters get-credentials cluster-kakeibo --zone us-west1-a --project ${GOOGLE_PROJECT_ID}
       - run:
           name: update deployment.yaml to new tag
           working_directory: myProject
-          command: |
-            cat ./deploy/k8s/deployment.yaml | envsubst > ${HOME}/deployment.yaml
+          command: cat ./deploy/k8s/deployment.yaml | envsubst > ${HOME}/deployment.yaml
       - run:
           name: apply deployment.yaml
-          command: |
-            kubectl apply -f ${HOME}/deployment.yaml
+          command: kubectl apply -f ${HOME}/deployment.yaml
       - run:
           name: apply service.yaml
           working_directory: myProject/deploy/k8s
-          command: |
-            kubectl apply -f service.yaml
+          command: kubectl apply -f service.yaml
 workflows:
   version: 2
   build_test_and_deploy:

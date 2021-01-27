@@ -90,6 +90,9 @@ after installing laravel, you have to setup permissions to the laravel directory
 - delete cluster
 gcloud container clusters delete [cluster name]
 
+- to know the details of how to deploy to GKE
+    - read this blog post
+        - url
 
 # Memo
 - HTTP(S)ロードバランサはプロキシサーバーで、このトピックの LoadBalancerタイプのServiceで説明するネットワークロードバランサとは根本的に異なります。(https://cloud.google.com/kubernetes-engine/docs/concepts/service?hl=ja)
