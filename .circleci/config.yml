@@ -72,12 +72,8 @@ jobs:
             apt-get install -y gettext
       - run:
           name: make env
-          working_directory: myProject/kakeibo
-          command: |
-            ls
-            pwd
-            ls -a
-            cat .env.production | envsubst > .env
+          working_directory: myProject
+          command: cat .deploy/.env.production | envsubst > .kakeibo/.env
       - run: 
           name: setting permission to Laravel
           working_directory: myProject/kakeibo
