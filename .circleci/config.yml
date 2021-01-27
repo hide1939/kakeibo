@@ -73,7 +73,7 @@ jobs:
       - run:
           name: make env
           working_directory: myProject
-          command: cat .deploy/.env.production | envsubst > .kakeibo/.env
+          command: cat .deploy/env/.env.production | envsubst > .kakeibo/.env
       - run: 
           name: setting permission to Laravel
           working_directory: myProject/kakeibo
