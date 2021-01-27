@@ -66,6 +66,21 @@ jobs:
       - setup_remote_docker:
           version: 19.03.13
       - run:
+          name: install gettext to use envsubst
+          command: |
+            apt-get update
+            apt-get install -y gettext
+      - run:
+          name: make env
+          working_directory: myProject/kakeibo
+          command: cat .env.production | envsubst > .env
+      - run: 
+          name: setting permission to Laravel
+          working_directory: myProject/kakeibo
+          command: |
+            chmod -R 777 storage/
+            chmod -R 777 bootstrap/cache/
+      - run:
           name: build-docker-image
           working_directory: myProject
           command: docker build --file=deploy/Dockerfile -t kakeibo .
@@ -91,11 +106,6 @@ jobs:
           name: connect to cluster
           command: |
             gcloud container clusters get-credentials cluster-kakeibo --zone us-west1-a --project ${GOOGLE_PROJECT_ID}
-      - run:
-          name: install gettext to use envsubst
-          command: |
-            apt-get update
-            apt-get install -y gettext
       - run:
           name: update deployment.yaml to new tag
           working_directory: myProject
