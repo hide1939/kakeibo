@@ -5,7 +5,7 @@ jobs:
       - image: circleci/php:7.3
         environment:
           - APP_ENV: testing
-          - APP_KEY: ${APP_KEY_FOR_TEST}
+          - APP_KEY: base64:9tvXas6NOO2xwDWWvH9QuUjF5B/3asfbxx/Ejl8bQCo=
           - DB_CONNECTION: mysql
           - DB_HOST: 127.0.0.1
           - DB_PORT: 3306
