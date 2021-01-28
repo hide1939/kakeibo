@@ -1,5 +1,7 @@
 # TODOリスト
 
+- commandsとworkflowでcircleciを整理する
+
 ## デプロイについて記事にまとめる
 - LaravelアプリをGKEにデプロイする方法
 
