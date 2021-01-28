@@ -1,6 +1,8 @@
 # TODOリスト
 
 - commandsとworkflowでcircleciを整理する
+- config.ymlの中身を理解
+- kubernetesのファイルの中身を理解
 
 ## デプロイについて記事にまとめる
 - LaravelアプリをGKEにデプロイする方法
