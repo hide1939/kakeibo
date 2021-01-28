@@ -22,20 +22,21 @@ jobs:
       - checkout
       # cache composer to speed up "composer install" at the second time and after
       - restore_cache:
-          # search composer.lock cache 
+          # search the cache of composer.lock 
           # if composer.lock was changed, this key will be fail
           keys:
-          - composer-v1-{{ checksum "./kakeibo/composer.lock" }}
-          # search new cache
-          - composer-v1-
+          # checksum "file" = hash value of "file"
+          - composer-cache-{{ checksum "./kakeibo/composer.lock" }}
       - run: 
           name: execute "composer install" to make vendor/
           working_directory: kakeibo
           command: composer install -n --prefer-dist
       - save_cache:
-          key: composer-v1-{{ checksum "./kakeibo/composer.lock" }}
+          # chache name
+          key: composer-cache-{{ checksum "./kakeibo/composer.lock" }}
+          # cache file
           paths:
-            - kakeibo/vendor
+            - ./kakeibo/vendor
       - run:
           name: install php extension to execute phpunit test
           command: |
@@ -48,9 +49,16 @@ jobs:
           working_directory: kakeibo
           command: php artisan migrate --env=testing
       - run:
-          name: execute phpunit test
+          name: execute phpunit test with measuring coverage
           working_directory: kakeibo
-          command: vendor/bin/phpunit
+          command: vendor/bin/phpunit --coverage-html ${HOME}/coverage --log-junit ${HOME}/test/result.xml
+      - store_test_results:
+          path: ${HOME}/test
+      - store_artifacts:
+          path: ${HOME}/test
+      - store_artifacts:
+          # store test coverage
+          path: ${HOME}/coverage
       - persist_to_workspace:
           root: .
           paths: 

@@ -88,3 +88,4 @@
 - GitHub上でmainにマージしたら本番に自動リリースされるようにconfig.ymlに設定
 - envとかの秘匿すべき情報は全てcircleciの環境変数に設定する
 - Laravelデフォルトの物でも、不要なファイルは削除する
+- circleciでテストのカバレッジを保存する。テストの結果も保存する(artifacts)
