@@ -53,11 +53,14 @@ jobs:
           working_directory: kakeibo
           command: vendor/bin/phpunit --coverage-html tmp/coverage --log-junit tmp/test/result.xml
       - store_test_results:
+          working_directory: kakeibo
           path: tmp/test
       - store_artifacts:
+          working_directory: kakeibo
           path: tmp/test
       - store_artifacts:
           # store test coverage
+          working_directory: kakeibo
           path: tmp/coverage
       - persist_to_workspace:
           root: .
