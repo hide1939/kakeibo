@@ -1,13 +1,13 @@
 apiVersion: apps/v1 #(必須)どのバージョンのKubernetesAPIを利用してオブジェクトを作成するか
 kind: Deployment #(必須)どの種類のオブジェクトを作成するか
 metadata: #(必須)オブジェクトを一意に特定するための情報
-  creationTimestamp: null
+  creationTimestamp: null #records the time of creation
   labels: #podに指定するlabel
     app: kakeibo
   name: kakeibo #Deploymentの名前
 spec: #(必須)オブジェクトの望ましい状態
   replicas: 2 #作成するpod数
-  selector:
+  selector: #Deploymentが管理するPodのラベルを定義
     matchLabels:
       app: kakeibo
   strategy:
