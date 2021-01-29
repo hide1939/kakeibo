@@ -57,7 +57,6 @@ jobs:
       - store_artifacts:
           path: kakeibo/tmp/test
       - store_artifacts:
-          # store test coverage
           path: kakeibo/tmp/coverage
       - persist_to_workspace:
           root: .
