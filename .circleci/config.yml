@@ -81,25 +81,25 @@ commands:
     steps:
       - attach_workspace:
           at: myProject
-  - setup_remote_docker:
+  setup_docker:
     description: "setup docker"
     steps:
       - setup_remote_docker:
           version: 19.03.13
-  - install-envsubst:
+  install-envsubst:
     description: "install gettext to use envsubst"
     steps:
       - run:
           command: |
             apt-get update
             apt-get install -y gettext
-  - make-env:
+  make-env:
     description: "make env for production laravel app"
     steps:
       - run:
           working_directory: myProject
           command: cat ./deploy/env/.env.production | envsubst > ./kakeibo/.env
-  - setup-permission:
+  setup-permission:
     description: "setting permission to Laravel directory"
     steps:
       - run: 
@@ -107,13 +107,13 @@ commands:
           command: |
             chmod -R 777 storage/
             chmod -R 777 bootstrap/cache/
-  - build-docker-image:
+  build-docker-image:
     description: "make docker image that includes kakeibo's source code"
     steps:
       - run:
           working_directory: myProject
           command: docker build --file=deploy/Dockerfile -t kakeibo .
-  - tag-docker-image:
+  tag-docker-image:
     description: "tag docker image"
     steps:
       - run:
@@ -121,7 +121,7 @@ commands:
           command: |
             docker tag kakeibo gcr.io/myproject-301613/kakeibo:${CIRCLE_BUILD_NUM}
             docker tag kakeibo gcr.io/myproject-301613/kakeibo:latest
-  - authorize-google-cloud-sdk:
+  authorize-google-cloud-sdk:
     description: "authorize Google Cloud SDK and setup default settings"
     steps:  
       - run:
@@ -129,7 +129,7 @@ commands:
             echo ${GCLOUD_SERVICE_KEY} > ${HOME}/gcloud-service-key.json
             gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
             gcloud auth configure-docker
-  - push-docker-image-to-gcr:
+  push-docker-image-to-gcr:
     description: "push Docker images to GCR"
     steps:
       - run:
@@ -137,23 +137,23 @@ commands:
           command: |
             docker push gcr.io/myproject-301613/kakeibo:${CIRCLE_BUILD_NUM}
             docker push gcr.io/myproject-301613/kakeibo:latest
-  - connect-to-cluster:
+  connect-to-cluster:
     description: "connect to cluster that has kakeibo's node and pods"
     steps:
       - run:
           command: gcloud container clusters get-credentials cluster-kakeibo --zone us-west1-a --project ${GOOGLE_PROJECT_ID}
-  - update-deployment:
+  update-deployment:
     description: "update deployment.yaml to new docker image"
     steps:
       - run:
           working_directory: myProject
           command: cat ./deploy/k8s/deployment.yaml | envsubst > ${HOME}/deployment.yaml
-  - apply-deployment:
+  apply-deployment:
     description: "apply deployment.yaml"
     steps:
       - run:
           command: kubectl apply -f ${HOME}/deployment.yaml
-  - apply-service:
+  apply-service:
     description: "apply service.yaml"
     steps:
       - run:
@@ -175,7 +175,7 @@ jobs:
     executor: deploy-executor
     steps:
       - attach_workspace
-      - setup_remote_docker
+      - setup_docker
       - install-envsubst
       - make-env
       - setup-permission
