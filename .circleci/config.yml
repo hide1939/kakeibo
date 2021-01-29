@@ -68,7 +68,7 @@ commands:
           path: kakeibo/tmp/test
       - store_artifacts:
           path: kakeibo/tmp/test
-  persist_to_workspace:
+  store_workspace:
     description: "store workspace for the next job"
     steps:
       - persist_to_workspace:
@@ -76,7 +76,7 @@ commands:
           paths: 
             - deploy
             - kakeibo
-  attach_workspace:
+  use_previous_workspace:
     description: "use stored workspace at this job"
     steps:
       - attach_workspace:
@@ -170,11 +170,11 @@ jobs:
       - execute-migration
       - execute-phpunit
       - store-test-result
-      - persist_to_workspace
+      - store_workspace
   deploy:
     executor: deploy-executor
     steps:
-      - attach_workspace
+      - use_previous_workspace
       - setup_docker
       - install-envsubst
       - make-env
