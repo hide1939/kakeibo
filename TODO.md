@@ -1,6 +1,7 @@
 # TODOリスト
 
-- commandsとworkflowでcircleciを整理する
+- ブランチ指定/タグ指定filtersを指定
+    - masterマージかつ、tagをつけてからでしか本番デプロイできないように
 
 ## デプロイについて記事にまとめる
 - LaravelアプリをGKEにデプロイする方法
