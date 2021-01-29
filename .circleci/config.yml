@@ -56,6 +56,10 @@ jobs:
           path: kakeibo/tmp/test
       - store_artifacts:
           path: kakeibo/tmp/test
+      - run:
+          name: 表示
+          working_directory: kakeibo/tmp/coverage
+          command: ls
       - store_artifacts:
           path: kakeibo/tmp/coverage
       - persist_to_workspace:
