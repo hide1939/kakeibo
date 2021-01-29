@@ -51,13 +51,11 @@ jobs:
       - run:
           name: execute phpunit test with measuring coverage
           working_directory: kakeibo
-          command: vendor/bin/phpunit --coverage-html=tmp/coverage --log-junit tmp/test/result.xml
+          command: vendor/bin/phpunit --log-junit tmp/test/result.xml
       - store_test_results:
           path: kakeibo/tmp/test
       - store_artifacts:
           path: kakeibo/tmp/test
-      - store_artifacts:
-          path: kakeibo/tmp/coverage
       - persist_to_workspace:
           root: .
           paths: 
