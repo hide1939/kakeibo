@@ -1,9 +1,6 @@
 # TODOリスト
 
-- No artifact files found at /home/circleci/myProject/kakeibo/tmp/coverageが出てるので直す。とりあえず
 - commandsとworkflowでcircleciを整理する
-- config.ymlの中身を理解
-- kubernetesのファイルの中身を理解
 
 ## デプロイについて記事にまとめる
 - LaravelアプリをGKEにデプロイする方法
@@ -99,3 +96,5 @@
     - サイドカーコンテナ？
 - DNSを設定する
 - 本番環境でSSLで通信できるようにする
+- config.ymlの中身を理解
+- kubernetesのファイルの中身を理解

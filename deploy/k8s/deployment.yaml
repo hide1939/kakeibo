@@ -10,8 +10,8 @@ spec: #(必須)オブジェクトの望ましい状態
   selector: #Deploymentが管理するPodのラベルを定義
     matchLabels:
       app: kakeibo
-  strategy:
-    type: RollingUpdate
+  strategy: #古いPodから新しいPodに置き換える際の更新戦略を指定する。"Recreate"もしくは"RollingUpdate"を指定できる
+    type: RollingUpdate #Podインスタンスを新しいインスタンスで段階的にアップデートすることで、ダウンタイムなしでDeploymentをアップデートできる
     rollingUpdate:
       maxSurge: 1
       maxUnavailable: 0
