@@ -22,7 +22,7 @@ executors:
       - image: google/cloud-sdk
 commands:
   cache-composer:
-    description: "cache composer to speed up "composer install" at the second time and after"
+    description: "cache composer to speed up composer install at the second time and after"
     steps:
       - restore_cache:
           # search the cache of composer.lock 
