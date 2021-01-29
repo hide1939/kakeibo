@@ -40,6 +40,8 @@ jobs:
       - run:
           name: install php extension to execute phpunit test
           command: |
+            sudo pecl install xdebug
+            sudo docker-php-ext-enable xdebug 
             sudo apt-get update
             sudo apt-get install -y libfreetype6-dev libjpeg-dev libpng-dev
             sudo docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
@@ -57,7 +59,7 @@ jobs:
       - store_artifacts:
           path: kakeibo/tmp/test
       - store_artifacts:
-          path: kakeibo/tmp
+          path: kakeibo/tmp/coverage
       - persist_to_workspace:
           root: .
           paths: 
