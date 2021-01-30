@@ -44,6 +44,7 @@ commands:
     description: "install extension to execute phpunit test"
     steps:
       - run:
+          name: install extension
           command: |
             sudo apt-get update
             sudo apt-get install -y libfreetype6-dev libjpeg-dev libpng-dev
@@ -53,12 +54,14 @@ commands:
     description: "migrate database for phpunit test"
     steps:
       - run:
+          name: migration
           working_directory: kakeibo
           command: php artisan migrate --env=testing
   execute-phpunit:
     description: "execute phpunit test"
     steps:
       - run:
+          name: execute test
           working_directory: kakeibo
           command: vendor/bin/phpunit --log-junit tmp/test/result.xml
   store-test-result:
@@ -90,6 +93,7 @@ commands:
     description: "install gettext to use envsubst"
     steps:
       - run:
+          name: install package
           command: |
             apt-get update
             apt-get install -y gettext
@@ -97,12 +101,14 @@ commands:
     description: "make env for production laravel app"
     steps:
       - run:
+          name: make env
           working_directory: myProject
           command: cat ./deploy/env/.env.production | envsubst > ./kakeibo/.env
   setup-permission:
     description: "setting permission to Laravel directory"
     steps:
       - run: 
+          name: set permission
           working_directory: myProject/kakeibo
           command: |
             chmod -R 777 storage/
@@ -111,12 +117,14 @@ commands:
     description: "make docker image that includes kakeibo's source code"
     steps:
       - run:
+          name: make docker image
           working_directory: myProject
           command: docker build --file=deploy/Dockerfile -t kakeibo .
   tag-docker-image:
     description: "tag docker image"
     steps:
       - run:
+          name: tag image
           working_directory: myProject
           command: |
             docker tag kakeibo gcr.io/myproject-301613/kakeibo:${CIRCLE_BUILD_NUM}
@@ -125,6 +133,7 @@ commands:
     description: "authorize Google Cloud SDK and setup default settings"
     steps:  
       - run:
+          name: authorize Google Cloud SDK
           command: |
             echo ${GCLOUD_SERVICE_KEY} > ${HOME}/gcloud-service-key.json
             gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
@@ -133,6 +142,7 @@ commands:
     description: "push Docker images to GCR"
     steps:
       - run:
+          name: push image
           working_directory: myProject
           command: |
             docker push gcr.io/myproject-301613/kakeibo:${CIRCLE_BUILD_NUM}
@@ -141,22 +151,26 @@ commands:
     description: "connect to cluster that has kakeibo's node and pods"
     steps:
       - run:
+          name: connect cluster
           command: gcloud container clusters get-credentials cluster-kakeibo --zone us-west1-a --project ${GOOGLE_PROJECT_ID}
   update-deployment:
     description: "update deployment.yaml to new docker image"
     steps:
       - run:
+          name: update deployment
           working_directory: myProject
           command: cat ./deploy/k8s/deployment.yaml | envsubst > ${HOME}/deployment.yaml
   apply-deployment:
     description: "apply deployment.yaml"
     steps:
       - run:
+          name: apply deployment
           command: kubectl apply -f ${HOME}/deployment.yaml
   apply-service:
     description: "apply service.yaml"
     steps:
       - run:
+          name: apply service
           working_directory: myProject/deploy/k8s
           command: kubectl apply -f service.yaml
 jobs:
