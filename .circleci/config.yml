@@ -206,6 +206,14 @@ workflows:
   build_test_and_deploy:
     jobs:
       - build-and-test
+          filters: 
+            branches: 
+              only:
+                - main
       - deploy:
           requires:
             - build-and-test
+          # filters:
+          #   tags:
+          #     only:
+          #       - 
