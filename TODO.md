@@ -1,39 +1,15 @@
 # TODOリスト
 
-## 本番環境にデプロイする
-- Qiita等参考に手動でGKEにデプロイする
-    - 実装の流れをブログに
-- インフラ構成図の作成
-    - https://app.diagrams.net/?splash=0&libs=gcp
-    - 参考(https://www.google.com/search?q=GCP+%E6%A7%8B%E6%88%90%E5%9B%B3&sxsrf=ALeKk01oON8oBeecKBa0jdyrzbMUAj5b9Q:1610542612251&source=lnms&tbm=isch&sa=X&ved=2ahUKEwj7wbHi-pjuAhVXfXAKHYfHAvoQ_AUoAXoECBIQAw)
-- GKEのインフラを設定する
-    - lbとか、必要なやつ定義
-    - ネットワークのビデオ見つつ、ブログに手順まとめつつ(LaravelアプリをGKEにデプロイする手順を完全解説！)
-- デプロイ用の設定ファイルおよび環境変数のファイルを作成
-    - deployディレクトリを作成
-        - deployディレクトリ内に以下のファイル群を配置
-    - Dockerfile
-        - アプリのファイルをCOPY
-    - kubernetesの定義ファイル
-        - deployment.yml?
-        - service.yml?
-    - php.ini
-        - production用の設定
-        - opcacheの導入
-            - アプリの高速化
-    - その他必要な設定ファイル(apache等)
-    - .env.productionを作成
-- .circleci/config.ymlの作成
-    - 自動テスト
-    - 自動デプロイ
-    - GitHub上でmainにマージしたら本番に自動リリースされる
-- 本番デプロイを行う
-- 画面で確認
+## デプロイについて記事にまとめる
+- LaravelアプリをGKEにデプロイする方法
 
 ## 追加機能の開発(デプロイ後にアジャイル的に行う)
 - 認証機能を作る
     - []remember me機能を作る
     - attemptに追加したら良い
+    - Controllerでやる
+    - やるときに同時にブログにもまとめる
+    - 裏側のロジックも理解する
 - 画像アップロード機能を作成する
     - []FormRequestクラスを作る(バリデーション)
     - []画面選択した際にプレビューが表示できる
@@ -94,3 +70,33 @@
         - apacheファイル全体をコピーするのではなく、一部のみ書き換える
             - この方が効率がいい？
 - .dockerignoreを導入する
+- deployment.yamlとservice.yamlのコードを全て理解
+- インフラ構成図の作成(READMEに貼る)
+    - https://app.diagrams.net/?splash=0&libs=gcp
+    - 参考(https://www.google.com/search?q=GCP+%E6%A7%8B%E6%88%90%E5%9B%B3&sxsrf=ALeKk01oON8oBeecKBa0jdyrzbMUAj5b9Q:1610542612251&source=lnms&tbm=isch&sa=X&ved=2ahUKEwj7wbHi-pjuAhVXfXAKHYfHAvoQ_AUoAXoECBIQAw)
+- php.iniの本番用ファイルを導入
+    - production用の設定
+    - opcacheの導入
+        - アプリの高速化
+- circleciのファイルを完全に理解する
+- config.ymlの構成を最低限のシンプルなものにする
+    - 徹底的に無駄を排除
+- プロジェクト内の不要なファイルを消しまくる
+- 完璧なアプリに仕上げていく
+- envの中身の項目を理解する
+- Laravel内部に保存した写真も本番環境で表示できるように
+- 全てのコードのリファクタリング
+    - 最もシンプルになるように
+- 全てのコードの意味を理解する
+- GitHub上でmainにマージしたら本番に自動リリースされるようにconfig.ymlに設定
+- envとかの秘匿すべき情報は全てcircleciの環境変数に設定する
+- Laravelデフォルトの物でも、不要なファイルは削除する
+- circleciでテストのカバレッジを保存する。テストの結果も保存する(artifacts)
+- カバレッジの保存がうまく行くように調整
+- GKEにredisを導入する
+    - サイドカーコンテナ？
+- DNSを設定する
+- 本番環境でSSLで通信できるようにする
+- config.ymlの中身を理解
+- kubernetesのファイルの中身を理解
+- tagをつけてからでしか本番デプロイできないように。config.yml

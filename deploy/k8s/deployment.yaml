@@ -1,17 +1,17 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  creationTimestamp: null
+apiVersion: apps/v1 #(必須)どのバージョンのKubernetesAPIを利用してオブジェクトを作成するか
+kind: Deployment #(必須)どの種類のオブジェクトを作成するか
+metadata: #(必須)オブジェクトを一意に特定するための情報
+  creationTimestamp: null #records the time of creation
   labels: #podに指定するlabel
     app: kakeibo
   name: kakeibo #Deploymentの名前
-spec:
+spec: #(必須)オブジェクトの望ましい状態
   replicas: 2 #作成するpod数
-  selector:
+  selector: #Deploymentが管理するPodのラベルを定義
     matchLabels:
       app: kakeibo
-  strategy:
-    type: RollingUpdate
+  strategy: #古いPodから新しいPodに置き換える際の更新戦略を指定する。"Recreate"もしくは"RollingUpdate"を指定できる
+    type: RollingUpdate #Podインスタンスを新しいインスタンスで段階的にアップデートすることで、ダウンタイムなしでDeploymentをアップデートできる
     rollingUpdate:
       maxSurge: 1
       maxUnavailable: 0
@@ -22,7 +22,7 @@ spec:
         app: kakeibo #各podに付けるラベル名
     spec:
       containers:
-      - image: gcr.io/myproject-301613/kakeibo:v5 #コンテナの作成に使用するイメージ(GCRからpullしてくる)
+      - image: gcr.io/myproject-301613/kakeibo:${CIRCLE_BUILD_NUM} #コンテナの作成に使用するイメージ(GCRからpullしてくる)
         imagePullPolicy: Always
         name: kakeibo #ポッドが1つのコンテナkakeiboを実行する
         ports: 
