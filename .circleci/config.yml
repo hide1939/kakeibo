@@ -205,15 +205,11 @@ workflows:
   version: 2
   build_test_and_deploy:
     jobs:
-      - build-and-test:
-          filters: 
-            branches: 
-              only:
-                - main
+      - build-and-test
       - deploy:
           requires:
             - build-and-test
           # filters:
-          #   tags:
+          #   branches: 
           #     only:
-          #       - 
+          #       - main
