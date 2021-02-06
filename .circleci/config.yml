@@ -130,7 +130,7 @@ commands:
             docker tag kakeibo gcr.io/myproject-301613/kakeibo:${CIRCLE_BUILD_NUM}
             docker tag kakeibo gcr.io/myproject-301613/kakeibo:latest
   authorize-google-cloud-sdk:
-    description: "authorize Google Cloud SDK and setup default settings"
+    description: "authorize Google Cloud SDK and setup default settings(https://circleci.com/docs/ja/2.0/google-auth/)"
     steps:  
       - run:
           name: authorize Google Cloud SDK
