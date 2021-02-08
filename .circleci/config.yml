@@ -111,6 +111,12 @@ commands:
           name: set permission
           working_directory: myProject/kakeibo
           command: |
+            cd ..
+            pwd
+            ls
+            cd ..
+            pwd
+            ls 
             chmod -R 777 storage/
             chmod -R 777 bootstrap/cache/
   build-docker-image:
