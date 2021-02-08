@@ -29,8 +29,12 @@ spec: #(必須)オブジェクトの望ましい状態。リソースを定義�
           - containerPort: 80 #Deploymentでは、pod用にポート80を開く(トラフィックを送受信する)。コンテナがEXPOSEするポート(DockerfileでEXPOSEを定義する場合は設定不要)
         resources: #cpu,memoryの使用するリソースの上限を指定
           limits:
-            cpu: 50m
-            memory: 100Mi
+            cpu: 100m
+            memory: 250Mi
+            # cpu: 50m
+            # memory: 100Mi
           requests:
-            cpu: 50m
-            memory: 100Mi
+            cpu: 100m
+            memory: 250Mi
+            # cpu: 50m
+            # memory: 100Mi
