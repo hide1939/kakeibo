@@ -7,7 +7,10 @@ COPY ./deploy/apache/apache2.conf /etc/apache2/apache2.conf
 # php
 COPY ./deploy/php/php.ini /usr/local/etc/php/php.ini
 
-RUN apt-get update && apt-get install -y vim
+# extension
+RUN apt-get update && apt-get install -y \
+    vim \
+&& docker-php-ext-install pdo_mysql
 
 WORKDIR /var/www/kakeibo
 
