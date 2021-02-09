@@ -10,7 +10,7 @@ spec:
   - port: 80 #クライアントがアプリケーションにアクセスする場所
     protocol: TCP
     targetPort: 80 #アプリケーションがポッド内のトラフィックを実際にリッスンするポート
-    nodePort: 30848 #割り当てられたポート(外部からアクセスするときに使用するポート)
+    nodePort: 30849 #割り当てられたポート(外部からアクセスするときに使用するポート)
   selector:
     app: kakeibo #このラベルをを持つPodがこのServiceのメンバーと見なされる(Service経由でpodにトラフィックが流れる)
   type: NodePort
