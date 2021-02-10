@@ -1,40 +1,36 @@
-apiVersion: apps/v1 #(必須)どのバージョンのKubernetesAPIを利用してオブジェクトを作成するか
-kind: Deployment #(必須)どの種類のオブジェクトを作成するか。リソースの種類を表す属性。ReplicaSetを管理・操作するために提供されているリソース(ReplicaSetの世代管理を可能にする)
-metadata: #(必須)オブジェクトを一意に特定するための情報。リソースに付与するメタデータ
-  creationTimestamp: null #records the time of creation
-  labels: #podに指定するlabel(serviceのspec.selecorで指定するlabel)
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
     app: kakeibo
-  name: kakeibo #Deployment(kindで指定したリソース)の名前
-spec: #(必須)オブジェクトの望ましい状態。リソースを定義するための属性
-  replicas: 2 #作成するpod数
-  selector: #Deploymentが管理するPodのラベルを定義
+  name: kakeibo
+spec:
+  replicas: 2
+  selector:
     matchLabels:
       app: kakeibo
-  strategy: #古いPodから新しいPodに置き換える際の更新戦略を指定する。"Recreate"もしくは"RollingUpdate"を指定できる
-    type: RollingUpdate #Podインスタンスを新しいインスタンスで段階的にアップデートすることで、ダウンタイムなしでDeploymentをアップデートできる
+  strategy:
+    type: RollingUpdate
     rollingUpdate:
       maxSurge: 1
       maxUnavailable: 0
-  template: #podの定義(replicasの数だけこの定義のpodが生成される)
+  template:
     metadata:
       creationTimestamp: null
       labels:
-        app: kakeibo #各podに付けるラベル名
+        app: kakeibo
     spec:
-      containers: # podを構成するコンテナ群
-      - image: gcr.io/myproject-301613/kakeibo:${CIRCLE_BUILD_NUM} #コンテナの作成に使用するイメージ(GCRからpullしてくる)
+      containers:
+      - image: gcr.io/myproject-301613/kakeibo:${CIRCLE_BUILD_NUM}
         imagePullPolicy: Always
-        name: kakeibo #ポッドが1つのコンテナkakeiboを実行する。コンテナの名前
+        name: kakeibo
         ports: 
-          - containerPort: 80 #Deploymentでは、pod用にポート80を開く(トラフィックを送受信する)。コンテナがEXPOSEするポート(DockerfileでEXPOSEを定義する場合は設定不要)
-        resources: #cpu,memoryの使用するリソースの上限を指定
+          - containerPort:
+        resources:
           limits:
             cpu: 100m
-            memory: 512Mi
-            # cpu: 50m
-            # memory: 100Mi
+            memory: 500Mi
           requests:
             cpu: 100m
-            memory: 512Mi
-            # cpu: 50m
-            # memory: 100Mi
+            memory: 500Mi            
