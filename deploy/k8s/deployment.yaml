@@ -22,7 +22,7 @@ spec:
         app: kakeibo
     spec:
       containers:
-      - image: gcr.io/myproject-301613/kakeibo:${CIRCLE_BUILD_NUM}
+      - image: gcr.io/${GOOGLE_PROJECT_ID}/kakeibo:${CIRCLE_BUILD_NUM}
         imagePullPolicy: Always
         name: kakeibo
         ports: 
