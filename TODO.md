@@ -1,12 +1,3 @@
-- DNSを設定する
-    - ブログにまとめつつ
-- 本番環境でSSLで通信できるようにする
-    - ブログにまとめつつ
-- 本番環境でCloudSQLに接続できるようにする
-    - ブログにまとめつつ
-- kubernetes等のデプロイファイルの理解を深める。色々触って
-- kubernetesの本を進める。インフラ周り
-
 - 認証機能を作る
     - []remember me機能を作る
     - attemptに追加したら良い
@@ -102,3 +93,4 @@
 - ローカルでssl通信する
 - terraform導入する。infrastructure as code
 - Redisを導入する(Memory Store)
+- トップページの画像とか固定の画像はpublic配下に置く
