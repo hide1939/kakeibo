@@ -5,7 +5,7 @@ executors:
       - image: circleci/php:7.3
         environment:
           - APP_ENV: testing
-          - APP_KEY: base64:9tvXas6NOO2xwDWWvH9QuUjF5B/3asfbxx/Ejl8bQCo=
+          - APP_KEY: ${APP_KEY}
           - DB_CONNECTION: mysql
           - DB_HOST: 127.0.0.1
           - DB_PORT: 3306
@@ -25,19 +25,14 @@ commands:
     description: "cache composer to speed up composer install at the second time and after"
     steps:
       - restore_cache:
-          # search the cache of composer.lock 
-          # if composer.lock was changed, this key will be fail
           keys:
-            # checksum "file" = hash value of "file"
             - composer-cache-{{ checksum "./kakeibo/composer.lock" }}
       - run: 
           name: execute "composer install" to make vendor/
           working_directory: kakeibo
           command: composer install -n --prefer-dist
       - save_cache:
-          # chache name
           key: composer-cache-{{ checksum "./kakeibo/composer.lock" }}
-          # cache file
           paths:
             - ./kakeibo/vendor
   install-extension:
@@ -65,14 +60,14 @@ commands:
           working_directory: kakeibo
           command: vendor/bin/phpunit --log-junit tmp/test/result.xml
   store-test-result:
-    description: "store test result"
+    description: "store phpunit test's result"
     steps:
       - store_test_results:
           path: kakeibo/tmp/test
       - store_artifacts:
           path: kakeibo/tmp/test
   store_workspace:
-    description: "store workspace for the next job"
+    description: "store workspace for the next job(deploy)"
     steps:
       - persist_to_workspace:
           root: .
@@ -80,7 +75,7 @@ commands:
             - deploy
             - kakeibo
   use_previous_workspace:
-    description: "use stored workspace at this job"
+    description: "use stored workspace for this job"
     steps:
       - attach_workspace:
           at: myProject
@@ -93,12 +88,12 @@ commands:
     description: "install gettext to use envsubst"
     steps:
       - run:
-          name: install package
+          name: install envsubst
           command: |
             apt-get update
             apt-get install -y gettext
   make-env:
-    description: "make env for production laravel app"
+    description: "make env file for production laravel app"
     steps:
       - run:
           name: make env
@@ -121,16 +116,16 @@ commands:
           working_directory: myProject
           command: docker build --file=deploy/Dockerfile -t kakeibo .
   tag-docker-image:
-    description: "tag docker image"
+    description: "set tag to docker image"
     steps:
       - run:
           name: tag image
           working_directory: myProject
           command: |
-            docker tag kakeibo gcr.io/myproject-301613/kakeibo:${CIRCLE_BUILD_NUM}
-            docker tag kakeibo gcr.io/myproject-301613/kakeibo:latest
+            docker tag kakeibo gcr.io/${GOOGLE_PROJECT_ID}/kakeibo:${CIRCLE_BUILD_NUM}
+            docker tag kakeibo gcr.io/${GOOGLE_PROJECT_ID}/kakeibo:latest
   authorize-google-cloud-sdk:
-    description: "authorize Google Cloud SDK and setup default settings"
+    description: "authorize Google Cloud SDK and setup default settings(https://circleci.com/docs/ja/2.0/google-auth/)"
     steps:  
       - run:
           name: authorize Google Cloud SDK
@@ -145,14 +140,14 @@ commands:
           name: push image
           working_directory: myProject
           command: |
-            docker push gcr.io/myproject-301613/kakeibo:${CIRCLE_BUILD_NUM}
-            docker push gcr.io/myproject-301613/kakeibo:latest
+            docker push gcr.io/${GOOGLE_PROJECT_ID}/kakeibo:${CIRCLE_BUILD_NUM}
+            docker push gcr.io/${GOOGLE_PROJECT_ID}/kakeibo:latest
   connect-to-cluster:
     description: "connect to cluster that has kakeibo's node and pods"
     steps:
       - run:
           name: connect cluster
-          command: gcloud container clusters get-credentials cluster-kakeibo --zone us-west1-a --project ${GOOGLE_PROJECT_ID}
+          command: gcloud container clusters get-credentials cluster-${CLUSTER_NAME} --zone ${CLUSTER_ZONE} --project ${GOOGLE_PROJECT_ID}
   update-deployment:
     description: "update deployment.yaml to new docker image"
     steps:
@@ -205,15 +200,11 @@ workflows:
   version: 2
   build_test_and_deploy:
     jobs:
-      - build-and-test:
-          filters: 
-            branches: 
-              only:
-                - main
-      - deploy:
-          requires:
-            - build-and-test
-          # filters:
-          #   tags:
-          #     only:
-          #       - 
+      - build-and-test
+      # - deploy:
+      #     requires:
+      #       - build-and-test
+      #     filters:
+      #       branches: 
+      #         only:
+      #           - main

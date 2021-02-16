@@ -1,16 +1,14 @@
 apiVersion: v1
-kind: Service #service -> 一連のPodエンドポイントを1つのリソースにグループ化したもの(このグループにアクセスするさまざまな方法を構成できる)
+kind: Service
 metadata:
   creationTimestamp: null
   labels:
     app: kakeibo
   name: kakeibo
 spec:
-  ports:
-  - port: 80 #クライアントがアプリケーションにアクセスする場所
-    protocol: TCP
-    targetPort: 80 #アプリケーションがポッド内のトラフィックを実際にリッスンするポート
-    nodePort: 30848 #割り当てられたポート(外部からアクセスするときに使用するポート)
-  selector:
-    app: kakeibo #このラベルをを持つPodがこのServiceのメンバーと見なされる
   type: NodePort
+  ports:
+  - port: 80
+    nodePort: 32318
+  selector:
+    app: kakeibo
