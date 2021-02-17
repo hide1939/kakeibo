@@ -20,7 +20,7 @@
         {{ Form::password('password') }}
     </div>
     <div class="ui checkbox">
-        <input type="checkbox" name="remember" value=1>
+        <input type="checkbox" name="remember_me" value=1>
         <label>ログイン状態を保存する</label>
     </div>
     <div></div>
