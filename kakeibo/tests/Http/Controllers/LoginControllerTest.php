@@ -5,6 +5,7 @@ namespace Tests\Http\Controllers;
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
@@ -79,6 +80,79 @@ class LoginControllerTest extends TestCase
         ]);
 
         $response->assertRedirect('/login');
+    }
+
+    /** @test */
+    public function loginでremember_meがtrueで認証した後にmain画面に遷移する()
+    {
+        User::factory()->create([
+            'name' => 'testさん',
+            'email' => 'test@example.com',
+            'password' => Hash::make('test@123'),
+        ]);
+            
+        $this->post('/login', [
+            'name' => 'testさん',
+            'email' => 'test@example.com',
+            'password' => 'test@123',
+            // rememberにチェックが入っている
+            'remember_me' => 1,
+        ])->assertRedirect('/main');
+    }
+
+    /** @test */
+    public function loginでremember_meがtrueで認証する際にremember_cookieが発行される()
+    {
+        User::factory()->create([
+            'name' => 'testさん',
+            'email' => 'test@example.com',
+            'password' => Hash::make('test@123'),
+        ]);
+            
+        $this->post('/login', [
+            'name' => 'testさん',
+            'email' => 'test@example.com',
+            'password' => 'test@123',
+            // rememberにチェックが入っている
+            'remember_me' => 1,
+        ])->assertCookie(Auth::getRecallerName());
+    }
+
+    /** @test */
+    public function loginでremember_meがfalseで認証する際にはremember_cookieは発行されない()
+    {
+        User::factory()->create([
+            'name' => 'testさん',
+            'email' => 'test@example.com',
+            'password' => Hash::make('test@123'),
+        ]);
+            
+        $this->post('/login', [
+            'name' => 'testさん',
+            'email' => 'test@example.com',
+            'password' => 'test@123',
+            // rememberにチェックが入っていない
+            'remember_me' => false,
+        ])->assertCookieMissing(Auth::getRecallerName());
+    }
+
+    /** @test */
+    public function loginでremember_meがtrueで認証した後にremember_meの期限を7日に変更できる()
+    {
+        User::factory()->create([
+            'name' => 'testさん',
+            'email' => 'test@example.com',
+            'password' => Hash::make('test@123'),
+        ]);
+            
+        $this->post('/login', [
+            'name' => 'testさん',
+            'email' => 'test@example.com',
+            'password' => 'test@123',
+            // rememberにチェックが入っている
+            'remember_me' => 1,
+        ]);
+        $this->assertEquals($seven_days_seconds = 604800, Cookie::queued(Auth::getRecallerName())->getMaxAge());
     }
 
     /** @test */
