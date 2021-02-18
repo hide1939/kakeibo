@@ -11,9 +11,7 @@ class ExpenseService
      */
     public function getRegularTotalAmount($user_id)
     {
-        return Expense::where('user_id', $user_id)
-            ->where('is_regular', config('const.is_regular.true'))
-            ->sum('amount');
+        return Expense::userIs($user_id)->regular()->sum('amount');
     }
 
     /**
@@ -21,9 +19,7 @@ class ExpenseService
      */
     public function getRegular($user_id)
     {
-        return Expense::where('user_id', $user_id)
-            ->where('is_regular', config('const.is_regular.true'))
-            ->get();
+        return Expense::userIs($user_id)->regular()->get();
     }
 
     /** 
@@ -31,11 +27,7 @@ class ExpenseService
      */
     public function getMonthTotalAmount($user_id, $year, $month)
     {
-        return Expense::where('user_id', $user_id)
-            ->where('is_regular', config('const.is_regular.false'))
-            ->whereYear('created_at', $year)
-            ->whereMonth('created_at', $month)
-            ->sum('amount');
+        return Expense::userIs($user_id)->unregular()->yearIs($year)->monthis($month)->sum('amount');
     }
 
     /**
@@ -43,10 +35,6 @@ class ExpenseService
      */
     public function getByYearAndMonth($user_id, $year, $month)
     {
-        return Expense::where('user_id', $user_id)
-            ->where('is_regular', config('const.is_regular.false'))
-            ->whereYear('created_at', $year)
-            ->whereMonth('created_at', $month)
-            ->get();
+        return Expense::userIs($user_id)->unregular()->yearIs($year)->monthIs($month)->get();
     }
 }
