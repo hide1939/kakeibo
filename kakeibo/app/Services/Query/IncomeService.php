@@ -11,9 +11,7 @@ class IncomeService
      */
     public function getRegularTotalAmount($user_id)
     {
-        return Income::where('user_id', $user_id)
-            ->where('is_regular', config('const.is_regular.true'))
-            ->sum('amount');
+        return Income::userIs($user_id)->regular()->sum('amount');
     }
 
     /** 
@@ -21,9 +19,7 @@ class IncomeService
      */
     public function getRegular($user_id)
     {
-        return Income::where('user_id', $user_id)
-            ->where('is_regular', config('const.is_regular.true'))
-            ->get();
+        return Income::userIs($user_id)->regular()->get();
     }
 
     /** 
@@ -31,11 +27,7 @@ class IncomeService
      */
     public function getMonthTotalAmount($user_id, $year, $month)
     {
-        return Income::where('user_id', $user_id)
-            ->where('is_regular', config('const.is_regular.false'))
-            ->whereYear('created_at', $year)
-            ->whereMonth('created_at', $month)
-            ->sum('amount');
+        return Income::userIs($user_id)->unregular()->yearIs($year)->monthIs($month)->sum('amount');
     }
 
     /**
@@ -43,10 +35,6 @@ class IncomeService
      */
     public function getByYearAndMonth($user_id, $year, $month)
     {
-        return Income::where('user_id', $user_id)
-            ->where('is_regular', config('const.is_regular.false'))
-            ->whereYear('created_at', $year)
-            ->whereMonth('created_at', $month)
-            ->get();
+        return Income::userIs($user_id)->unregular()->yearIs($year)->monthIs($month)->get();
     }
 }
