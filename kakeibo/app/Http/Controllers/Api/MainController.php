@@ -31,9 +31,8 @@ class MainController extends Controller
      */
     public function index(Request $request)
     {
-        // TODO:クエリパラメータで年月を渡した場合のテストも書く
-        $year = is_null($request->query('y')) ? Carbon::now()->year : $request->query('y');
-        $month = is_null($request->query('m')) ? Carbon::now()->month : $request->query('m');
+        $year = $request->query('y') ?? Carbon::now()->year;
+        $month = $request->query('m') ?? Carbon::now()->month;
 
         // table.jsで使うjsonデータを返す
         return response()->json([
