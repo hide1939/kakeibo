@@ -1,4 +1,9 @@
 - Requestクラスにバリデーションも設置
+    - RegistController
+    - RegularController
+    - MainController
+    - MainController(API)
+    - ProfileImageController
 - 画像アップロード機能を作成する
     - []FormRequestクラスを作る(バリデーション)
     - []画面選択した際にプレビューが表示できる
