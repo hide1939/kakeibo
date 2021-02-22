@@ -9,14 +9,23 @@
 {{ Form::open(['url' => '/login', 'method' => 'post', 'class' => 'ui fluid form']) }}
     <div class="field">
         <div class="ui pointing below label">名前</div>
+        @error('name')
+            <div class="ui red message">{{ $message }}</div>
+        @enderror
         {{ Form::input('text', 'name', '', ['placeholder' => 'name']) }}
     </div>
     <div class="field">
         <div class="ui pointing below label">メールアドレス</div>
+        @error('email')
+            <div class="ui red message">{{ $message }}</div>
+        @enderror
         {{ Form::email('email', '', ['placeholder' => 'email']) }}
     </div>
     <div class="field">
         <div class="ui pointing below label">パスワード</div>
+        @error('password')
+            <div class="ui red message">{{ $message }}</div>
+        @enderror
         {{ Form::password('password') }}
     </div>
     <div class="ui checkbox">

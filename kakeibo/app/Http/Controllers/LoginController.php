@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\LoginPostRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 
@@ -13,7 +13,7 @@ class LoginController extends Controller
         return view('layouts.login');
     }
 
-    public function login(Request $request)
+    public function login(LoginPostRequest $request)
     {
         $remember = $request->remember_me;
         if (!Auth::attempt($request->only('name', 'email', 'password'), $remember)) {
