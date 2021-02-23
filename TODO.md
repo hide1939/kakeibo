@@ -1,5 +1,5 @@
 - Requestクラスにバリデーションも設置
-    - RegistController
+    - RegisterController
         - Registerに変える
         - registserviceとかもregisterに
     - RegularController

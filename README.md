@@ -5,7 +5,7 @@
 # Laravel8.x note
 - routing
 how to write routing
-Route::get('/regist', [RegistController::class, 'create']);
+Route::get('/register', [RegisterController::class, 'create']);
 
 - factory
 how to write factory

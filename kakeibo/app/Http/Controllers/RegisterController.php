@@ -6,7 +6,7 @@ use App\Services\Command\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class RegistController extends Controller
+class RegisterController extends Controller
 {
     private $service;
 
@@ -29,7 +29,7 @@ class RegistController extends Controller
 
         // name,emailのどちらか＋passwordで認証できる
         if (!Auth::attempt($request->only('name', 'email', 'password'))) {
-            return redirect('/regist');
+            return redirect('/register');
         }
 
         return redirect('/regular');

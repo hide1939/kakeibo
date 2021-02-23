@@ -6,7 +6,7 @@
 <br>
 <h2>新規登録</h2>
 <br>
-{{ Form::open(['url' => '/regist', 'method' => 'post', 'class' => 'ui fluid form']) }}
+{{ Form::open(['url' => '/register', 'method' => 'post', 'class' => 'ui fluid form']) }}
     <div class="field">
         <div class="ui pointing below label">名前</div>
         {{ Form::input('text', 'name', '', ['placeholder' => 'name']) }}

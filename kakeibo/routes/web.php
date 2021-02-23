@@ -4,7 +4,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileImageController;
-use App\Http\Controllers\RegistController;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RegularController;
 
 /*
@@ -24,8 +24,8 @@ Route::get('/', function () {
 });
 
 // 新規登録関連
-Route::get('/regist', [RegistController::class, 'create']);
-Route::post('/regist', [RegistController::class, 'store']);
+Route::get('/register', [RegisterController::class, 'create']);
+Route::post('/register', [RegisterController::class, 'store']);
 
 // ログイン関連
 Route::get('/login', [LoginController::class, 'index'])->name('login');
