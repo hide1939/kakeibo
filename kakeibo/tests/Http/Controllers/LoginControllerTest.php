@@ -72,13 +72,13 @@ class LoginControllerTest extends TestCase
             'password' => Hash::make('test@123')
         ]);
 
+        $this->get('/login');
         $response = $this->post('/login', [
             'name' => 'testさん',
             'email' => 'test@example.com',
             // パスワード間違い
             'password' => 'hoge@123'
         ]);
-
         $response->assertRedirect('/login');
     }
 

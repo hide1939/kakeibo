@@ -8,6 +8,9 @@
 <br>
 {{ Form::open(['url' => '/login', 'method' => 'post', 'class' => 'ui fluid form']) }}
     <div class="field">
+        @error('login_failed')
+            <div class="ui red message">{{ $message }}</div>
+        @enderror
         <div class="ui pointing below label">名前</div>
         @error('name')
             <div class="ui red message">{{ $message }}</div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\LoginPostRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
 {
@@ -17,7 +18,8 @@ class LoginController extends Controller
     {
         $remember = $request->remember_me;
         if (!Auth::attempt($request->only('name', 'email', 'password'), $remember)) {
-            return redirect('login');
+            throw ValidationException::withMessages(['login_failed' => 'ログインに失敗しました。指定する情報が間違っています']);
+            return redirect('/login');
         };
 
         if ($remember) {
