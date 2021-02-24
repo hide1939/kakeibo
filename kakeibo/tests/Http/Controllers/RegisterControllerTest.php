@@ -21,7 +21,7 @@ class RegisterControllerTest extends TestCase
     public function createで新規登録画面が表示できる()
     {
         $response = $this->get('/register');
-        $response->assertViewIs('layouts.regist');
+        $response->assertViewIs('layouts.register');
     }
 
     /** @test */

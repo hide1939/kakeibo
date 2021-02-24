@@ -8,10 +8,10 @@ use Illuminate\Support\Str;
 
 class UserService
 {
-    public function regist($regist_user_params)
+    public function register($register_user_params)
     {
-        $regist_user_params['password'] = Hash::make($regist_user_params['password']);
-        $regist_user_params['api_token'] = Str::random(60);
-        User::create($regist_user_params);
+        $register_user_params['password'] = Hash::make($register_user_params['password']);
+        $register_user_params['api_token'] = Str::random(60);
+        User::create($register_user_params);
     }
 } 

@@ -21,9 +21,9 @@ class UserServiceTest extends TestCase
     }
 
     /** @test */
-    public function registでユーザーの新規登録ができる()
+    public function registerでユーザーの新規登録ができる()
     {
-        $this->service->regist([
+        $this->service->register([
             'name' => 'test君',
             'email' => 'test@example.com',
             'password' => 'password@123',
@@ -36,9 +36,9 @@ class UserServiceTest extends TestCase
     }
 
     /** @test */
-    public function registでプロフィール画像のパスも含めて新規登録できる()
+    public function registerでプロフィール画像のパスも含めて新規登録できる()
     {
-        $this->service->regist([
+        $this->service->register([
             'name' => 'test君',
             'email' => 'test@example.com',
             'password' => 'password@123',
@@ -53,9 +53,9 @@ class UserServiceTest extends TestCase
     }
 
     /** @test */
-    public function registでハッシュ化したパスワードを保存できる()
+    public function registerでハッシュ化したパスワードを保存できる()
     {
-        $this->service->regist([
+        $this->service->register([
             'name' => 'test君',
             'email' => 'test@example.com',
             'password' => 'password@123',
@@ -68,9 +68,9 @@ class UserServiceTest extends TestCase
     }
 
     /** @test */
-    public function registでapi_tokenを登録できる()
+    public function registerでapi_tokenを登録できる()
     {
-        $this->service->regist([
+        $this->service->register([
             'name' => 'test君',
             'email' => 'test@example.com',
             'password' => 'password@123',

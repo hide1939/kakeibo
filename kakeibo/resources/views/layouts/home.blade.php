@@ -9,10 +9,10 @@
   </div>
   <div class="inline">
     <button class="ui inverted orange button">
-        <a href="/regist">新規登録</a>
+        <a href='/register'>新規登録</a>
     </button>
     <button class="ui inverted blue button">
-        <a href="/login">ログイン</a>
+        <a href='/login'>ログイン</a>
     </button>
   </div>
   <br>

@@ -17,7 +17,7 @@ class RegisterController extends Controller
 
     public function create()
     {
-        return view('layouts.regist');
+        return view('layouts.register');
     }
 
     /**
@@ -25,7 +25,7 @@ class RegisterController extends Controller
      */
     public function store(Request $request)
     {
-        $this->service->regist($request->all());
+        $this->service->register($request->all());
 
         // name,emailのどちらか＋passwordで認証できる
         if (!Auth::attempt($request->only('name', 'email', 'password'))) {
