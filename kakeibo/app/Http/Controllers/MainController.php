@@ -21,7 +21,7 @@ class MainController extends Controller
     /**
      * メイン画面を表示する
      */
-    public function index(Request $request)
+    public function index()
     {
         // TODO:この辺のパラメータはviewで直接取れるならそうしたい
         return view('layouts.main', ['login_user_name' => Auth::user()->name]);

@@ -1,5 +1,4 @@
 - Requestクラスにバリデーションも設置
-    - MainController
     - MainController(API)
     - ProfileImageController
 - ローカルにセキュア環境作る
