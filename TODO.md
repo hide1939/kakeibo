@@ -1,5 +1,4 @@
 - Requestクラスにバリデーションも設置
-    - RegularController
     - MainController
     - MainController(API)
     - ProfileImageController
@@ -91,3 +90,5 @@
 - Redisを導入する(Memory Store)
 - トップページの画像とか固定の画像はpublic配下に置く
 - ローカルの環境構築を自動化する
+- Requestクラスにバリデーションのリファクタ
+    - regularとか

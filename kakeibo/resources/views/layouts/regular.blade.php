@@ -21,12 +21,18 @@
         {{ Form::open(['url' => '/regular?param=e']) }}
             <div class="ui huge form">
                 <h3>支出</h3>
+                @error('item')
+                    <div class="ui red message">{{ $message }}</div>
+                @enderror
+                @error('amount')
+                    <div class="ui red message">{{ $message }}</div>
+                @enderror
                 <div class="two fields">
                     <div class="field">
                         {{ Form::input('text', 'item', '', ['placeholder' => '項目名'])}}
                     </div>
                     <div class="field">
-                        {{ Form::input('number', 'amount', '', ['placeholder' => '金額'])}}
+                        {{ Form::input('text', 'amount', '', ['placeholder' => '金額'])}}
                     </div>
                 </div>
                 <button type="submit" class="positive large ui button">登録</button>
@@ -36,12 +42,18 @@
         {{ Form::open(['url' => '/regular?param=i']) }}
             <div class="ui huge form">
                 <h3>収入</h3>
+                @error('item')
+                    <div class="ui red message">{{ $message }}</div>
+                @enderror
+                @error('amount')
+                    <div class="ui red message">{{ $message }}</div>
+                @enderror
                 <div class="two fields">
                     <div class="field">
                         {{ Form::input('text', 'item', '', ['placeholder' => '項目名'])}}
                     </div>
                     <div class="field">
-                        {{ Form::input('number', 'amount', '', ['placeholder' => '金額'])}}
+                        {{ Form::input('text', 'amount', '', ['placeholder' => '金額'])}}
                     </div>
                 </div>
                 <button type="submit" class="positive large ui button">登録</button>

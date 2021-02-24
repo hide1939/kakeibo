@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RegularPostRequest;
 use App\Services\Command\IncomeService as CommandIncomeService;
 use App\Services\Command\ExpenseService as CommandExpenseService;
 use App\Services\Query\ExpenseService as QueryExpenseService;
@@ -49,7 +50,7 @@ class RegularController extends Controller
     /**
      * 定期収支を登録する
      */
-    public function store(Request $request)
+    public function store(RegularPostRequest $request)
     {
         $this->regular_usecase->store(Auth::id(), $request->query('param'), $request->item, $request->amount);
 
