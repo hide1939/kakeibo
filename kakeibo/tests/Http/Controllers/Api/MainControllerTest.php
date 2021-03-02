@@ -158,4 +158,26 @@ class MainControllerTest extends TestCase
             'amount' => 200000
         ]);
     }
+
+    /** @test */
+    public function storeでitemを指定しなかった場合はエラーメッセージを含んだjsonレスポンスが返る()
+    {
+        $user = User::factory()->create();
+        $response = $this->actingAs($user, 'api')->postJson(action([MainController::class, 'store'], ['param' => 'i']), [
+            'item' => '',
+            'amount' => 200
+        ]);
+        $this->assertEquals(['項目名は必ず指定してください。'], $response->original['errors']['item']);
+    }
+
+    /** @test */
+    public function storeでamountを指定しなかった場合はエラーメッセージを含んだjsonレスポンスが返る()
+    {
+        $user = User::factory()->create();
+        $response = $this->actingAs($user, 'api')->postJson(action([MainController::class, 'store'], ['param' => 'i']), [
+            'item' => '給料',
+            'amount' => ''
+        ]);
+        $this->assertEquals(['金額は必ず指定してください。'], $response->original['errors']['amount']);
+    }
 }
