@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\MainStoreRequest;
 use App\Services\Query\ExpenseService as QueryExpenseService;
 use App\Services\Query\IncomeService as QueryIncomeService;
 use App\UseCases\MainUseCase;
@@ -49,7 +50,7 @@ class MainController extends Controller
     /** 
      * メイン画面で収支の登録をする
      */
-    public function store(Request $request)
+    public function store(MainStoreRequest $request)
     {
         $this->main_usecase->store(Auth::id(), $request->query('param'), $request->item, $request->amount);
     }
