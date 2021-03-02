@@ -18,7 +18,9 @@ class Main extends React.Component {
             year: '',
             month: '',
             item_value: '',
-            amount_value: ''
+            amount_value: '',
+            item_error_message: '',
+            amount_error_message: '',
         };
         this.setExpenseValue = this.setExpenseValue.bind(this);
         this.setIncomeValue = this.setIncomeValue.bind(this);
@@ -68,6 +70,11 @@ class Main extends React.Component {
 
     // フォーム入力したデータをpostして登録する
     postValue() {
+        this.setState({
+            item_error_message: '',
+            amount_error_message: '',
+        })
+
         if (this.state.param == 'e') {
             this.setState({
                 month_total_amount: this.state.month_total_amount -= this.state.amount_value
@@ -92,8 +99,11 @@ class Main extends React.Component {
                 amount_value: ''
             });
         })
-        .catch((response) => {
-            console.log('cant post data');
+        .catch((error) => {
+            this.setState({
+                item_error_message: error.response.data.errors.item[0],
+                amount_error_message: error.response.data.errors.amount[0]
+            })
         })
     }
 
@@ -172,6 +182,9 @@ class Main extends React.Component {
                             <input type="hidden" name="_token" value={ this.state.csrf_token } />
                             <div className="ui huge form">
                                 <h3>{ this.state.title }</h3>
+                                {/* show error */}
+                                {this.state.item_error_message && <div className="ui red message">{ this.state.item_error_message }</div>}
+                                {this.state.amount_error_message && <div className="ui red message">{ this.state.amount_error_message }</div>}
                                 <div className="two fields">
                                     <div className="field">
                                         <input type="text" name="item" placeholder="項目名" value={ this.state.item_value } onChange={ this.handleItemChange } />
