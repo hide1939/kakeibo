@@ -152,6 +152,7 @@ return [
         'password' => 'パスワード',
         'item' => '項目名',
         'amount' => '金額',
+        'profile_image' => 'プロフィール画像',
     ],
 
 ];

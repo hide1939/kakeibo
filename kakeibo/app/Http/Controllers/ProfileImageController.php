@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProfileImageStoreRequest;
 use App\Services\Query\UserService;
 use App\UseCases\ProfileImageUseCase;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ProfileImageController extends Controller
@@ -32,7 +32,7 @@ class ProfileImageController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(ProfileImageStoreRequest $request)
     {
         $this->usecase->store($request->file('profile_image'), Auth::id());
 

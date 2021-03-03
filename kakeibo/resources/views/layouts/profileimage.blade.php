@@ -4,6 +4,9 @@
 
 @section('content')
 <p>プロフィール画像投稿フォーム</p>
+@error('profile_image')
+    <div class="ui red message">{{ $message }}</div>
+@enderror
 {{ Form::open(['url' => '/profile_image', 'files' => true]) }}
     {{ Form::token() }}
     {{ Form::file('profile_image') }}
