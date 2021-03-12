@@ -1,5 +1,19 @@
-- ローカルにセキュア環境作る
-    - ローカルでssl通信する
+- ローカルにセキュア環境作る（ローカルでSSL通信する）
+    - 基本的にはこの記事を参考に -> https://qiita.com/ucan-lab/items/c7f0690227ce7da4a172
+        - インストールやキーファイルの作成等は終わってる
+        - ただしNginxなのでApacheに載せ替える必要がある
+    - そもそものSSL通信の流れを学ぶ
+        - https://junzou-marketing.com/works-of-ssl
+        - イメージする
+    - ApacheでローカルでSSL通信する方法を調べる
+        - https://qiita.com/KingSky/items/c407829991cb18a52d99
+        - https://itneko.com/docker-apache-php/
+        - https://hacknote.jp/archives/17724/
+        - https://itneko.com/docker-apache-php/
+        - 実装する
+        - SSL通信する
+    - SSL通信の流れ、仕組みをブログにまとめる
+    - Laravel Apache　PHPでローカルでSSL通信する手順を分かりやすくまとめる
 - メール認証。Laravelの仕組みでやってみる
     - ローカルではMailHog導入してメール送信
     - 本番とかではSendGridのメールサーバーを使ってメール送信。GCP上のログにはどこにある
