@@ -1,10 +1,10 @@
 - ローカルにセキュア環境作る（ローカルでSSL通信する）
-    - 基本的にはこの記事を参考に -> https://qiita.com/ucan-lab/items/c7f0690227ce7da4a172
-        - インストールやキーファイルの作成等は終わってる
-        - ただしNginxなのでApacheに載せ替える必要がある
-    - そもそものSSL通信の流れを学ぶ
+    - そもそものSSL通信の流れを学ぶ。仕組み、どんな流れ？
         - https://junzou-marketing.com/works-of-ssl
         - イメージする
+    - 基本的にはこの記事を参考に実装する -> https://qiita.com/ucan-lab/items/c7f0690227ce7da4a172
+        - インストールやキーファイルの作成等は終わってる
+        - ただしNginxなのでApacheに載せ替える必要がある
     - ApacheでローカルでSSL通信する方法を調べる
         - https://qiita.com/KingSky/items/c407829991cb18a52d99
         - https://itneko.com/docker-apache-php/
